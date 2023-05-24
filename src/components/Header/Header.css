@@ -819,7 +819,7 @@ html {
     -ms-flex-align: center;
         align-items: center;
     font-family: 'Poppins', sans-serif;
-    background: url("./Searchs_006.png");
+    background: url("./pexels-mark-angelo-sampan-1587927.jpg");
     background-size: cover;
     background-position: center center;
     padding: 15px;
@@ -950,7 +950,7 @@ html {
       height: 26px;
     }
     .s006 form legend {
-      font-size: 36px;
+      font-size: 25px;
       color: #fff;
       font-weight: 800;
       text-align: center;
