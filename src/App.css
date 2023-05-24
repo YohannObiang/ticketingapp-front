@@ -6,7 +6,30 @@
   height: 40vmin;
   pointer-events: none;
 }
+.Title{
+  font-size: 35px;
+  color: rgb(43, 43, 43);
+  font-weight: 700;
+  text-align: start;
+  margin-top: 25px;
+  margin-left: 20px;
+}
+.categorieBox{
+  padding: 0px 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 
+}
+.categorieCard{
+  margin: 10px;
+}
+.categoriesFont{
+  color: #727272;
+  font-size: 16px;
+}
+.categoriesContent{
+  padding: 10px 7px 25px 7px;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -34,5 +57,25 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+@media (max-width: 767px){
+  .categorieBox{
+    padding: 10px 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    height: fit-content;
+  }
+  .categorieCard{
+    margin: 10px 10px 3px 10px;
+    height: 50px;
+  }
+  .categoriesFont{
+    color: #727272;
+    font-size: 16px;
+    padding: 0;
+  }
+  .categoriesContent{
+    padding: 7px 7px 15px 7px;
   }
 }
