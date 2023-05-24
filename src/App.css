@@ -26,9 +26,10 @@
 .categoriesFont{
   color: #727272;
   font-size: 16px;
+  font-weight: 500;
 }
 .categoriesContent{
-  padding: 10px 7px 25px 7px;
+  padding: 16px 7px 19px 7px;
 }
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

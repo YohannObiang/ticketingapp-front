@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 // import div from '@mui/material/div';
 import CardMedia from '@mui/material/CardMedia';
-import Cover from '..//Header/pexels-mark-angelo-sampan-1587927.jpg'
+import Cover from '../../gradient.png'
 
 export default function Categories() {
   const theme = useTheme();
