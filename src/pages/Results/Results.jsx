@@ -5,14 +5,12 @@ import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Photo from '../../assets/tour.png';
 import Bann from '../../assets/bann.png';
@@ -25,25 +23,12 @@ import './Results.css';
 
 
 
-
-
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
-
-export default function SoonestEvents() {
+export default function Results() {
 
   return (
     <div>
       <div className="navbarBackground"></div>
-      <legend className='Title'>Evénéments proches... </legend>
+      <legend className='Title'>Resultats pour: "xyasfhbedgfnsfggdgsntstbrsbtz" </legend>
       <div className='soonestEventBox'>
         <div className='soonestEventCard'>
           <Card sx={{ maxWidth: 345 }}>
@@ -65,26 +50,15 @@ className="photoEventHeight"/>
         <CardActions disableSpacing>
           
           <IconButton aria-label="share">
+            <Link to="/validation">
             <button className='buyingBtn'>
               Acheter
             </button>
+            </Link>
           </IconButton>
-          <ExpandMore
-            expand={expanded}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </ExpandMore>
+          
         </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
-            <span style={{color:'#262D44'}}>Date de l'evenement</span><br />
-                <span style={{color:'#262D44'}}>Lieu de l'evenement</span><br /><br />
-            <span style={{color:'#262D44'}}>Prix 1</span><br />
-                <span style={{color:'#262D44'}}>Prix 2</span><br />
-                <span style={{color:'#262D44'}}>Prix 3</span><br /><br /> 
-          </Collapse>
+        
           </Card>
         </div>
         <div className='soonestEventCard'>
@@ -108,26 +82,15 @@ className="photoEventHeight"
         <CardActions disableSpacing>
           
           <IconButton aria-label="share">
+            <Link to="/validation">
             <button className='buyingBtn'>
               Acheter
             </button>
+            </Link>
           </IconButton>
-          <ExpandMore
-            expand={expanded1}
-            onClick={handleExpandClick1}
-            aria-expanded={expanded1}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </ExpandMore>
+          
         </CardActions>
-        <Collapse in={expanded1} timeout="auto" unmountOnExit>
-            <span style={{color:'#262D44'}}>Date de l'evenement</span><br />
-                <span style={{color:'#262D44'}}>Lieu de l'evenement</span><br /><br />
-            <span style={{color:'#262D44'}}>Prix 1</span><br />
-                <span style={{color:'#262D44'}}>Prix 2</span><br />
-                <span style={{color:'#262D44'}}>Prix 3</span><br /><br /> 
-          </Collapse>
+        
           </Card>
         </div>
         <div className='soonestEventCard'>
@@ -150,26 +113,15 @@ className="photoEventHeight"/>
         <CardActions disableSpacing>
           
           <IconButton aria-label="share">
+            <Link to="/validation">
             <button className='buyingBtn'>
               Acheter
             </button>
+            </Link>
           </IconButton>
-          <ExpandMore
-            expand={expanded2}
-            onClick={handleExpandClick2}
-            aria-expanded={expanded2}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </ExpandMore>
+          
         </CardActions>
-        <Collapse in={expanded2} timeout="auto" unmountOnExit>
-            <span style={{color:'#262D44'}}>Date de l'evenement</span><br />
-                <span style={{color:'#262D44'}}>Lieu de l'evenement</span><br /><br />
-            <span style={{color:'#262D44'}}>Prix 1</span><br />
-                <span style={{color:'#262D44'}}>Prix 2</span><br />
-                <span style={{color:'#262D44'}}>Prix 3</span><br /><br /> 
-          </Collapse>
+        
           </Card>
         </div>
         <div className='soonestEventCard'>
@@ -192,26 +144,15 @@ className="photoEventHeight"/>
         <CardActions disableSpacing>
           
           <IconButton aria-label="share">
+            <Link to="/validation">
             <button className='buyingBtn'>
               Acheter
             </button>
+            </Link>
           </IconButton>
-          <ExpandMore
-            expand={expanded3}
-            onClick={handleExpandClick3}
-            aria-expanded={expanded3}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </ExpandMore>
+          
         </CardActions>
-        <Collapse in={expanded3} timeout="auto" unmountOnExit>
-            <span style={{color:'#262D44'}}>Date de l'evenement</span><br />
-                <span style={{color:'#262D44'}}>Lieu de l'evenement</span><br /><br />
-            <span style={{color:'#262D44'}}>Prix 1</span><br />
-                <span style={{color:'#262D44'}}>Prix 2</span><br />
-                <span style={{color:'#262D44'}}>Prix 3</span><br /><br /> 
-          </Collapse>
+        
           </Card>
         </div>
         <div className='soonestEventCard'>
@@ -234,26 +175,15 @@ className="photoEventHeight"/>
         <CardActions disableSpacing>
           
           <IconButton aria-label="share">
+            <Link to="/validation">
             <button className='buyingBtn'>
               Acheter
             </button>
+            </Link>
           </IconButton>
-          <ExpandMore
-            expand={expanded4}
-            onClick={handleExpandClick4}
-            aria-expanded={expanded4}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </ExpandMore>
+          
         </CardActions>
-        <Collapse in={expanded4} timeout="auto" unmountOnExit>
-            <span style={{color:'#262D44'}}>Date de l'evenement</span><br />
-                <span style={{color:'#262D44'}}>Lieu de l'evenement</span><br /><br />
-            <span style={{color:'#262D44'}}>Prix 1</span><br />
-                <span style={{color:'#262D44'}}>Prix 2</span><br />
-                <span style={{color:'#262D44'}}>Prix 3</span><br /><br /> 
-          </Collapse>
+        
           </Card>
         </div>
         <div className='soonestEventCard'>
@@ -276,26 +206,15 @@ className="photoEventHeight"/>
         <CardActions disableSpacing>
           
           <IconButton aria-label="share">
+            <Link to="/validation">
             <button className='buyingBtn'>
               Acheter
             </button>
+            </Link>
           </IconButton>
-          <ExpandMore
-            expand={expanded5}
-            onClick={handleExpandClick5}
-            aria-expanded={expanded5}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </ExpandMore>
+          
         </CardActions>
-        <Collapse in={expanded5} timeout="auto" unmountOnExit>
-            <span style={{color:'#262D44'}}>Date de l'evenement</span><br />
-                <span style={{color:'#262D44'}}>Lieu de l'evenement</span><br /><br />
-            <span style={{color:'#262D44'}}>Prix 1</span><br />
-                <span style={{color:'#262D44'}}>Prix 2</span><br />
-                <span style={{color:'#262D44'}}>Prix 3</span><br /><br /> 
-          </Collapse>
+        
           </Card>
         </div>
         <div className='soonestEventCard'>
@@ -318,26 +237,15 @@ className="photoEventHeight"/>
         <CardActions disableSpacing>
           
           <IconButton aria-label="share">
+            <Link to="/validation">
             <button className='buyingBtn'>
               Acheter
             </button>
+            </Link>
           </IconButton>
-          <ExpandMore
-            expand={expanded6}
-            onClick={handleExpandClick6}
-            aria-expanded={expanded6}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </ExpandMore>
+          
         </CardActions>
-        <Collapse in={expanded6} timeout="auto" unmountOnExit>
-            <span style={{color:'#262D44'}}>Date de l'evenement</span><br />
-                <span style={{color:'#262D44'}}>Lieu de l'evenement</span><br /><br />
-            <span style={{color:'#262D44'}}>Prix 1</span><br />
-                <span style={{color:'#262D44'}}>Prix 2</span><br />
-                <span style={{color:'#262D44'}}>Prix 3</span><br /><br /> 
-          </Collapse>
+        
           </Card>
         </div>
         <div className='soonestEventCard'>
@@ -360,26 +268,15 @@ className="photoEventHeight"/>
         <CardActions disableSpacing>
           
           <IconButton aria-label="share">
+            <Link to="/validation">
             <button className='buyingBtn'>
               Acheter
             </button>
+            </Link>
           </IconButton>
-          <ExpandMore
-            expand={expanded7}
-            onClick={handleExpandClick7}
-            aria-expanded={expanded7}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </ExpandMore>
+          
         </CardActions>
-        <Collapse in={expanded7} timeout="auto" unmountOnExit>
-            <span style={{color:'#262D44'}}>Date de l'evenement</span><br />
-                <span style={{color:'#262D44'}}>Lieu de l'evenement</span><br /><br />
-            <span style={{color:'#262D44'}}>Prix 1</span><br />
-                <span style={{color:'#262D44'}}>Prix 2</span><br />
-                <span style={{color:'#262D44'}}>Prix 3</span><br /><br /> 
-          </Collapse>
+        
           </Card>
         </div>
         

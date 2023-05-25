@@ -85,8 +85,8 @@ export default function SoonestEvents() {
           image={Bann}
           alt="Photo"
 
-className="photoEventHeight"/>
-</Link>
+        className="photoEventHeight"/>
+        </Link>
           <span className='soonestEventName'>
           CSB vs ASO SM
               </span><br />
@@ -96,9 +96,12 @@ className="photoEventHeight"/>
         <CardActions disableSpacing>
           
           <IconButton aria-label="share">
+                    <Link to="/validation">
+
             <button className='buyingBtn'>
               Acheter
             </button>
+            </Link>
           </IconButton>
           <ExpandMore
             expand={expanded}
@@ -139,9 +142,12 @@ className="photoEventHeight"
         <CardActions disableSpacing>
           
           <IconButton aria-label="share">
+                    <Link to="/validation">
+
             <button className='buyingBtn'>
               Acheter
             </button>
+            </Link>
           </IconButton>
           <ExpandMore
             expand={expanded1}
@@ -181,9 +187,12 @@ className="photoEventHeight"/>
         <CardActions disableSpacing>
           
           <IconButton aria-label="share">
+                    <Link to="/validation">
+
             <button className='buyingBtn'>
               Acheter
             </button>
+            </Link>
           </IconButton>
           <ExpandMore
             expand={expanded2}
@@ -223,9 +232,12 @@ className="photoEventHeight"/>
         <CardActions disableSpacing>
           
           <IconButton aria-label="share">
+                    <Link to="/validation">
+
             <button className='buyingBtn'>
               Acheter
             </button>
+            </Link>
           </IconButton>
           <ExpandMore
             expand={expanded3}
@@ -265,9 +277,12 @@ className="photoEventHeight"/>
         <CardActions disableSpacing>
           
           <IconButton aria-label="share">
+                    <Link to="/validation">
+
             <button className='buyingBtn'>
               Acheter
             </button>
+            </Link>
           </IconButton>
           <ExpandMore
             expand={expanded4}
@@ -307,9 +322,12 @@ className="photoEventHeight"/>
         <CardActions disableSpacing>
           
           <IconButton aria-label="share">
+                    <Link to="/validation">
+
             <button className='buyingBtn'>
               Acheter
             </button>
+            </Link>
           </IconButton>
           <ExpandMore
             expand={expanded5}
@@ -349,9 +367,12 @@ className="photoEventHeight"/>
         <CardActions disableSpacing>
           
           <IconButton aria-label="share">
+                    <Link to="/validation">
+
             <button className='buyingBtn'>
               Acheter
             </button>
+            </Link>
           </IconButton>
           <ExpandMore
             expand={expanded6}
@@ -391,9 +412,12 @@ className="photoEventHeight"/>
         <CardActions disableSpacing>
           
           <IconButton aria-label="share">
+                    <Link to="/validation">
+
             <button className='buyingBtn'>
               Acheter
             </button>
+            </Link>
           </IconButton>
           <ExpandMore
             expand={expanded7}

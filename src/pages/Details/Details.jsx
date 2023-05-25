@@ -80,7 +80,7 @@ const Details = ({}) => {
                 </CardContent>
 
                 <CardActions className='centered'>
-                <Link to="/Validation">
+                <Link to="/validation">
                 <Button size="medium" variant="contained" color='secondary' sx={{marginBottom: 1, marginLeft:1}}> <strong className='text' style={{color:'#fff'}}>Acheter</strong></Button>
                 </Link>
                 <Button size="small"  color='primary' sx={{marginBottom: 1, marginLeft:1}}> Retour</Button>
@@ -128,7 +128,7 @@ const Details = ({}) => {
                 </CardContent>
             <div className="centered">
                 <CardActions sx={{display: 'flex', flexDirection: 'column'}}>
-                <Link to="/Validation">
+                <Link to="/validation">
                 <Button size="medium" variant="contained" sx={{m:1}} color='secondary'> <strong className='text' style={{color:'#fff'}}>Acheter</strong></Button>
                 </Link>
                 
