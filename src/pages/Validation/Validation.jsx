@@ -31,6 +31,21 @@ function Copyright() {
 
 const steps = ['Type de billet', 'Détails acheteur', 'Paiement'];
 
+const theme = createTheme({
+  palette: {
+    primary: {
+
+      main: '#6d1493',
+
+    },
+    secondary: {
+
+      main: '#8AE0AA',
+      
+    },
+  },
+});
+
 function getStepContent(step) {
   switch (step) {
     case 0:
@@ -59,7 +74,7 @@ export default function Checkout() {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={theme}>
       <div className="navbarBackground"></div>
 
       <CssBaseline />
