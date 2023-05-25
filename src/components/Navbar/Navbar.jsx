@@ -1,5 +1,7 @@
 import React from "react";
-import "./Navbar.css"
+import "./Navbar.css";
+import {Link } from "react-router-dom";
+
 
 const Navbar = () => {
     return ( 
@@ -46,9 +48,13 @@ const Navbar = () => {
       <div class="site-navbar site-navbar-target js-sticky-header">
         <div class="container">
           <div class="row align-items-center">
-            <div class="col-5">
-              <h1 class="my-0 site-logo" style={{textAlign: 'left'}}><a href="index.html">E-Billet</a></h1>
-            </div>
+            
+              <div class="col-5">
+                <Link to="/">
+                <h1 class="my-0 site-logo" style={{textAlign: 'left'}}><a href="index.html">E-Billet</a></h1>
+                            </Link>
+
+              </div>
             <div class="col-7">
               <nav class="site-navigation text-right" role="navigation">
                 <div class="container">

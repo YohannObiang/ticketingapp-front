@@ -8,7 +8,7 @@ import SoonestEvents from '../components/SoonestEvents/SoonestEvents';
 function Home() {
   return (
     <div className="App">
-      <Navbar/>
+      
       <Header/>
       <Categories/>
       <SoonestEvents/>
