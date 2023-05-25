@@ -12,6 +12,8 @@ import Sport from '../../assets/sport.png';
 import Gala from '../../assets/gala.png';
 import Fete from '../../assets/fete.png';
 import Chic from '../../assets/chic.png';
+import {Link } from "react-router-dom";
+
 
 export default function Categories() {
   const theme = useTheme();
@@ -20,6 +22,8 @@ export default function Categories() {
     <div>
       <legend className='Title'>Catégories</legend>
       <div className='categorieBox'>
+        <Link to="/Results">
+
         <div className='categorieCard'>
           <Card sx={{ display: 'flex' }}>
           
@@ -42,6 +46,9 @@ export default function Categories() {
           </Box>
         </Card>
         </div>
+        </Link>
+        <Link to="/Results">
+
         <div className='categorieCard'>
           <Card sx={{ display: 'flex' }}>
           
@@ -64,6 +71,9 @@ export default function Categories() {
           </Box>
         </Card>
         </div>
+        </Link>
+        <Link to="/Results">
+
         <div className='categorieCard'>
           <Card sx={{ display: 'flex' }}>
           
@@ -86,6 +96,9 @@ export default function Categories() {
           </Box>
         </Card>
         </div>
+        </Link>
+        <Link to="/Results">
+
         <div className='categorieCard'>
           <Card sx={{ display: 'flex' }}>
           
@@ -108,7 +121,10 @@ export default function Categories() {
           </Box>
         </Card>
         </div>
+        </Link>
         
+        <Link to="/Results">
+
         <div className='categorieCard'>
           <Card sx={{ display: 'flex' }}>
           
@@ -131,6 +147,9 @@ export default function Categories() {
           </Box>
         </Card>
         </div>
+        </Link>
+        <Link to="/Results">
+
         <div className='categorieCard'>
           <Card sx={{ display: 'flex' }}>
           
@@ -153,6 +172,9 @@ export default function Categories() {
           </Box>
         </Card>
         </div>
+        </Link>
+        <Link to="/Results">
+
         <div className='categorieCard'>
           <Card sx={{ display: 'flex' }}>
           
@@ -175,6 +197,9 @@ export default function Categories() {
           </Box>
         </Card>
         </div>
+        </Link>
+        <Link to="/Results">
+
         <div className='categorieCard'>
           <Card sx={{ display: 'flex' }}>
           
@@ -197,6 +222,7 @@ export default function Categories() {
           </Box>
         </Card>
         </div>
+        </Link>
       </div>
     </div>
   );

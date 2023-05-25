@@ -53,9 +53,9 @@
   margin: 10px;
 }
 .categoriesFont{
-  color: #727272;
+  color: #282828;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 500
 }
 .soonestEventFont{
   color: #727272;
@@ -126,7 +126,7 @@
     height: 50px;
   }
   .categoriesFont{
-    color: #727272;
+    color: #282828;
     font-size: 16px;
     padding: 0;
   }

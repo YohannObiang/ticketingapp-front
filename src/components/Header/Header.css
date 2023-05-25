@@ -210,7 +210,7 @@ html {
     overflow: hidden;
   }
   
-  /* Forms
+  /* .Forms
      ========================================================================== */
   /**
    * 1. Change the font styles in all browsers (opinionated).
@@ -825,12 +825,12 @@ html {
     padding: 15px;
   }
   
-  .s006 form {
+  .s006 .form {
     width: 100%;
     max-width: 790px;
   }
   
-  .s006 form legend {
+  .s006 .form legend {
     font-size: 36px;
     color: #fff;
     font-weight: 800;
@@ -839,18 +839,18 @@ html {
     padding-top: 124px;
   }
   
-  .s006 form .inner-form {
+  .s006 .form .inner-form {
     width: 100%;
     margin-bottom: 17px;
   }
   
-  .s006 form .inner-form .input-field {
+  .s006 .form .inner-form .input-field {
     height: 70px;
     width: 100%;
     position: relative;
   }
   
-  .s006 form .inner-form .input-field input {
+  .s006 .form .inner-form .input-field input {
     height: 100%;
     width: 100%;
     background: transparent;
@@ -864,34 +864,34 @@ html {
     border-radius: 34px;
   }
   
-  .s006 form .inner-form .input-field input.placeholder {
+  .s006 .form .inner-form .input-field input.placeholder {
     color: #ccc;
     font-size: 18px;
   }
   
-  .s006 form .inner-form .input-field input:-moz-placeholder {
+  .s006 .form .inner-form .input-field input:-moz-placeholder {
     color: #ccc;
     font-size: 18px;
   }
   
-  .s006 form .inner-form .input-field input::-webkit-input-placeholder {
+  .s006 .form .inner-form .input-field input::-webkit-input-placeholder {
     color: #ccc;
     font-size: 18px;
   }
   
-  .s006 form .inner-form .input-field input:hover, .s006 form .inner-form .input-field input:focus {
+  .s006 .form .inner-form .input-field input:hover, .s006 .form .inner-form .input-field input:focus {
     box-shadow: none;
     outline: 0;
   }
   
-  .s006 form .inner-form .input-field .btn-search {
+  .s006 .form .inner-form .input-field .btn-search {
     width: 70px;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-align: center;
         align-items: center;
     position: absolute;
-    left: 0;
+    right: 0;
     height: 100%;
     background: transparent;
     border: 0;
@@ -903,27 +903,27 @@ html {
     align-items: center;
   }
   
-  .s006 form .inner-form .input-field .btn-search svg {
+  .s006 .form .inner-form .input-field .btn-search svg {
     fill: #ccc;
     width: 30px;
     height: 30px;
     transition: all .2s ease-out, color .2s ease-out;
   }
   
-  .s006 form .inner-form .input-field .btn-search:hover, .s006 form .inner-form .input-field .btn-search:focus {
+  .s006 .form .inner-form .input-field .btn-search:hover, .s006 .form .inner-form .input-field .btn-search:focus {
     outline: 0;
     box-shadow: none;
   }
   
-  .s006 form .inner-form .input-field .btn-search:hover svg, .s006 form .inner-form .input-field .btn-search:focus svg {
+  .s006 .form .inner-form .input-field .btn-search:hover svg, .s006 .form .inner-form .input-field .btn-search:focus svg {
     fill: #666;
   }
   
-  .s006 form .suggestion-wrap {
+  .s006 .form .suggestion-wrap {
     padding: 0 15px;
   }
   
-  .s006 form .suggestion-wrap span {
+  .s006 .form .suggestion-wrap span {
     font-size: 14px;
     font-family: 'Helvetica', sans-serif;
     display: inline-block;
@@ -935,21 +935,25 @@ html {
     margin-right: 10px;
     margin-bottom: 10px;
   }
+  .s006 .form .suggestion-wrap span:hover{
+    background: rgba(61, 61, 61, 0.6);
+    transition: 0.1s;
+  }
   
   @media screen and (max-width: 767px) {
-    .s006 form .inner-form .input-field {
+    .s006 .form .inner-form .input-field {
       margin-bottom: 20px;
       height: 50px;
     }
-    .s006 form .inner-form .input-field input {
+    .s006 .form .inner-form .input-field input {
       padding-left: 55px;
       font-size: 16px;
     }
-    .s006 form .inner-form .input-field .btn-search svg {
+    .s006 .form .inner-form .input-field .btn-search svg {
       width: 26px;
       height: 26px;
     }
-    .s006 form legend {
+    .s006 .form legend {
       font-size: 25px;
       color: #fff;
       font-weight: 800;
