@@ -23,12 +23,12 @@ const Header = () => {
             </div>
           </div>
           <div class="suggestion-wrap">
-            <a href="#"><span>Concert</span></a>
-            <a href="#"><span>Sport</span></a>
-            <a href="#"><span>Gala</span></a>
-            <a href="#"><span>Fête</span></a>
-            <a href="#"><span>Séminaire</span></a>
-            <a href="#"><span>Tour</span></a>
+            <a href="#"><span>Pop show 3</span></a>
+            <a href="#"><span>CSB vs Stade Mandji</span></a>
+            <a href="#"><span>Masterclass Linda B</span></a>
+            <a href="#"><span>Concert: L'Oiseau Rare</span></a>
+            <a href="#"><span>Festival des étoiles</span></a>
+            <a href="#"><span>Brunch Hotel Mandji</span></a>
           </div>
         </fieldset>
       </form>

@@ -4,7 +4,14 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 // import div from '@mui/material/div';
 import CardMedia from '@mui/material/CardMedia';
-import Cover from '../../gradient.png'
+import Cover from '../../gradient.png';
+import Tour from '../../assets/tour.png';
+import Concert from '../../assets/concert.png';
+import Seminaire from '../../assets/seminaire.png';
+import Sport from '../../assets/sport.png';
+import Gala from '../../assets/gala.png';
+import Fete from '../../assets/fete.png';
+import Chic from '../../assets/chic.png';
 
 export default function Categories() {
   const theme = useTheme();
@@ -19,7 +26,7 @@ export default function Categories() {
           <CardMedia
             component="img"
             sx={{ width: "30%" }}
-            image={Cover}
+            image={Concert}
             alt="cover"
           />
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -41,13 +48,13 @@ export default function Categories() {
           <CardMedia
             component="img"
             sx={{ width: "30%" }}
-            image={Cover}
+            image={Gala}
             alt="cover"
           />
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <div className='categoriesContent' >
               <span className='categoriesFont'>
-                Gala
+                Brunchs
               </span>
               {/* <Typography variant="subtitle1" color="text.secondary" component="div">
                 Mac Miller
@@ -63,7 +70,7 @@ export default function Categories() {
           <CardMedia
             component="img"
             sx={{ width: "30%" }}
-            image={Cover}
+            image={Sport}
             alt="cover"
           />
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -85,7 +92,7 @@ export default function Categories() {
           <CardMedia
             component="img"
             sx={{ width: "30%" }}
-            image={Cover}
+            image={Seminaire}
             alt="cover"
           />
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -101,19 +108,20 @@ export default function Categories() {
           </Box>
         </Card>
         </div>
+        
         <div className='categorieCard'>
           <Card sx={{ display: 'flex' }}>
           
           <CardMedia
             component="img"
             sx={{ width: "30%" }}
-            image={Cover}
+            image={Chic}
             alt="cover"
           />
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <div className='categoriesContent' >
               <span className='categoriesFont'>
-                Séminaires
+                Galas
               </span>
               {/* <Typography variant="subtitle1" color="text.secondary" component="div">
                 Mac Miller
@@ -129,29 +137,7 @@ export default function Categories() {
           <CardMedia
             component="img"
             sx={{ width: "30%" }}
-            image={Cover}
-            alt="cover"
-          />
-          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-            <div className='categoriesContent' >
-              <span className='categoriesFont'>
-                Séminaires
-              </span>
-              {/* <Typography variant="subtitle1" color="text.secondary" component="div">
-                Mac Miller
-              </Typography> */}
-            </div>
-            
-          </Box>
-        </Card>
-        </div>
-        <div className='categorieCard'>
-          <Card sx={{ display: 'flex' }}>
-          
-          <CardMedia
-            component="img"
-            sx={{ width: "30%" }}
-            image={Cover}
+            image={Tour}
             alt="cover"
           />
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -173,13 +159,35 @@ export default function Categories() {
           <CardMedia
             component="img"
             sx={{ width: "30%" }}
-            image={Cover}
+            image={Fete}
             alt="cover"
           />
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <div className='categoriesContent' >
               <span className='categoriesFont'>
               Fêtes
+              </span>
+              {/* <Typography variant="subtitle1" color="text.secondary" component="div">
+                Mac Miller
+              </Typography> */}
+            </div>
+            
+          </Box>
+        </Card>
+        </div>
+        <div className='categorieCard'>
+          <Card sx={{ display: 'flex' }}>
+          
+          <CardMedia
+            component="img"
+            sx={{ width: "30%" }}
+            image={Cover}
+            alt="cover"
+          />
+          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+            <div className='categoriesContent' >
+              <span className='categoriesFont'>
+                Divers
               </span>
               {/* <Typography variant="subtitle1" color="text.secondary" component="div">
                 Mac Miller
