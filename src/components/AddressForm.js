@@ -10,13 +10,12 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
 
-export default function AddressForm() {
+export default function AddressForm({TicketToBePaid}) {
   const [value, setValue] = React.useState('female');
-
+  console.log(TicketToBePaid);
   const handleChange = (event) => {
     setValue(event.target.value);
   };
-
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -30,9 +29,14 @@ export default function AddressForm() {
         value={value}
         onChange={handleChange}
       >
-        <FormControlLabel value="Classique" control={<Radio />} label="Classique" />
-        <FormControlLabel value="Premium" control={<Radio />} label="Premium" />
-        <FormControlLabel value="VIP" control={<Radio />} label="VIP" />
+       {TicketToBePaid.map((item) => { 
+        return(
+        <div key={item.id_categoriesbillet}>
+          <FormControlLabel value={String(item.categoriebillet)} control={<Radio />} label={String(item.categoriebillet)+" ("+ String(item.prix)+"fcfa)"} />
+          
+        </div>
+       )})} 
+
       </RadioGroup>
     </FormControl>
     </React.Fragment>

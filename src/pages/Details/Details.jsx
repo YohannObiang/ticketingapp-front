@@ -9,12 +9,14 @@ import { createTheme, ThemeProvider} from '@mui/material/styles';
 import {Link } from "react-router-dom";
 import CardMedia from '@mui/material/CardMedia';
 import Gala from '../../assets/bann.png';
+import { useState, useEffect } from 'react';
 
 
 
 
 
-const Details = ({choosenEvent, categoriesbillet}) => {
+
+const Details = ({choosenEvent, categoriesbillet, setTicketToBePaid}) => {
 
   const theme = createTheme({
     palette: {
@@ -37,6 +39,9 @@ const Details = ({choosenEvent, categoriesbillet}) => {
 
     const choosenOne=tableType.filter((element,index)=>{
       return element.id_evenement === choosenEvent.id_evenement});
+      useEffect(() => {
+        setTicketToBePaid(choosenOne);
+      }, []);
       console.log(choosenOne)
   
 

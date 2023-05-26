@@ -4,6 +4,7 @@ import Details from './pages/Details/Details';
 import Results from './pages/Results/Results';
 import Validation from './pages/Validation/Validation';
 import Navbar from './components/Navbar/Navbar';
+import AddressForm from './components/AddressForm';
 import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter ,
@@ -66,7 +67,7 @@ function App() {
           <Route path="/details" element={<Details
           choosenEvent={choosenEvent}
           categoriesbillet={categoriesbillet}
-
+          setTicketToBePaid ={setTicketToBePaid}          
           />} /> 
           <Route path="/results" element={<Results
           resultSearch={resultSearch}
@@ -83,7 +84,10 @@ function App() {
           />} /> 
           <Route path="/validation" element={<Validation
           choosenEvent={choosenEvent}
+          TicketToBePaid={TicketToBePaid}
           />} /> 
+
+
         </Routes>
       </BrowserRouter>
     </div>

@@ -46,10 +46,12 @@ const theme = createTheme({
   },
 });
 
-function getStepContent(step) {
+function getStepContent(step, TicketToBePaid) {
   switch (step) {
     case 0:
-      return <AddressForm />;
+      return <AddressForm 
+      TicketToBePaid={TicketToBePaid}
+      />;
     case 1:
       return <PaymentForm />;
     case 2:
@@ -58,11 +60,10 @@ function getStepContent(step) {
       throw new Error('Unknown step');
   }
 }
-
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-export default function Checkout({choosenEvent}) {
+export default function Checkout({TicketToBePaid}) {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
@@ -114,7 +115,7 @@ export default function Checkout({choosenEvent}) {
             </React.Fragment>
           ) : (
             <React.Fragment>
-              {getStepContent(activeStep)}
+              {getStepContent(activeStep, TicketToBePaid)}
               <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 {activeStep !== 0 && (
                   <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
