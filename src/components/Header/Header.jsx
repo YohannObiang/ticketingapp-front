@@ -4,10 +4,14 @@ import { useState } from "react";
 import {Link } from "react-router-dom";
 
 
-const Header = () => {
-  const [value, setValue] = useState('');
+const Header = ({valueSearch, setValueSearch, evenements, setResultSearch}) => {
   const handleChange = (e) => {
-    setValue(e.target.value)
+    setValueSearch(e.target.value)
+    var filtered = evenements.filter(item => item.evenement.toLowerCase().includes(e.target.value.toLowerCase()) || item.description.toLowerCase().includes(e.target.value.toLowerCase()));
+    console.log(filtered)   
+    setResultSearch(filtered)   
+
+   
   }
     return ( 
     <div class="s006">
@@ -23,7 +27,7 @@ const Header = () => {
                   </svg>
                 </button>
               </Link>
-              <input id="search" type="text" onChange={handleChange} placeholder="Recherchez un événement..." value={value} />
+              <input id="search" type="text" onChange={handleChange} placeholder="Recherchez un événement..." value={valueSearch} />
             </div>
           </div>
           <div class="suggestion-wrap">

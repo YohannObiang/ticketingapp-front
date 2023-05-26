@@ -14,7 +14,7 @@ import Gala from '../../assets/bann.png';
 
 
 
-const Details = ({}) => {
+const Details = ({choosenEvent}) => {
 
   const theme = createTheme({
     palette: {
@@ -30,9 +30,13 @@ const Details = ({}) => {
       },
     },
   });
-  
-
-
+  console.log(choosenEvent)
+  var tableType = [{"id_categoriesbillet":1,"id_evenement":1,"categoriebillet":"Simple","prix":5000},{"id_categoriesbillet":2,"id_evenement":1,"categoriebillet":"Access","prix":10000},{"id_categoriesbillet":3,"id_evenement":1,"categoriebillet":"On Stage","prix":25000},{"id_categoriesbillet":10,"id_evenement":1,"categoriebillet":"Ultra VIP","prix":45000}]
+  const Choose=(id_evenement)=>{
+    const choosenOne=tableType.filter((element,index)=>{
+      return element.id_evenement === id_evenement});
+      console.log(choosenOne[0])
+  };
 
     return ( 
     <div>
@@ -58,13 +62,16 @@ const Details = ({}) => {
                 <h3>{}</h3>
                 <Divider/>
                 <br />
-                <strong style={{color:'#262D44', fontSize: '20px'}}>Nom de l'evenement</strong><br />
-                <span style={{color:'#262D44'}}>Date de l'evenement</span><br />
-                <span style={{color:'#262D44'}}>Lieu de l'evenement</span><br /><br />
-                <span style={{color:'#262D44'}}>Prix 1</span><br />
-                <span style={{color:'#262D44'}}>Prix 2</span><br />
-                <span style={{color:'#262D44'}}>Prix 3</span><br /><br />
-
+                <strong style={{color:'#262D44', fontSize: '20px'}}>{choosenEvent.evenement}</strong><br />
+                <span style={{color:'#262D44'}}>{choosenEvent.date}</span><br />
+                <span style={{color:'#262D44'}}>{choosenEvent.lieu}, {choosenEvent.ville}</span><br /><br />
+                {tableType.map((item) => {
+                  return(
+                    <div>
+                      <span style={{color:'#262D44'}}>{item.categoriebillet}: {item.prix}fcfa </span><br/>
+                    </div>
+                )})}        
+  <br />
                 <div className="description">
                 <span style={{color:'#262D44'}}>
                 Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over

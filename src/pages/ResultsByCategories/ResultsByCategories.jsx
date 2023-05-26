@@ -19,32 +19,31 @@ import Bann2 from '../../assets/oral english (1).png';
 import Bann3 from '../../assets/inscriptionenligne.png';
 import Bann4 from '../../assets/Modern Hiring Recruitment Announcement Facebook Post.png';
 import {Link } from "react-router-dom";
-import './Results.css';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import './ResultsByCategories.css';
 
 
 
+export default function ResultsByCategories({evenements, setChoosenEvent, IdCategorie, categoriesbillet,ChoosenCategorie}) {
+  var table = evenements
+  var id = IdCategorie
 
+  // Tri des evenements en fonction de la categorie choisie
+  const filteredstuffs=table.filter((element,index)=>{
+    return element.id_categorieevenement === id });
 
-export default function Results({resultSearch, valueSearch, categoriesbillet}) {
-
-// Recuperer l'id d'un evenement choisi
-const Choose=(id_evenement)=>{
+  // Recuperer l'id d'un evenement choisi
+    const Choose=(id_evenement)=>{
       
-  const choosenOne=resultSearch.filter((element,index)=>{
-    return element.id_evenement === id_evenement});
-    // setChoosenEvent(choosenOne[0]);
-      };
-
+      const choosenOne=filteredstuffs.filter((element,index)=>{
+        return element.id_evenement === id_evenement});
+        setChoosenEvent(choosenOne[0]);
+          };
   return (
     <div>
       <div className="navbarBackground"></div>
-      <legend className='Title'>Resultats pour: "{valueSearch}" </legend>
+      <legend className='Title'>{ChoosenCategorie} </legend>
       <div className='soonestEventBox'>
-      {resultSearch.map((item) => {
-
-
+      {filteredstuffs.map((item) => {
 // Recuperation des types de billet pour chaque element
 const choosenOne=categoriesbillet.filter((element,index)=>{
   return element.id_evenement === item.id_evenement});
@@ -64,13 +63,9 @@ className="photoEventHeight"/>
           <span className='soonestEventName'>
           {item.evenement}
               </span><br />
-
-
                         <span className='soonestEventFont'>
-                          A partir de  {price} fcfa
+                          A partir de  {price}fcfa
                         </span>
-                 
-
         <CardActions disableSpacing>
           
           <IconButton aria-label="share">
@@ -85,8 +80,7 @@ className="photoEventHeight"/>
         
           </Card>
         </div>
-)})}   
-        
+)})}        
         
         
       </div>

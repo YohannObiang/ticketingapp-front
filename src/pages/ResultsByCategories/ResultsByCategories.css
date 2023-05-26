@@ -1,0 +1,19 @@
+.navbarBackground{
+    height: 18vh;
+    width: 100%;
+    background: #6d1493;
+}
+.Title{
+    overflow-wrap: break-word;
+    padding-right: 10px;
+}
+@media (max-width:767px) {
+
+    .navbarBackground{
+    height: 15vh;
+    width: 100%;
+    background: #6d1493;
+    margin-bottom: 20px;
+}
+
+}

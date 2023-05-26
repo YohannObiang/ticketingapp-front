@@ -15,14 +15,14 @@ import Chic from '../../assets/chic.png';
 import {Link } from "react-router-dom";
 
 
-export default function Categories() {
+export default function Categories({setIdCategorie, setChoosenCategorie}) {
   const theme = useTheme();
-
+  
   return (
     <div>
       <legend className='Title'>Catégories</legend>
       <div className='categorieBox'>
-        <Link to="/Results">
+        <Link to="/categories" onClick={() => {setIdCategorie(12);setChoosenCategorie('Concerts')}}>
 
         <div className='categorieCard'>
           <Card sx={{ display: 'flex' }}>
@@ -47,7 +47,7 @@ export default function Categories() {
         </Card>
         </div>
         </Link>
-        <Link to="/Results">
+        <Link to="/categories" onClick={() => {setIdCategorie(13);setChoosenCategorie('Brunchs')}}>
 
         <div className='categorieCard'>
           <Card sx={{ display: 'flex' }}>
@@ -72,7 +72,7 @@ export default function Categories() {
         </Card>
         </div>
         </Link>
-        <Link to="/Results">
+        <Link to="/categories" onClick={() => {setIdCategorie(15);setChoosenCategorie('Sport')}}>
 
         <div className='categorieCard'>
           <Card sx={{ display: 'flex' }}>
@@ -97,7 +97,7 @@ export default function Categories() {
         </Card>
         </div>
         </Link>
-        <Link to="/Results">
+        <Link to="/categories" onClick={() => {setIdCategorie(14);setChoosenCategorie('Séminaires')}}>
 
         <div className='categorieCard'>
           <Card sx={{ display: 'flex' }}>
@@ -122,8 +122,7 @@ export default function Categories() {
         </Card>
         </div>
         </Link>
-        
-        <Link to="/Results">
+        <Link to="/categories" onClick={() => {setIdCategorie(19);setChoosenCategorie('Galas')}}>
 
         <div className='categorieCard'>
           <Card sx={{ display: 'flex' }}>
@@ -148,7 +147,7 @@ export default function Categories() {
         </Card>
         </div>
         </Link>
-        <Link to="/Results">
+        <Link to="/categories" onClick={() => {setIdCategorie(18);setChoosenCategorie('Tours')}}>
 
         <div className='categorieCard'>
           <Card sx={{ display: 'flex' }}>
@@ -173,7 +172,7 @@ export default function Categories() {
         </Card>
         </div>
         </Link>
-        <Link to="/Results">
+        <Link to="/categories" onClick={() => {setIdCategorie(17);setChoosenCategorie('Fêtes')}}>
 
         <div className='categorieCard'>
           <Card sx={{ display: 'flex' }}>
@@ -198,7 +197,7 @@ export default function Categories() {
         </Card>
         </div>
         </Link>
-        <Link to="/Results">
+        <Link to="/categories" onClick={() => {setIdCategorie(16);setChoosenCategorie('Divers')}}>
 
         <div className='categorieCard'>
           <Card sx={{ display: 'flex' }}>
