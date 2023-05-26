@@ -27,14 +27,14 @@ import axios from 'axios';
 
 
 
-export default function Results({resultSearch, valueSearch, categoriesbillet}) {
+export default function Results({resultSearch, valueSearch, categoriesbillet,setChoosenEvent}) {
 
 // Recuperer l'id d'un evenement choisi
 const Choose=(id_evenement)=>{
       
   const choosenOne=resultSearch.filter((element,index)=>{
     return element.id_evenement === id_evenement});
-    // setChoosenEvent(choosenOne[0]);
+    setChoosenEvent(choosenOne[0]);
       };
 
   return (

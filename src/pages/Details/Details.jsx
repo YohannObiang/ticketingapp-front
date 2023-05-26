@@ -14,7 +14,7 @@ import Gala from '../../assets/bann.png';
 
 
 
-const Details = ({choosenEvent}) => {
+const Details = ({choosenEvent, categoriesbillet}) => {
 
   const theme = createTheme({
     palette: {
@@ -30,13 +30,15 @@ const Details = ({choosenEvent}) => {
       },
     },
   });
-  console.log(choosenEvent)
-  var tableType = [{"id_categoriesbillet":1,"id_evenement":1,"categoriebillet":"Simple","prix":5000},{"id_categoriesbillet":2,"id_evenement":1,"categoriebillet":"Access","prix":10000},{"id_categoriesbillet":3,"id_evenement":1,"categoriebillet":"On Stage","prix":25000},{"id_categoriesbillet":10,"id_evenement":1,"categoriebillet":"Ultra VIP","prix":45000}]
-  const Choose=(id_evenement)=>{
+
+
+  var tableType = categoriesbillet
+
+
     const choosenOne=tableType.filter((element,index)=>{
-      return element.id_evenement === id_evenement});
-      console.log(choosenOne[0])
-  };
+      return element.id_evenement === choosenEvent.id_evenement});
+      console.log(choosenOne)
+  
 
     return ( 
     <div>
@@ -65,7 +67,7 @@ const Details = ({choosenEvent}) => {
                 <strong style={{color:'#262D44', fontSize: '20px'}}>{choosenEvent.evenement}</strong><br />
                 <span style={{color:'#262D44'}}>{choosenEvent.date}</span><br />
                 <span style={{color:'#262D44'}}>{choosenEvent.lieu}, {choosenEvent.ville}</span><br /><br />
-                {tableType.map((item) => {
+                {choosenOne.map((item) => {
                   return(
                     <div>
                       <span style={{color:'#262D44'}}>{item.categoriebillet}: {item.prix}fcfa </span><br/>
@@ -74,13 +76,7 @@ const Details = ({choosenEvent}) => {
   <br />
                 <div className="description">
                 <span style={{color:'#262D44'}}>
-                Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over
-              medium-high heat. Add chicken, shrimp and chorizo, and cook, stirring
-              occasionally until lightly browned, 6 to 8 minutes. Transfer shrimp to a
-              large plate and set aside, leaving chicken and chorizo in the pan. Add
-              pimentón, bay leaves, garlic, tomatoes, onion, salt and pepper, and cook,
-              stirring often until thickened and fragrant, about 10 minutes. Add
-              saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
+                {choosenEvent.description}
                 </span>
                 </div>
 

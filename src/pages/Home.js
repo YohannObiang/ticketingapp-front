@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar/Navbar';
 import Categories from '../components/Categories/Categories';
 import SoonestEvents from '../components/SoonestEvents/SoonestEvents';
 
-function Home({setChoosenCategorie, setIdCategorie, valueSearch, setValueSearch,evenements, setResultSearch}) {
+function Home({setChoosenCategorie, setIdCategorie,setChoosenEvent, valueSearch, setValueSearch,evenements, setResultSearch}) {
   return (
     <div className="App">
       
@@ -14,6 +14,7 @@ function Home({setChoosenCategorie, setIdCategorie, valueSearch, setValueSearch,
       setValueSearch={setValueSearch}
       evenements={evenements}
       setResultSearch={setResultSearch}
+      setChoosenEvent={setChoosenEvent}
       />
       <Categories
       setChoosenCategorie={setChoosenCategorie}

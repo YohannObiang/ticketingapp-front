@@ -15,6 +15,10 @@ import axios from 'axios';
 
 
 function App() {
+  const URL = 'http://localhost:3001'
+
+
+
   const [evenements, setEvenements] = React.useState([]);
 
   React.useEffect(() => {
@@ -22,7 +26,7 @@ function App() {
   },[]);
  
   const getEvenements = async () => {
-    var response = await axios.get("http://localhost:3001/evenements");
+    var response = await axios.get(`${URL}/evenements`);
     setEvenements(response.data);
 
   };
@@ -32,15 +36,16 @@ function App() {
   const [ChoosenCategorie, setChoosenCategorie] = useState('')
   const [valueSearch, setValueSearch] = useState('');
   const [resultSearch, setResultSearch] = useState([]);
-
+  const [TicketToBePaid, setTicketToBePaid] = useState([]);
   const [categoriesbillet, setCategoriesbillet] = useState([]);
+
 
   useEffect(() => {
     getCategoriesbillet();
   }, []);
 
   const getCategoriesbillet = async () => {
-    var response = await axios.get("http://localhost:3001/categoriesbillet");
+    var response = await axios.get(`${URL}/categoriesbillet`);
     setCategoriesbillet(response.data);
   };  return (
     <div className="App">
@@ -55,15 +60,19 @@ function App() {
           setValueSearch={setValueSearch}
           evenements = {evenements}
           setResultSearch={setResultSearch}
+          setChoosenEvent = {setChoosenEvent}
+
           />} /> 
           <Route path="/details" element={<Details
           choosenEvent={choosenEvent}
+          categoriesbillet={categoriesbillet}
+
           />} /> 
           <Route path="/results" element={<Results
           resultSearch={resultSearch}
           valueSearch={valueSearch}
           categoriesbillet={categoriesbillet}
-
+          setChoosenEvent = {setChoosenEvent}
           />} /> 
           <Route path="/categories" element={<ResultsByCategories
           evenements = {evenements}
@@ -72,7 +81,9 @@ function App() {
           categoriesbillet={categoriesbillet}
           ChoosenCategorie={ChoosenCategorie}
           />} /> 
-          <Route path="/validation" element={<Validation/>} /> 
+          <Route path="/validation" element={<Validation
+          choosenEvent={choosenEvent}
+          />} /> 
         </Routes>
       </BrowserRouter>
     </div>

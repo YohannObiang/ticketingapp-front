@@ -62,7 +62,7 @@ function getStepContent(step) {
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-export default function Checkout() {
+export default function Checkout({choosenEvent}) {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {

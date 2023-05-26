@@ -4,7 +4,7 @@ import { useState } from "react";
 import {Link } from "react-router-dom";
 
 
-const Header = ({valueSearch, setValueSearch, evenements, setResultSearch}) => {
+const Header = ({valueSearch, setValueSearch,setChoosenEvent, evenements, setResultSearch}) => {
   const handleChange = (e) => {
     setValueSearch(e.target.value)
     var filtered = evenements.filter(item => item.evenement.toLowerCase().includes(e.target.value.toLowerCase()) || item.description.toLowerCase().includes(e.target.value.toLowerCase()));
