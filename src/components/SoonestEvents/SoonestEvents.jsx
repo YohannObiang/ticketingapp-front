@@ -42,39 +42,7 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function SoonestEvents({ClosestEvent, setChoosenEvent, categoriesbillet, URL}) {
-  const [expanded, setExpanded] = React.useState(false);
-  const [expanded1, setExpanded1] = React.useState(false);
-  const [expanded2, setExpanded2] = React.useState(false);
-  const [expanded3, setExpanded3] = React.useState(false);
-  const [expanded4, setExpanded4] = React.useState(false);
-  const [expanded5, setExpanded5] = React.useState(false);
-  const [expanded6, setExpanded6] = React.useState(false);
-  const [expanded7, setExpanded7] = React.useState(false);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-  const handleExpandClick1 = () => {
-    setExpanded1(!expanded1);
-  };
-  const handleExpandClick2 = () => {
-    setExpanded2(!expanded2);
-  };
-  const handleExpandClick3 = () => {
-    setExpanded3(!expanded3);
-  };
-  const handleExpandClick4 = () => {
-    setExpanded4(!expanded4);
-  };
-  const handleExpandClick5 = () => {
-    setExpanded5(!expanded5);
-  };
-  const handleExpandClick6 = () => {
-    setExpanded6(!expanded6);
-  };
-  const handleExpandClick7 = () => {
-    setExpanded7(!expanded7);
-  };
 
   
   // Recuperer l'id d'un evenement choisi
@@ -114,7 +82,7 @@ className="photoEventHeight"/>
                         </span>
           
           <IconButton aria-label="share" sx={{margin: 'auto'}}>
-                    <Link to="/validation" >
+                    <Link to="/validation" onClick={()=>Choose(item.id_evenement)}>
 
             <button className='buyingBtn'>
               Acheter
