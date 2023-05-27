@@ -26,6 +26,11 @@
   background-color: #4c0768;
 
 }
+.ma{
+  margin: auto;
+}
+
+
 .Title{
   font-size: 35px;
   color: rgb(43, 43, 43);

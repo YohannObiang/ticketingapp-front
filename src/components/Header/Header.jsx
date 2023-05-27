@@ -53,7 +53,7 @@ const Choose=(id_evenement)=>{
           <div class="suggestion-wrap">
           {onspot.map((item) => {
             return(
-                    <Link to="/Details" onClick={()=>Choose(item.id_evenement)}>
+                    <Link to="/details" onClick={()=>Choose(item.id_evenement)}>
                       <span>{item.evenement}</span>
                     </Link>
               )})}   

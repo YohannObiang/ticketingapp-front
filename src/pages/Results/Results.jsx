@@ -27,8 +27,7 @@ import axios from 'axios';
 
 
 
-export default function Results({resultSearch, valueSearch, categoriesbillet,setChoosenEvent}) {
-  var URL = 'http://localhost:3001'
+export default function Results({resultSearch, valueSearch, categoriesbillet,setChoosenEvent,URL}) {
 
 // Recuperer l'id d'un evenement choisi
 const Choose=(id_evenement)=>{
@@ -71,10 +70,8 @@ className="photoEventHeight"/>
                           A partir de  {price} fcfa
                         </span>
                  
-
-        <CardActions disableSpacing>
           
-          <IconButton aria-label="share">
+          <IconButton aria-label="share" sx={{margin: 'auto'}}>
           <Link to="/validation" onClick={()=>Choose(item.id_evenement)}>
             <button className='buyingBtn'>
               Acheter
@@ -82,7 +79,6 @@ className="photoEventHeight"/>
             </Link>
           </IconButton>
           
-        </CardActions>
         
           </Card>
         </div>

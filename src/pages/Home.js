@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar/Navbar';
 import Categories from '../components/Categories/Categories';
 import SoonestEvents from '../components/SoonestEvents/SoonestEvents';
 
-function Home({setChoosenCategorie, setIdCategorie,setChoosenEvent, valueSearch, setValueSearch,evenements, setResultSearch, URL}) {
+function Home({setChoosenCategorie,categoriesbillet, setIdCategorie,setChoosenEvent, valueSearch,ClosestEvent, setValueSearch,evenements, setResultSearch, URL}) {
   return (
     <div className="App">
       
@@ -21,7 +21,12 @@ function Home({setChoosenCategorie, setIdCategorie,setChoosenEvent, valueSearch,
       setChoosenCategorie={setChoosenCategorie}
       setIdCategorie={setIdCategorie}
       />
-      <SoonestEvents/>
+      <SoonestEvents
+      URL={URL}
+      ClosestEvent={ClosestEvent}
+      setChoosenEvent={setChoosenEvent}
+      categoriesbillet={categoriesbillet}
+      />
 
     </div>
   );

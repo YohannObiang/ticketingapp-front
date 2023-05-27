@@ -67,17 +67,15 @@ className="photoEventHeight"/>
                         <span className='soonestEventFont'>
                           A partir de  {price}fcfa
                         </span>
-        <CardActions disableSpacing>
           
-          <IconButton aria-label="share">
-            <Link to="/validation" onClick={()=>Choose(item.id_evenement)}>
+          <IconButton aria-label="share" sx={{margin: 'auto'}}>
+            <Link to="/validation" onClick={()=>Choose(item.id_evenement)} >
             <button className='buyingBtn'>
               Acheter
             </button>
             </Link>
           </IconButton>
           
-        </CardActions>
         
           </Card>
         </div>

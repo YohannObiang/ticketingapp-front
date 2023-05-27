@@ -18,19 +18,28 @@ import axios from 'axios';
 function App() {
   const URL = 'http://localhost:3001'
 
+  const datedecommande = new Date()
 
+  function padTo2Digits(num) {
+    return num.toString().padStart(2, '0');
+  }
+  function formatDate(date){
+    return[
+      padTo2Digits(date.getMonth() + 1),
+      padTo2Digits(date.getDate()),
+      date.getFullYear(),
+    ].join('/');
+    }
+  var date1 = new Date(String(formatDate(new Date())));
+  var date2 = new Date(String("05/29/2023"));
+  var time_Diff = date2.getTime() - date1.getTime();
+  var days_Diff = time_Diff / (1000 * 3600 * 24);
+  console.log(days_Diff)
 
+  
   const [evenements, setEvenements] = React.useState([]);
 
-  React.useEffect(() => {
-    getEvenements();
-  },[]);
- 
-  const getEvenements = async () => {
-    var response = await axios.get(`${URL}/evenements`);
-    setEvenements(response.data);
 
-  };
 
   const [choosenEvent, setChoosenEvent] = useState([])
   const [IdCategorie, setIdCategorie] = useState(0)
@@ -39,6 +48,7 @@ function App() {
   const [resultSearch, setResultSearch] = useState([]);
   const [TicketToBePaid, setTicketToBePaid] = useState([]);
   const [categoriesbillet, setCategoriesbillet] = useState([]);
+  const [ClosestEvent, setClosestEvent] = useState([]);
 
 
   useEffect(() => {
@@ -48,6 +58,10 @@ function App() {
   const getCategoriesbillet = async () => {
     var response = await axios.get(`${URL}/categoriesbillet`);
     setCategoriesbillet(response.data);
+    var response1 = await axios.get(`${URL}/evenements`);
+    setEvenements(response1.data);
+    var response2 = await axios.get(`${URL}/closestevents`);
+    setClosestEvent(response2.data);
   };
     return (
     <div className="App">
@@ -64,6 +78,9 @@ function App() {
           setResultSearch={setResultSearch}
           setChoosenEvent = {setChoosenEvent}
           URL={URL}
+          ClosestEvent = {ClosestEvent}
+          categoriesbillet={categoriesbillet}
+
           />} /> 
           <Route path="/details" element={<Details
           choosenEvent={choosenEvent}
@@ -76,6 +93,8 @@ function App() {
           valueSearch={valueSearch}
           categoriesbillet={categoriesbillet}
           setChoosenEvent = {setChoosenEvent}
+          URL={URL}
+
           />} /> 
           <Route path="/categories" element={<ResultsByCategories
           evenements = {evenements}
@@ -83,6 +102,8 @@ function App() {
           IdCategorie={IdCategorie}
           categoriesbillet={categoriesbillet}
           ChoosenCategorie={ChoosenCategorie}
+          URL={URL}
+
           />} /> 
           <Route path="/validation" element={<Validation
           choosenEvent={choosenEvent}
