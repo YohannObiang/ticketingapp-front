@@ -15,6 +15,10 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from '../../components/AddressForm';
 import PaymentForm from '../../components/PaymentForm';
 import Review from '../../components/Review';
+import { useState, useEffect } from 'react';
+
+
+
 
 function Copyright() {
   return (
@@ -46,11 +50,12 @@ const theme = createTheme({
   },
 });
 
-function getStepContent(step, TicketToBePaid) {
+function getStepContent(step, choosenEvent, URL) {
   switch (step) {
     case 0:
       return <AddressForm 
-      TicketToBePaid={TicketToBePaid}
+      choosenEvent={choosenEvent}
+      URL = {URL}
       />;
     case 1:
       return <PaymentForm />;
@@ -63,7 +68,7 @@ function getStepContent(step, TicketToBePaid) {
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-export default function Checkout({TicketToBePaid}) {
+export default function Checkout({TicketToBePaid, choosenEvent, URL}) {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
@@ -73,7 +78,9 @@ export default function Checkout({TicketToBePaid}) {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+    
 
+  
   return (
     <ThemeProvider theme={theme}>
       <div className="navbarBackground"></div>
@@ -115,7 +122,7 @@ export default function Checkout({TicketToBePaid}) {
             </React.Fragment>
           ) : (
             <React.Fragment>
-              {getStepContent(activeStep, TicketToBePaid)}
+              {getStepContent(activeStep, choosenEvent, URL)}
               <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 {activeStep !== 0 && (
                   <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>

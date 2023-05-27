@@ -48,7 +48,8 @@ function App() {
   const getCategoriesbillet = async () => {
     var response = await axios.get(`${URL}/categoriesbillet`);
     setCategoriesbillet(response.data);
-  };  return (
+  };
+    return (
     <div className="App">
       
       <BrowserRouter>
@@ -62,12 +63,13 @@ function App() {
           evenements = {evenements}
           setResultSearch={setResultSearch}
           setChoosenEvent = {setChoosenEvent}
-
+          URL={URL}
           />} /> 
           <Route path="/details" element={<Details
           choosenEvent={choosenEvent}
           categoriesbillet={categoriesbillet}
-          setTicketToBePaid ={setTicketToBePaid}          
+          setTicketToBePaid ={setTicketToBePaid} 
+          URL={URL}         
           />} /> 
           <Route path="/results" element={<Results
           resultSearch={resultSearch}
@@ -84,7 +86,7 @@ function App() {
           />} /> 
           <Route path="/validation" element={<Validation
           choosenEvent={choosenEvent}
-          TicketToBePaid={TicketToBePaid}
+          URL={URL}
           />} /> 
 
 

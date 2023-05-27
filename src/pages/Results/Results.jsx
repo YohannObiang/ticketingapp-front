@@ -28,6 +28,7 @@ import axios from 'axios';
 
 
 export default function Results({resultSearch, valueSearch, categoriesbillet,setChoosenEvent}) {
+  var URL = 'http://localhost:3001'
 
 // Recuperer l'id d'un evenement choisi
 const Choose=(id_evenement)=>{
@@ -56,7 +57,7 @@ return(
         <CardMedia
           component="img"
           height="100%"
-          image={Bann}
+          image={URL+"/uploads/"+item.illustration}
           alt="Photo"
 
 className="photoEventHeight"/>
@@ -74,7 +75,7 @@ className="photoEventHeight"/>
         <CardActions disableSpacing>
           
           <IconButton aria-label="share">
-            <Link to="/validation">
+          <Link to="/validation" onClick={()=>Choose(item.id_evenement)}>
             <button className='buyingBtn'>
               Acheter
             </button>

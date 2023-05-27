@@ -16,7 +16,7 @@ import { useState, useEffect } from 'react';
 
 
 
-const Details = ({choosenEvent, categoriesbillet, setTicketToBePaid}) => {
+const Details = ({choosenEvent, categoriesbillet, setTicketToBePaid, URL}) => {
 
   const theme = createTheme({
     palette: {
@@ -37,7 +37,7 @@ const Details = ({choosenEvent, categoriesbillet, setTicketToBePaid}) => {
   var tableType = categoriesbillet
 
 
-    const choosenOne=tableType.filter((element,index)=>{
+    const choosenOne=categoriesbillet.filter((element,index)=>{
       return element.id_evenement === choosenEvent.id_evenement});
       useEffect(() => {
         setTicketToBePaid(choosenOne);
@@ -55,7 +55,7 @@ const Details = ({choosenEvent, categoriesbillet, setTicketToBePaid}) => {
                 <CardContent>
                 <h2 style={{color:'#262D44'}}>Détails</h2>        
                 <div className="afficheDetails"
-                style={{backgroundImage: `url(${Gala})`}}
+                style={{backgroundImage: `url(${URL+"/uploads/"+choosenEvent.illustration})`}}
                 >
 
                 </div>
@@ -103,7 +103,7 @@ const Details = ({choosenEvent, categoriesbillet, setTicketToBePaid}) => {
                 <Card sx={{ width: '90%', height:'450px', marginBottom: 2}}   >
                 <h2 style={{color:'#262D44'}}>Détails</h2>
                 <div className="afficheDetails"
-                style={{backgroundImage: `url(${Gala})`}}
+                style={{backgroundImage: `url(${URL+"/uploads/"+choosenEvent.illustration})`}}
                 ></div>
 
                 
@@ -113,22 +113,20 @@ const Details = ({choosenEvent, categoriesbillet, setTicketToBePaid}) => {
                 <CardContent>
                 <h3>{}</h3>
                 <Divider/>
-                <strong style={{color:'#262D44', fontSize: '20px'}}>Nom de l'evenement</strong><br />
-                <span style={{color:'#262D44'}}>Date de l'evenement</span><br />
-                <span style={{color:'#262D44'}}>Lieu de l'evenement</span><br /><br />
-                <span style={{color:'#262D44'}}>Prix 1</span><br />
-                <span style={{color:'#262D44'}}>Prix 2</span><br />
-                <span style={{color:'#262D44'}}>Prix 3</span><br /><br />
+                <strong style={{color:'#262D44', fontSize: '20px'}}>{choosenEvent.evenement}</strong><br />
+                <span style={{color:'#262D44'}}>{choosenEvent.date}</span><br />
+                <span style={{color:'#262D44'}}>{choosenEvent.lieu}, {choosenEvent.ville}</span><br /><br />
+                {choosenOne.map((item) => {
+                  return(
+                    <div>
+                      <span style={{color:'#262D44'}}>{item.categoriebillet}: {item.prix}fcfa </span><br/>
+                    </div>
+                )})} 
+  <br />
 
                 <div className="description">
                 <span style={{color:'#262D44'}}>
-                Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over
-              medium-high heat. Add chicken, shrimp and chorizo, and cook, stirring
-              occasionally until lightly browned, 6 to 8 minutes. Transfer shrimp to a
-              large plate and set aside, leaving chicken and chorizo in the pan. Add
-              pimentón, bay leaves, garlic, tomatoes, onion, salt and pepper, and cook,
-              stirring often until thickened and fragrant, about 10 minutes. Add
-              saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
+                {choosenEvent.description}
                 </span>
                 </div>
 

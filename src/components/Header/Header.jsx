@@ -1,10 +1,11 @@
 import React from "react";
 import "./Header.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {Link } from "react-router-dom";
+import axios from 'axios'
 
 
-const Header = ({valueSearch, setValueSearch,setChoosenEvent, evenements, setResultSearch}) => {
+const Header = ({valueSearch, setValueSearch,setChoosenEvent, evenements, setResultSearch, URL}) => {
   const handleChange = (e) => {
     setValueSearch(e.target.value)
     var filtered = evenements.filter(item => item.evenement.toLowerCase().includes(e.target.value.toLowerCase()) || item.description.toLowerCase().includes(e.target.value.toLowerCase()));
@@ -13,6 +14,25 @@ const Header = ({valueSearch, setValueSearch,setChoosenEvent, evenements, setRes
 
    
   }
+
+  const [onspot, setonspot] = useState([]);
+
+
+  useEffect(() => {
+    getonspot();
+  }, []);
+
+  const getonspot = async () => {
+    var response = await axios.get(`${URL}/onspot`);
+    setonspot(response.data);
+  };
+// Recuperer l'id d'un evenement choisi
+const Choose=(id_evenement)=>{
+      
+  const choosenOne=onspot.filter((element,index)=>{
+    return element.id_evenement === id_evenement});
+    setChoosenEvent(choosenOne[0]);
+      };
     return ( 
     <div class="s006">
       <div className='form'>
@@ -31,29 +51,13 @@ const Header = ({valueSearch, setValueSearch,setChoosenEvent, evenements, setRes
             </div>
           </div>
           <div class="suggestion-wrap">
-                    <Link to="/Details">
-                      <span>Pop show 3</span>
+          {onspot.map((item) => {
+            return(
+                    <Link to="/Details" onClick={()=>Choose(item.id_evenement)}>
+                      <span>{item.evenement}</span>
                     </Link>
+              )})}   
 
-                    <Link to="/Details">
-                      <span>CSB vs Stade Mandji</span>
-                    </Link>
-
-                    <Link to="/Details">
-                      <span>Masterclass Linda B</span>
-                    </Link>
-
-                    <Link to="/Details">
-                      <span>Concert: L'Oiseau Rare</span>
-                    </Link>
-
-                    <Link to="/Details">
-                      <span>Festival des étoiles</span>
-                    </Link>
-
-                    <Link to="/Details">
-                      <span>Brunch Hotel Mandji</span>
-                    </Link>
 
           </div>
         </fieldset>

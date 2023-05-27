@@ -8,13 +8,29 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 
-export default function AddressForm({TicketToBePaid}) {
+
+
+export default function AddressForm({choosenEvent, URL}) {
   const [value, setValue] = React.useState('female');
-  console.log(TicketToBePaid);
+  console.log(choosenEvent);
   const handleChange = (event) => {
     setValue(event.target.value);
+  };
+
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    getCategoriesbillet();
+  }, []);
+
+  const getCategoriesbillet = async () => {
+    var response = await axios.get(`${URL}/categoriesbillet/evenement/${choosenEvent.id_evenement}`);
+    setCategories(response.data);
+    console.log(response.data);
   };
   return (
     <React.Fragment>
@@ -22,17 +38,17 @@ export default function AddressForm({TicketToBePaid}) {
         Type de billet
       </Typography>
       <FormControl>
-      <FormLabel id="demo-controlled-radio-buttons-group">veuillez choisir le type de billet que souhaitez acheter.</FormLabel>
+      <FormLabel id="demo-controlled-radio-buttons-group">veuillez choisir le type de billet que souhaitez acheter pour {choosenEvent.evenement}.</FormLabel>
       <RadioGroup
         aria-labelledby="demo-controlled-radio-buttons-group"
         name="controlled-radio-buttons-group"
         value={value}
         onChange={handleChange}
       >
-       {TicketToBePaid.map((item) => { 
+       {categories.map((item) => { 
         return(
         <div key={item.id_categoriesbillet}>
-          <FormControlLabel value={String(item.categoriebillet)} control={<Radio />} label={String(item.categoriebillet)+" ("+ String(item.prix)+"fcfa)"} />
+          <FormControlLabel value={String(item.categoriebillet)+" ("+ String(item.prix)+"fcfa)"} control={<Radio />} label={String(item.categoriebillet)+" ("+ String(item.prix)+"fcfa)"} />
           
         </div>
        )})} 

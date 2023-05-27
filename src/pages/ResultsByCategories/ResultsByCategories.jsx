@@ -26,6 +26,7 @@ import './ResultsByCategories.css';
 export default function ResultsByCategories({evenements, setChoosenEvent, IdCategorie, categoriesbillet,ChoosenCategorie}) {
   var table = evenements
   var id = IdCategorie
+  var URL = 'http://localhost:3001'
 
   // Tri des evenements en fonction de la categorie choisie
   const filteredstuffs=table.filter((element,index)=>{
@@ -55,7 +56,7 @@ return(
         <CardMedia
           component="img"
           height="100%"
-          image={Bann}
+          image={URL+"/uploads/"+item.illustration}
           alt="Photo"
 
 className="photoEventHeight"/>
@@ -69,7 +70,7 @@ className="photoEventHeight"/>
         <CardActions disableSpacing>
           
           <IconButton aria-label="share">
-            <Link to="/validation">
+            <Link to="/validation" onClick={()=>Choose(item.id_evenement)}>
             <button className='buyingBtn'>
               Acheter
             </button>
