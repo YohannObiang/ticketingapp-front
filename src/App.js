@@ -16,25 +16,7 @@ import axios from 'axios';
 
 
 function App() {
-  const URL = 'http://localhost:3001'
-
-  const datedecommande = new Date()
-
-  function padTo2Digits(num) {
-    return num.toString().padStart(2, '0');
-  }
-  function formatDate(date){
-    return[
-      padTo2Digits(date.getMonth() + 1),
-      padTo2Digits(date.getDate()),
-      date.getFullYear(),
-    ].join('/');
-    }
-  var date1 = new Date(String(formatDate(new Date())));
-  var date2 = new Date(String("05/29/2023"));
-  var time_Diff = date2.getTime() - date1.getTime();
-  var days_Diff = time_Diff / (1000 * 3600 * 24);
-  console.log(days_Diff)
+  const URL = 'https://ebillet.onrender.com'
 
   
   const [evenements, setEvenements] = React.useState([]);
