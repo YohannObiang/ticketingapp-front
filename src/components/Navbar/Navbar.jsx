@@ -1,6 +1,7 @@
 import React from "react";
 import "./Navbar.css";
 import {Link } from "react-router-dom";
+import logo from "../../assets/logo.png"
 
 
 const Navbar = () => {
@@ -50,9 +51,9 @@ const Navbar = () => {
           <div class="row align-items-center">
             
               <div class="col-5">
-                <Link to="/">
-                <h1 class="my-0 site-logo" style={{textAlign: 'left'}}><a href="index.html">E-Billet</a></h1>
-                            </Link>
+                <Link to="/" className="row align-items-center">
+                  <img src={logo} alt="Logo" className="logosize"/>
+                </Link>
 
               </div>
             <div class="col-7">

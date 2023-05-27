@@ -354,4 +354,8 @@ body {
             color: #fff !important; }
         .sticky-wrapper.is-sticky .site-navbar .site-navigation .site-menu > li.active a {
           color: #fff; }
+          .logosize{
+            height: 25px;
+            margin: 20px;
+          }
   
