@@ -198,7 +198,13 @@ export default function Checkout({choosenEvent, URL}) {
                 <QRCode value={IdBillet} style={{margin:"50px", height:"200px", width:"200px"}}/>
               </React.Fragment>            
               </div>
-              <button onClick={handleDownloadClick}>Télécharger</button>
+              <Button
+                  variant="contained"
+                  onClick={handleDownloadClick}
+                  sx={{ mt: 3, ml: 1 }}
+                >
+                  Télécharger
+                </Button>
 
           </div>
           ) : (
