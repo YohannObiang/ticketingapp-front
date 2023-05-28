@@ -20,6 +20,8 @@ import axios from 'axios';
 import QRCode from 'qrcode.react';
 import { saveAs } from 'file-saver';
 import html2canvas from 'html2canvas';
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+
 
 
 
@@ -217,13 +219,44 @@ export default function Checkout({choosenEvent, URL}) {
                   </Button>
                 )}
 
-                <Button
+{activeStep === steps.length - 1 ? 
+                  <div
+                  variant="contained"
+                  sx={{ mt: 0, ml: 1 }}
+                  color='secondary'
+                >
+                  
+                  <PayPalScriptProvider
+        options={{ "client-id": 'test' }}
+      >
+        <PayPalButtons
+          createOrder={(data, actions) => {
+            return actions.order.create({
+              purchase_units: [
+                {
+                  amount: {
+                    value: String(Math.floor(prixcategoriebillet*0.0016)),
+                  },
+                },
+              ],
+            });
+          }}
+          onApprove={async (data, actions) => {
+            const details = await actions.order.capture();
+            const name = details.payer.name.given_name;
+            post();
+            setActiveStep(activeStep + 1);
+            
+          }}
+        />
+      </PayPalScriptProvider>
+                  </div> : <Button
                   variant="contained"
                   onClick={handleNext}
                   sx={{ mt: 3, ml: 1 }}
                 >
                   {activeStep === steps.length - 1 ? 'Payer' : 'Suivant'}
-                </Button>
+                </Button>}
               </Box>
               <Button onClick={post}>Post</Button>
 
