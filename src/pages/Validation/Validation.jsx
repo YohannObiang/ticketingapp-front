@@ -16,7 +16,7 @@ import AddressForm from '../../components/AddressForm';
 import PaymentForm from '../../components/PaymentForm';
 import Review from '../../components/Review';
 import { useState, useEffect } from 'react';
-
+import axios from 'axios';
 
 
 
@@ -50,25 +50,74 @@ const theme = createTheme({
   },
 });
 
-function getStepContent(step, choosenEvent, URL) {
-  switch (step) {
-    case 0:
-      return <AddressForm 
-      choosenEvent={choosenEvent}
-      URL = {URL}
-      />;
-    case 1:
-      return <PaymentForm />;
-    case 2:
-      return <Review />;
-    default:
-      throw new Error('Unknown step');
-  }
-}
+
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-export default function Checkout({TicketToBePaid, choosenEvent, URL}) {
+export default function Checkout({choosenEvent, URL}) {
+
+  const [categoriebillet, setcategoriebillet] = useState([]);
+  const [prixcategoriebillet, setprixcategoriebillet] = useState([]);
+  const date_achat = new Date()
+  
+  const [value, setValue] = React.useState(0);
+  const [nom_acheteur, setnom_acheteur] = React.useState('');
+  const [prenom_acheteur, setprenom_acheteur] = React.useState('');
+  const [email_acheteur, setemail_acheteur] = React.useState('');
+  const [whatsapp_acheteur, setwhatsapp_acheteur] = React.useState('');
+
+  const billet ={
+    id_evenement: choosenEvent.id_evenement,
+    id_categoriebillet: parseInt(value),
+    categoriebillet: categoriebillet,
+    prix: prixcategoriebillet,
+    nom_acheteur:nom_acheteur,
+    prenom_acheteur:prenom_acheteur,
+    email_acheteur:email_acheteur,
+    whatsapp_acheteur:parseInt(whatsapp_acheteur),
+  }
+
+  function getStepContent(step) {
+    switch (step) {
+      case 0:
+        return <AddressForm 
+        choosenEvent={choosenEvent}
+        URL = {URL}
+        value = {value}
+        setValue = {setValue}
+        setcategoriebillet = {setcategoriebillet}
+        setprixcategoriebillet = {setprixcategoriebillet}
+        />;
+      case 1:
+        return <PaymentForm
+        billet={billet}
+        whatsapp_acheteur = {whatsapp_acheteur}
+        setwhatsapp_acheteur = {setwhatsapp_acheteur}
+        email_acheteur = {email_acheteur}
+        setemail_acheteur = {setemail_acheteur}
+        prenom_acheteur = {prenom_acheteur}
+        setprenom_acheteur = {setprenom_acheteur}
+        nom_acheteur = {nom_acheteur}
+        setnom_acheteur = {setnom_acheteur}
+        />;
+      case 2:
+        return <Review 
+        billet={billet}
+        whatsapp_acheteur = {whatsapp_acheteur}
+        email_acheteur = {email_acheteur}
+        prenom_acheteur = {prenom_acheteur}
+        nom_acheteur = {nom_acheteur}
+        value = {value}
+        categoriebillet = {categoriebillet}
+        prixcategoriebillet = {prixcategoriebillet}
+        evenement = {choosenEvent.evenement}
+        />;
+      default:
+        throw new Error('Unknown step');
+    }
+  }
+
+
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
@@ -105,7 +154,7 @@ export default function Checkout({TicketToBePaid, choosenEvent, URL}) {
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
             {steps.map((label) => (
               <Step key={label}>
-                <StepLabel>{label}</StepLabel>
+                 <StepLabel>{label}</StepLabel>
               </Step>
             ))}
           </Stepper>

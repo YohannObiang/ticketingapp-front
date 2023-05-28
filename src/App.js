@@ -16,13 +16,10 @@ import axios from 'axios';
 
 
 function App() {
-  const URL = 'https://ebillet.onrender.com'
+  const URL = 'http://localhost:3001'
 
   
   const [evenements, setEvenements] = React.useState([]);
-
-
-
   const [choosenEvent, setChoosenEvent] = useState([])
   const [IdCategorie, setIdCategorie] = useState(0)
   const [ChoosenCategorie, setChoosenCategorie] = useState('')

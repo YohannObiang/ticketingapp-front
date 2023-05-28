@@ -23,19 +23,30 @@ const payments = [
   { name: 'Expiry date', detail: '04/2024' },
 ];
 
-export default function Review() {
+export default function Review({
+  billet,
+  whatsapp_acheteur,
+  email_acheteur,
+  prenom_acheteur,
+  nom_acheteur,
+  value,
+  categoriebillet,
+  prixcategoriebillet,
+  evenement
+}) {
+
+
+  
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Vérification de la commande
       </Typography>
       <List disablePadding>
-        {products.map((product) => (
-          <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={product.name} secondary={product.desc} />
-            <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>{product.price}</Typography>
+          <ListItem sx={{ py: 1, px: 0 }}>
+            <ListItemText primary={evenement} secondary={categoriebillet} />
+            <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>{prixcategoriebillet} fcfa</Typography>
           </ListItem>
-        ))}
 
         
       </List>
@@ -44,16 +55,16 @@ export default function Review() {
           <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
             Acheteur
           </Typography>
-          <Typography gutterBottom>Obiang</Typography>
-          <Typography gutterBottom>Yohann Dian</Typography>
+          <Typography gutterBottom>{nom_acheteur}</Typography>
+          <Typography gutterBottom>{prenom_acheteur}</Typography>
         </Grid>
         <br/><br/>
         <Grid item container direction="column" xs={12} sm={6}>
           <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
             Canaux de réception
           </Typography>
-          <Typography gutterBottom>yohanndian@gmail.com</Typography>
-          <Typography gutterBottom>077482253</Typography>
+          <Typography gutterBottom>{email_acheteur}</Typography>
+          <Typography gutterBottom>{whatsapp_acheteur}</Typography>
         </Grid>
       </Grid>
     </React.Fragment>

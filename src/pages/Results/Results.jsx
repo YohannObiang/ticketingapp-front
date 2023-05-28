@@ -70,15 +70,15 @@ className="photoEventHeight"/>
                           A partir de  {price} fcfa
                         </span>
                  
-          
-          <IconButton aria-label="share" sx={{margin: 'auto'}}>
+          <div>
+            <IconButton aria-label="share" sx={{margin: 'auto'}}>
           <Link to="/validation" onClick={()=>Choose(item.id_evenement)}>
             <button className='buyingBtn'>
               Acheter
             </button>
             </Link>
           </IconButton>
-          
+          </div>        
         
           </Card>
         </div>

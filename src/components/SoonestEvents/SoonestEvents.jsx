@@ -80,7 +80,7 @@ className="photoEventHeight"/>
                         <span className='soonestEventFont'>
                           A partir de  {price}fcfa
                         </span>
-          
+          <div>
           <IconButton aria-label="share" sx={{margin: 'auto'}}>
                     <Link to="/validation" onClick={()=>Choose(item.id_evenement)}>
 
@@ -89,7 +89,7 @@ className="photoEventHeight"/>
             </button>
             </Link>
           </IconButton>
-          
+          </div>
           
         
           </Card>
