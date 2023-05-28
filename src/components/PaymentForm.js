@@ -42,37 +42,37 @@ export default function PaymentForm({
 
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="Name"
-            label="Nom"
+        <TextField
             fullWidth
-            autoComplete="cc-name"
-            variant="standard"
+            id="lastName"
+            label="Nom"
+            name="lastName"
+            autoComplete="family-name"
             value={nom_acheteur}
             onChange={handleChangenom_acheteur}
           />
+        
         </Grid>
         <Grid item xs={12} md={6}>
-          <TextField
-            required
-            id="cardNumber"
-            label="Prénom"
+        <TextField
+            autoComplete="given-name"
+            name="firstName"
             fullWidth
-            autoComplete="cc-number"
-            variant="standard"
+            id="firstName"
+            label="Prénom"
+            autoFocus
             value={prenom_acheteur}
             onChange={handleChangeprenom_acheteur}
           />
         </Grid>
         <Grid item xs={12} md={6}>
-          <TextField
+        <TextField
             required
-            id="expDate"
-            label="Adresse email"
             fullWidth
-            autoComplete="cc-exp"
-            variant="standard"
+            id="email"
+            label="Adresse email"
+            name="email"
+            autoComplete="email"
             value={email_acheteur}
             onChange={handleChangeemail_acheteur}
           />
@@ -80,14 +80,14 @@ export default function PaymentForm({
         <Grid item xs={12} md={6}>
           <TextField
             required
-            id="cvv"
+            type="phone"
             label="Whatsapp"
             helperText=""
             fullWidth
-            autoComplete="cc-csc"
-            variant="standard"
+            autoComplete="phone"
             value={whatsapp_acheteur}
             onChange={handleChangewhatsapp_acheteur}
+            inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
           />
         </Grid>
         <Grid item xs={12}>

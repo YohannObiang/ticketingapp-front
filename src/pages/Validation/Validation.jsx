@@ -17,6 +17,10 @@ import PaymentForm from '../../components/PaymentForm';
 import Review from '../../components/Review';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import QRCode from 'qrcode.react';
+import { saveAs } from 'file-saver';
+import html2canvas from 'html2canvas';
+
 
 
 
@@ -64,6 +68,7 @@ export default function Checkout({choosenEvent, URL}) {
   const [prenom_acheteur, setprenom_acheteur] = React.useState('');
   const [email_acheteur, setemail_acheteur] = React.useState('');
   const [whatsapp_acheteur, setwhatsapp_acheteur] = React.useState('');
+  const [IdBillet, setIdBillet] = React.useState('');
 
   const billet ={
     id_evenement: choosenEvent.id_evenement,
@@ -79,7 +84,8 @@ export default function Checkout({choosenEvent, URL}) {
   function post(){
 
     axios.post(`${URL}/ajout/billetvendu`, billet).then(res => {
-      console.log(billet)
+      setIdBillet(res.data.id_billetvendu)
+      console.log(res.data.id_billetvendu)
   })
   
 }
@@ -135,8 +141,19 @@ export default function Checkout({choosenEvent, URL}) {
     setActiveStep(activeStep - 1);
   };
     
+  const handleDownloadClick = () => {
+    // Sélectionne la section spécifique à capturer
+    const section = document.getElementById('section-to-download');
 
-  
+    // Capture la section et convertit-la en une image
+    html2canvas(section).then(canvas => {
+      // Convertit le canvas en un objet Blob
+      canvas.toBlob(blob => {
+        // Télécharge le fichier en utilisant FileSaver.js
+        saveAs(blob, 'section.png');
+      });
+    });
+  };
   return (
     <ThemeProvider theme={theme}>
       <div className="navbarBackground"></div>
@@ -166,16 +183,24 @@ export default function Checkout({choosenEvent, URL}) {
             ))}
           </Stepper>
           {activeStep === steps.length ? (
+            
+            <div>
+            <div id="section-to-download">
             <React.Fragment>
-              <Typography variant="h5" gutterBottom>
-                Thank you for your order.
-              </Typography>
-              <Typography variant="subtitle1">
-                Your order number is #2001539. We have emailed your order
-                confirmation, and will send you an update when your order has
-                shipped.
-              </Typography>
-            </React.Fragment>
+                <Typography variant="h5" gutterBottom>
+                  Thank you for your order.
+                </Typography>
+                <Typography variant="subtitle1">
+                  Your order number is #B{choosenEvent.id_evenement}-{value}-{IdBillet}. We have emailed your order
+                  confirmation, and will send you an update when your order has
+                  shipped.
+                </Typography>
+                <QRCode value={IdBillet} style={{margin:"50px", height:"200px", width:"200px"}}/>
+              </React.Fragment>            
+              </div>
+              <button onClick={handleDownloadClick}>Télécharger</button>
+
+          </div>
           ) : (
             <React.Fragment>
               {getStepContent(activeStep, choosenEvent, URL)}
