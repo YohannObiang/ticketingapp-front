@@ -55,11 +55,10 @@ const theme = createTheme({
 const defaultTheme = createTheme();
 
 export default function Checkout({choosenEvent, URL}) {
-
+  
+  const date_achat = new Date()
   const [categoriebillet, setcategoriebillet] = useState([]);
   const [prixcategoriebillet, setprixcategoriebillet] = useState([]);
-  const date_achat = new Date()
-  
   const [value, setValue] = React.useState(0);
   const [nom_acheteur, setnom_acheteur] = React.useState('');
   const [prenom_acheteur, setprenom_acheteur] = React.useState('');
@@ -70,12 +69,20 @@ export default function Checkout({choosenEvent, URL}) {
     id_evenement: choosenEvent.id_evenement,
     id_categoriebillet: parseInt(value),
     categoriebillet: categoriebillet,
-    prix: prixcategoriebillet,
+    prix: parseInt(prixcategoriebillet),
     nom_acheteur:nom_acheteur,
     prenom_acheteur:prenom_acheteur,
     email_acheteur:email_acheteur,
     whatsapp_acheteur:parseInt(whatsapp_acheteur),
   }
+
+  function post(){
+
+    axios.post(`${URL}/ajout/billetvendu`, billet).then(res => {
+      console.log(billet)
+  })
+  
+}
 
   function getStepContent(step) {
     switch (step) {
@@ -187,6 +194,8 @@ export default function Checkout({choosenEvent, URL}) {
                   {activeStep === steps.length - 1 ? 'Payer' : 'Suivant'}
                 </Button>
               </Box>
+              <Button onClick={post}>Post</Button>
+
             </React.Fragment>
           )}
         </Paper>
