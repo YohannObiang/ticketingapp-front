@@ -3,8 +3,8 @@ import Home from '../src/pages/Home';
 import Details from './pages/Details/Details';
 import Results from './pages/Results/Results';
 import Validation from './pages/Validation/Validation';
+import Admin from './pages/Admin/Admin';
 import Navbar from './components/Navbar/Navbar';
-import AddressForm from './components/AddressForm';
 import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter ,
@@ -13,6 +13,7 @@ import {
 } from "react-router-dom";
 import ResultsByCategories from './pages/ResultsByCategories/ResultsByCategories';
 import axios from 'axios';
+
 
 
 function App() {
@@ -26,7 +27,6 @@ function App() {
   const [ChoosenCategorie, setChoosenCategorie] = useState('')
   const [valueSearch, setValueSearch] = useState('');
   const [resultSearch, setResultSearch] = useState([]);
-  const [TicketToBePaid, setTicketToBePaid] = useState([]);
   const [categoriesbillet, setCategoriesbillet] = useState([]);
   const [ClosestEvent, setClosestEvent] = useState([]);
 
@@ -65,7 +65,6 @@ function App() {
           <Route path="/details" element={<Details
           choosenEvent={choosenEvent}
           categoriesbillet={categoriesbillet}
-          setTicketToBePaid ={setTicketToBePaid} 
           URL={URL}         
           />} /> 
           <Route path="/results" element={<Results
@@ -86,6 +85,10 @@ function App() {
 
           />} /> 
           <Route path="/validation" element={<Validation
+          choosenEvent={choosenEvent}
+          URL={URL}
+          />} /> 
+          <Route path="/admin" element={<Admin
           choosenEvent={choosenEvent}
           URL={URL}
           />} /> 
