@@ -62,7 +62,7 @@ const Navbar = () => {
                   <div class="d-inline-block d-lg-none ml-md-0 mr-auto py-3"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
 
                   <ul class="site-menu main-menu js-clone-nav d-none d-lg-block">
-                    <li class="active"><a href="#home-section" class="nav-link">Accueil</a></li>
+                    <li ><Link to="/" class="nav-link"> Accueil</Link></li>
                     {/* <li><a href="#classes-section" class="nav-link">Classes</a></li> */}
                     {/* <li class="has-children"> */}
                       {/* <a href="#" class="nav-link">Pages</a> */}
@@ -84,6 +84,7 @@ const Navbar = () => {
                     {/* <li><a href="#events-section" class="nav-link">Events</a></li> */}
                     {/* <li><a href="#gallery-section" class="nav-link">Gallery</a></li> */}
                     <li><a href="#contact-section" class="nav-link">Contact</a></li>
+                    <li><Link to="/admin" class="nav-link">Admin</Link></li>
                   </ul>
                 </div>
               </nav>

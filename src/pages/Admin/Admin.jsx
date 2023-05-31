@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ProtectedResource from '../../components/ProtectedResource';
-import Login from '../../components/Login';
+import Loginn from '../../components/Loginn';
 import '../Details/Details.css';
 
 
 
 
-const LoginForm = () => {
+const LoginForm = ({URL}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isTurned, setIsTurned] = useState(true);
@@ -27,10 +27,10 @@ const LoginForm = () => {
           const token = localStorage.getItem('token');
           if (token) {
             // Envoyer une requête au serveur pour vérifier la validité du token JWT
-            const response = await axios.post('http://localhost:3001/api/check-auth', { token });
+            const response = await axios.post(`${URL}/api/check-auth`, { token });
             if (response.data.valid) {
               setIsLoggedIn(false);
-              console.log('token');
+              console.log(response.data.message);
             } else {
               setIsLoggedIn(true);
               console.log('no token');
@@ -56,7 +56,7 @@ const LoginForm = () => {
 
 
     try {
-      const response = await axios.post('http://localhost:3001/api/login', {
+      const response = await axios.post(`${URL}/api/login`, {
         username,
         password
       });
@@ -64,14 +64,17 @@ const LoginForm = () => {
       const { token } = response.data;
       // Stockez le token dans le stockage local ou dans un cookie sécurisé
       localStorage.setItem('token', token);
-
+  
       // Effectuez les actions nécessaires après une connexion réussie
       console.log('Connexion réussie');
       setIsTurned(!isTurned);
+      window.location.reload();
 
     } catch (error) {
       // Gérez les erreurs de connexion ici
       console.error(error.response.data.message);
+      window.location.reload();
+
 
     }
   };
@@ -85,6 +88,7 @@ const LoginForm = () => {
   const logoff = () => {
     setIsTurned(true);
     localStorage.removeItem('token')
+    window.location.reload();
   };
 
 
@@ -98,7 +102,7 @@ const LoginForm = () => {
      <div>
         
             
-            <Login
+            <Loginn
             username={username}
             password={password}
             setUsername={setUsername}
@@ -110,6 +114,7 @@ const LoginForm = () => {
      <div>
          <ProtectedResource
          logoff={logoff}
+         URL={URL}
          />
 
      </div>

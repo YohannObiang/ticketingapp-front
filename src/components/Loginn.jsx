@@ -28,9 +28,22 @@ function Copyright(props) {
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
-const defaultTheme = createTheme();
+const defaultTheme = createTheme({
+  palette: {
+    primary: {
 
-export default function Login({username,password,setUsername,setPassword, handleLogin}) {
+      main: '#6d1493',
+
+    },
+    secondary: {
+
+      main: '#6d1493',
+      
+    },
+  },
+});
+
+export default function Loginn({username,password,setUsername,setPassword, handleLogin}) {
 
 
   const handleSubmit = (event) => {
@@ -61,14 +74,14 @@ export default function Login({username,password,setUsername,setPassword, handle
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Administrateur
           </Typography>
             <TextField
               margin="normal"
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Adresse Email "
               name="email"
               autoComplete="email"
               autoFocus
@@ -79,7 +92,7 @@ export default function Login({username,password,setUsername,setPassword, handle
               required
               fullWidth
               name="password"
-              label="Password"
+              label="Mot de passe"
               type="password"
               id="password"
               autoComplete="current-password"
@@ -94,22 +107,10 @@ export default function Login({username,password,setUsername,setPassword, handle
               sx={{ mt: 3, mb: 2 }}
               onClick={handleLogin}
             >
-              Sign In
+              Se connecter
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
+            
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
     </div>
