@@ -30,19 +30,11 @@ import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import Statsglobale from './Statsglobale';
+import Transactions from './Transactions';
+import Qrcode from './Qrcode';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+
 
 const drawerWidth = 240;
 
@@ -86,17 +78,11 @@ export default function Dashboard({logoff}) {
   function getStepContent(step) {
     switch (step) {
       case 0:
-        return  <div>
-        <p>step0</p>
-      </div>;
+        return  <Statsglobale/>
       case 1:
-        return  <div>
-        <p>step1</p>
-      </div>;
+        return  <Transactions/>;
       case 2:
-        return <div>
-          <p>step2</p>
-        </div>;
+        return <Qrcode/>;
       default:
         throw new Error('Unknown step');
     }
@@ -146,8 +132,12 @@ export default function Dashboard({logoff}) {
               </ListItemIcon>
               <ListItemText primary="Orders" />
             </ListItemButton>
-            
-          </React.Fragment>
+            <ListItemButton onClick={()=>{setActiveStep(2)}}>
+              <ListItemIcon>
+                <ShoppingCartIcon />
+              </ListItemIcon>
+              <ListItemText primary="Orders" />
+            </ListItemButton>          </React.Fragment>
             <Divider sx={{ my: 1 }} />
             <React.Fragment>
               <ListItemButton onClick={logoff}>
@@ -173,44 +163,6 @@ export default function Dashboard({logoff}) {
             overflow: 'auto',
           }}
         >
-          <Container maxWidth="lg" sx={{ mt:4, mb: 4 }}>
-            <Grid container spacing={3}>
-              {/* Chart */}
-              
-              {/* Recent Deposits */}
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  <Deposits />
-                </Paper>
-              </Grid>
-              <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                  <Deposits />
-                </Paper>
-              </Grid>
-              {/* Recent Orders */}
-              {/* <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <Orders />
-                </Paper>
-              </Grid> */}
-            </Grid>
-            <Copyright sx={{ pt: 4 }} />
-          </Container>
           {getStepContent(activeStep)}
         </Box>
 

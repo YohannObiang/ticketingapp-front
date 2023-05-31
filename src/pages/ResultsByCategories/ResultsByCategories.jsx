@@ -23,10 +23,9 @@ import './ResultsByCategories.css';
 
 
 
-export default function ResultsByCategories({evenements, setChoosenEvent, IdCategorie, categoriesbillet,ChoosenCategorie}) {
+export default function ResultsByCategories({evenements, setChoosenEvent, IdCategorie, categoriesbillet,ChoosenCategorie,URL}) {
   var table = evenements
   var id = IdCategorie
-  var URL = 'http://localhost:3001'
 
   // Tri des evenements en fonction de la categorie choisie
   const filteredstuffs=table.filter((element,index)=>{
