@@ -69,7 +69,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-export default function Dashboard({logoff}) {
+export default function Dashboard({logoff, URL, events}) {
   const [open, setOpen] = React.useState(false);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -82,7 +82,11 @@ export default function Dashboard({logoff}) {
       case 1:
         return  <Transactions/>;
       case 2:
-        return <Qrcode/>;
+        return <Qrcode
+    URL={URL}
+    events={events}
+        
+        />;
       default:
         throw new Error('Unknown step');
     }

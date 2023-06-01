@@ -18,7 +18,7 @@ import axios from 'axios';
 
 function App() {
   const URL = 'https://ebillet.onrender.com'
-  // const URL = 'http://localhost:3001'
+  // const URL = 'http://192.168.43.96:3001'
 
   
   const [evenements, setEvenements] = React.useState([]);

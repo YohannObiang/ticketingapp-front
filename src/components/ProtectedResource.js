@@ -3,8 +3,7 @@ import axios from 'axios';
 import Dashboard from './Dashboard'
 
 const ProtectedResource = ({logoff,URL}) => {
-  const [Id, setId] = useState('');
-
+  const [events, setevents] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -16,11 +15,10 @@ const ProtectedResource = ({logoff,URL}) => {
           }
         });
 
-        const { Id } = response.data;
-        console.log(Id);
-        setId(Id);
+        const Id  = response.data.message;
+        console.log(response.data.message);
         var response1 = await axios.get(`${URL}/evenements/organisateur/${Id}`);
-        console.log(response1.data);
+        setevents(response1.data);
       } catch (error) {
         // Gérez les erreurs d'accès à la ressource protégée ici
         // console.error(error.response.data.Id);
@@ -34,6 +32,8 @@ const ProtectedResource = ({logoff,URL}) => {
     <div>
     <Dashboard
     logoff={logoff}
+    URL={URL}
+    events={events}
     />
     </div>
   );

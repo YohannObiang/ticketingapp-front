@@ -16,7 +16,7 @@ import { useState, useEffect } from 'react';
 
 
 
-const Details = ({choosenEvent, categoriesbillet, setTicketToBePaid, URL}) => {
+const Details = ({choosenEvent, categoriesbillet,  URL}) => {
 
   const theme = createTheme({
     palette: {
@@ -39,9 +39,7 @@ const Details = ({choosenEvent, categoriesbillet, setTicketToBePaid, URL}) => {
 
     const choosenOne=categoriesbillet.filter((element,index)=>{
       return element.id_evenement === choosenEvent.id_evenement});
-      useEffect(() => {
-        setTicketToBePaid(choosenOne);
-      }, []);
+      
       console.log(choosenOne)
   
 

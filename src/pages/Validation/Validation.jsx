@@ -155,7 +155,16 @@ export default function Checkout({choosenEvent, URL}) {
         saveAs(blob, 'section.png');
       });
     });
+
+    
   };
+  function kkk(){
+    axios.post(`${URL}/ajout/billetvendu`, billet).then(res => {
+      setIdBillet(res.data.id_billetvendu)
+      console.log(res.data.id_billetvendu)
+  });
+            setActiveStep(activeStep + 1);
+    }
   return (
     <ThemeProvider theme={theme}>
       <div className="navbarBackground"></div>
@@ -197,7 +206,7 @@ export default function Checkout({choosenEvent, URL}) {
                   confirmation, and will send you an update when your order has
                   shipped.
                 </Typography>
-                <QRCode value={IdBillet} style={{margin:"50px", height:"200px", width:"200px"}}/>
+                <QRCode value={String(IdBillet)} style={{margin:"50px", height:"200px", width:"200px"}}/>
               </React.Fragment>            
               </div>
               <Button
@@ -257,6 +266,7 @@ export default function Checkout({choosenEvent, URL}) {
                 >
                   {activeStep === steps.length - 1 ? 'Payer' : 'Suivant'}
                 </Button>}
+                <button onClick={kkk}>kkk</button>
               </Box>
 
             </React.Fragment>
