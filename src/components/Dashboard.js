@@ -33,8 +33,10 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import Statsglobale from './Statsglobale';
 import Transactions from './Transactions';
 import Qrcode from './Qrcode';
-
-
+import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
+import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 
 const drawerWidth = 240;
 
@@ -92,15 +94,9 @@ export default function Dashboard({logoff, URL, events}) {
     }
   }
 
-  const [activeStep, setActiveStep] = React.useState(2);
+  const [activeStep, setActiveStep] = React.useState(0);
 
-  const handleNext = () => {
-    setActiveStep(activeStep + 1);
-  };
 
-  const handleBack = () => {
-    setActiveStep(activeStep - 1);
-  };
     
 
   return (
@@ -117,28 +113,28 @@ export default function Dashboard({logoff, URL, events}) {
               px: [1],
             }}
           >
-            <IconButton onClick={toggleDrawer}>
+            {/* <IconButton onClick={toggleDrawer}>
               <ChevronLeftIcon />
-            </IconButton>
+            </IconButton> */}
           </Toolbar>
           <Divider />
           <List component="nav">
           <React.Fragment>
             <ListItemButton onClick={()=>{setActiveStep(0)}}>
               <ListItemIcon>
-                <DashboardIcon />
+                <CurrencyExchangeIcon />
               </ListItemIcon>
               <ListItemText primary="Dashboard" />
             </ListItemButton>
             <ListItemButton onClick={()=>{setActiveStep(1)}}>
               <ListItemIcon>
-                <ShoppingCartIcon />
+                <ReceiptLongIcon />
               </ListItemIcon>
               <ListItemText primary="Orders" />
             </ListItemButton>
             <ListItemButton onClick={()=>{setActiveStep(2)}}>
               <ListItemIcon>
-                <ShoppingCartIcon />
+                <QrCodeScannerIcon />
               </ListItemIcon>
               <ListItemText primary="Orders" />
             </ListItemButton>          </React.Fragment>
@@ -146,7 +142,7 @@ export default function Dashboard({logoff, URL, events}) {
             <React.Fragment>
               <ListItemButton onClick={logoff}>
                 <ListItemIcon>
-                  <DashboardIcon />
+                  <PowerSettingsNewIcon />
                 </ListItemIcon>
                 <ListItemText primary="Se déconnecter"  />
               </ListItemButton>
