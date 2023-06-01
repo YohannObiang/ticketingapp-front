@@ -6,7 +6,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import FormLabel from '@mui/material/FormLabel';
 
-
 export default function PaymentForm({
   billet, 
   whatsapp_acheteur, 
@@ -22,7 +21,8 @@ export default function PaymentForm({
   console.log(billet);
 
   const handleChangewhatsapp_acheteur = (event) => {
-    setwhatsapp_acheteur(event.target.value);
+    const numericValue = event.target.value.replace(/\D/g, ''); // Keep only numeric characters
+    setwhatsapp_acheteur(numericValue);
   }
   const handleChangeprenom_acheteur = (event) => {
     setprenom_acheteur(event.target.value);
@@ -38,11 +38,11 @@ export default function PaymentForm({
       <Typography variant="h6" gutterBottom>
         Détails acheteur
       </Typography>
-      <FormLabel id="demo-controlled-radio-buttons-group">veuillez remplir chacun des champs ci dessous.</FormLabel>
+      <FormLabel id="demo-controlled-radio-buttons-group">veuillez remplir chacun des champs ci-dessous.</FormLabel>
 
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
-        <TextField
+          <TextField
             fullWidth
             id="lastName"
             label="Nom"
@@ -51,10 +51,9 @@ export default function PaymentForm({
             value={nom_acheteur}
             onChange={handleChangenom_acheteur}
           />
-        
         </Grid>
         <Grid item xs={12} md={6}>
-        <TextField
+          <TextField
             autoComplete="given-name"
             name="firstName"
             fullWidth
@@ -66,7 +65,7 @@ export default function PaymentForm({
           />
         </Grid>
         <Grid item xs={12} md={6}>
-        <TextField
+          <TextField
             required
             fullWidth
             id="email"
@@ -80,19 +79,17 @@ export default function PaymentForm({
         <Grid item xs={12} md={6}>
           <TextField
             required
-            type="phone"
+            type="tel" // Use type="tel" for phone number input
             label="Whatsapp"
             helperText=""
             fullWidth
             autoComplete="phone"
             value={whatsapp_acheteur}
             onChange={handleChangewhatsapp_acheteur}
-            inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+            inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} // Use inputMode and pattern to enforce numeric input
           />
         </Grid>
-        <Grid item xs={12}>
-
-        </Grid>
+        <Grid item xs={12}></Grid>
       </Grid>
     </React.Fragment>
   );
