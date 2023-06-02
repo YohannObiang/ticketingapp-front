@@ -15,12 +15,14 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from '../../components/AddressForm';
 import PaymentForm from '../../components/PaymentForm';
 import Review from '../../components/Review';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import QRCode from 'qrcode.react';
+// import QRCode from 'qrcode';
 import { saveAs } from 'file-saver';
 import html2canvas from 'html2canvas';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+
 
 
 
@@ -83,11 +85,60 @@ export default function Checkout({choosenEvent, URL}) {
     whatsapp_acheteur:parseInt(whatsapp_acheteur),
   }
 
-  function post(){
+  const divRef = useRef(null);
 
+  const handleSendEmail = async () => {
+    const divElement = divRef.current;
+
+    try {
+      const canvas = await html2canvas(divElement);
+      const imageData = canvas.toDataURL('image/png');
+      fetch(`${URL}/send-email`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ image: imageData }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Email sent successfully!');
+          // Faites quelque chose avec la réponse du serveur si nécessaire
+        })
+        .catch((error) => {
+          console.error('Error sending email:', error);
+        });
+    } catch (error) {
+      console.error('Error capturing div as image:', error);
+    }
+  };
+
+
+  function post(){
+    const [condition, setcondition] = React.usestate(false)
     axios.post(`${URL}/ajout/billetvendu`, billet).then(res => {
       setIdBillet(res.data.id_billetvendu)
-      console.log(res.data.id_billetvendu)
+      console.log(res.data.id_billetvendu)     
+      handleSendEmail();
+      while (!condition) {
+        // Code à exécuter à chaque itération de la boucle
+      
+        // Vérifier la condition de sortie
+        if (IdBillet.length > 0) {
+          handleDownloadClick();
+          handleSendEmail();
+          setcondition(true);
+        }
+      
+        // Incrémenter le compteur
+      }
+
+      // setTimeout(() => {
+        
+      //   handleDownloadClick();
+      //   handleSendEmail();
+      // }, 2000);
+      ;
   })
   
 }
@@ -142,7 +193,10 @@ export default function Checkout({choosenEvent, URL}) {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
-    
+  
+
+
+
   const handleDownloadClick = () => {
     // Sélectionne la section spécifique à capturer
     const section = document.getElementById('section-to-download');
@@ -155,16 +209,29 @@ export default function Checkout({choosenEvent, URL}) {
         saveAs(blob, 'section.png');
       });
     });
-
-    
+ 
+    // useEffect(() => {
+      
+    //   handleCapture();
+    // }, []);    
   };
   function kkk(){
     axios.post(`${URL}/ajout/billetvendu`, billet).then(res => {
       setIdBillet(res.data.id_billetvendu)
       console.log(res.data.id_billetvendu)
+      handleSendEmail();
+      setTimeout(() => {
+        handleDownloadClick();
+        handleSendEmail();
+      }, 2000);
+      ;
+
+
   });
             setActiveStep(activeStep + 1);
     }
+ 
+ 
   return (
     <ThemeProvider theme={theme}>
       <div className="navbarBackground"></div>
@@ -195,19 +262,20 @@ export default function Checkout({choosenEvent, URL}) {
           </Stepper>
           {activeStep === steps.length ? (
             
-            <div>
-            <div id="section-to-download">
-            <React.Fragment>
-                <Typography variant="h5" gutterBottom>
-                  Thank you for your order.
-                </Typography>
-                <Typography variant="subtitle1">
-                  Your order number is #B{choosenEvent.id_evenement}-{value}-{IdBillet}. We have emailed your order
-                  confirmation, and will send you an update when your order has
-                  shipped.
-                </Typography>
-                <QRCode value={String(IdBillet)} style={{margin:"50px", height:"200px", width:"200px"}}/>
-              </React.Fragment>            
+            <div >               
+              <div ref={divRef} id="section-to-download">
+              <React.Fragment>
+                  <Typography variant="h5" gutterBottom>
+                    Thank you for your order.
+                  </Typography>
+                  <Typography variant="subtitle1">
+                    Your order number is #B{choosenEvent.id_evenement}-{value}-{IdBillet}. We have emailed your order
+                    confirmation, and will send you an update when your order has
+                    shipped.
+                  </Typography>
+                  <QRCode value={String(IdBillet)} style={{margin:"50px", height:"200px", width:"200px"}}/>
+                </React.Fragment> 
+
               </div>
               <Button
                   variant="contained"
@@ -266,7 +334,7 @@ export default function Checkout({choosenEvent, URL}) {
                 >
                   {activeStep === steps.length - 1 ? 'Payer' : 'Suivant'}
                 </Button>}
-                <button onClick={kkk}>kkk</button>
+                {/* <button onClick={kkk}>kkk</button> */}
               </Box>
 
             </React.Fragment>
