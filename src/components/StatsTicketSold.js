@@ -13,7 +13,7 @@ export default function StatsTicketSold({item, events, Ctitket, URL}) {
   const[Ctitketsold, setCticketsold] = useState([])
   useEffect(() => {
     getCategoriesbillet();
-  });
+  }, []);
 
   const getCategoriesbillet = async () => {
     var response = await axios.get(`${URL}/billetsvendus/categoriebillet/${item.id_categoriesbillet}`);

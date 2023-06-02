@@ -14,9 +14,9 @@ export default function Deposits({events, Ctitket, URL}) {
   const[total, settotal] = useState([])
   useEffect(() => {
     getCategoriesbillet();
-  });
-
-  const getCategoriesbillet = async () => {
+  }, []);
+console.log(events)   
+const getCategoriesbillet = async () => {
     var response = await axios.get(`${URL}/billetsvendus/evenement/${events[0].id_evenement}`);
     setCticketsold(response.data);
   };

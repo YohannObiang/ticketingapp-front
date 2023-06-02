@@ -53,38 +53,26 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-export default function Dashboard({logoff, URL, events, UserTickets}) {
+export default function Dashboard({logoff, URL, UserTickets, Ctitket}) {
   const [open, setOpen] = React.useState(false);
   var idCat= UserTickets[0]
   
-  const[Ctitket, setCticket] = useState([])
-
-  useEffect(() => {
-    getCategoriesbillet();
-  });
-
-  const getCategoriesbillet = async () => {
-    var response = await axios.get(`${URL}/evenement/categoriesbillet/${UserTickets[0].id_evenement}`);
-    setCticket(response.data);
-
-    
-  };
 
 
   function getStepContent(step) {
     switch (step) {
-      case 0:
+      case 2:
         return  <Statsglobale
-        events={events}
+        events={UserTickets}
         Ctitket={Ctitket}
         URL = {URL}
         />
       case 1:
         return  <Transactions/>;
-      case 2:
+      case 0:
         return <Qrcode
     URL={URL}
-    events={events}
+    events={UserTickets}
         
         />;
       default:
@@ -118,7 +106,13 @@ export default function Dashboard({logoff, URL, events, UserTickets}) {
           <Divider />
           <List component="nav">
           <React.Fragment>
-            <ListItemButton onClick={()=>{setActiveStep(0)}}>
+          <ListItemButton onClick={()=>{setActiveStep(0)}}>
+              <ListItemIcon>
+                <QrCodeScannerIcon />
+              </ListItemIcon>
+              <ListItemText primary="Orders" />
+            </ListItemButton> 
+            <ListItemButton onClick={()=>{setActiveStep(2)}}>
               <ListItemIcon>
                 <CurrencyExchangeIcon />
               </ListItemIcon>
@@ -130,12 +124,7 @@ export default function Dashboard({logoff, URL, events, UserTickets}) {
               </ListItemIcon>
               <ListItemText primary="Orders" />
             </ListItemButton>
-            <ListItemButton onClick={()=>{setActiveStep(2)}}>
-              <ListItemIcon>
-                <QrCodeScannerIcon />
-              </ListItemIcon>
-              <ListItemText primary="Orders" />
-            </ListItemButton>          </React.Fragment>
+      </React.Fragment>
             <Divider sx={{ my: 1 }} />
             <React.Fragment>
               <ListItemButton onClick={logoff}>

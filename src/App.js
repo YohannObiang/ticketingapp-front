@@ -33,13 +33,19 @@ function App() {
   const [IdUserLoggedIn, setIdUserLoggedIn] = useState('');
   const [UserTickets, setUserTickets] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const[Ctitket, setCticket] = useState([]);
+  const [events, setevents] = useState([]);
+
+
+
+
 
 
 
     
   useEffect(() => {
       
-      checkAuthentication();
+      checkAuthentication()
     }, []);
 
 
@@ -57,6 +63,12 @@ function App() {
             var response3 = await axios.get(`${URL}/evenements/organisateur/${response.data.message.idd.userId}`);
     console.log(response3.data);
     setUserTickets(response3.data);
+    var response4 = await axios.get(`${URL}/evenement/categoriesbillet/${response3.data[0].id_evenement}`);
+    setCticket(response4.data);
+    console.log(response4.data);
+
+
+    
           } else {
             setIsLoggedIn(true);
             console.log('no token');
@@ -143,6 +155,7 @@ function App() {
           setIsLoggedIn={setIsLoggedIn}
           isLoggedIn={isLoggedIn}
           UserTickets={UserTickets}
+          Ctitket={Ctitket}
           />} /> 
 
 

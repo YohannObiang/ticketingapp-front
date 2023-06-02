@@ -97,7 +97,7 @@ function isBackCameraAvailable() {
                 break;
               }
 
-              break;            }
+             }
             else{
               setResponseTicket(0);
               const audio = new Audio('sons/not.mp3');
