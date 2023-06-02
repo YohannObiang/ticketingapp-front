@@ -9,31 +9,26 @@ function preventDefault(event) {
   event.preventDefault();
 }
 
-export default function Deposits({events, Ctitket, URL}) {
+export default function StatsTicketSold({item, events, Ctitket, URL}) {
   const[Ctitketsold, setCticketsold] = useState([])
-  const[total, settotal] = useState([])
   useEffect(() => {
     getCategoriesbillet();
   });
 
   const getCategoriesbillet = async () => {
-    var response = await axios.get(`${URL}/billetsvendus/evenement/${events[0].id_evenement}`);
+    var response = await axios.get(`${URL}/billetsvendus/categoriebillet/${item.id_categoriesbillet}`);
     setCticketsold(response.data);
+
+    
   };
-    var arr = 0
 
-for (let index = 0; index < Ctitketsold.length; index++) {
-  const element = Ctitketsold[index];
-
-  arr += element.prix
-}
 
   return (
     <div>
     <React.Fragment>
-      <Title>Vente totale</Title>
+    <Title>{item.categoriebillet}</Title>
       <Typography component="p" variant="h4">
-        {arr} fcfa
+      {Ctitketsold.length*item.prix} fcfa
       </Typography>
       <Typography color="text.secondary" sx={{ flex: 1 }}>
         {Ctitketsold.length} billets vendus

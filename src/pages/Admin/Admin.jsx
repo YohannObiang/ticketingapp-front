@@ -7,46 +7,10 @@ import '../Details/Details.css';
 
 
 
-const LoginForm = ({URL}) => {
+const LoginForm = ({URL, isLoggedIn, UserTickets}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isTurned, setIsTurned] = useState(true);
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
-
-
-    
-    useEffect(() => {
-        
-        checkAuthentication();
-      }, []);
-
-
-
-      const checkAuthentication = async () => {
-        try {
-          const token = localStorage.getItem('token');
-          if (token) {
-            // Envoyer une requête au serveur pour vérifier la validité du token JWT
-            const response = await axios.post(`${URL}/api/check-auth`, { token });
-            if (response.data.valid) {
-              setIsLoggedIn(false);
-              console.log(response.data.message);
-            } else {
-              setIsLoggedIn(true);
-              console.log('no token');
-
-            }
-          } else {
-            setIsLoggedIn(true);
-            console.log('no no token');
-
-          }
-        } catch (error) {
-          setIsLoggedIn(true);
-          console.error('Une erreur s\'est produite lors de la vérification de l\'authentification:', error);
-        }
-      };
-  
 
 
 
@@ -115,6 +79,7 @@ const LoginForm = ({URL}) => {
          <ProtectedResource
          logoff={logoff}
          URL={URL}
+         UserTickets={UserTickets}
          />
 
      </div>

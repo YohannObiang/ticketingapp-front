@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Dashboard from './Dashboard'
 
-const ProtectedResource = ({logoff,URL}) => {
+const ProtectedResource = ({logoff,URL, UserTickets}) => {
   const [events, setevents] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -34,6 +34,7 @@ const ProtectedResource = ({logoff,URL}) => {
     logoff={logoff}
     URL={URL}
     events={events}
+    UserTickets={UserTickets}
     />
     </div>
   );

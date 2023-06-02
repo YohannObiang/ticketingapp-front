@@ -17,8 +17,9 @@ import axios from 'axios';
 
 
 function App() {
-  const URL = 'https://ebillet.onrender.com'
+   const URL = 'https://ebillet.onrender.com'
   // const URL = 'http://192.168.43.96:3001'
+   //  const URL = 'http://localhost:3001'
 
   
   const [evenements, setEvenements] = React.useState([]);
@@ -29,7 +30,48 @@ function App() {
   const [resultSearch, setResultSearch] = useState([]);
   const [categoriesbillet, setCategoriesbillet] = useState([]);
   const [ClosestEvent, setClosestEvent] = useState([]);
+  const [IdUserLoggedIn, setIdUserLoggedIn] = useState('');
+  const [UserTickets, setUserTickets] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
+
+
+    
+  useEffect(() => {
+      
+      checkAuthentication();
+    }, []);
+
+
+
+    const checkAuthentication = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (token) {
+          // Envoyer une requête au serveur pour vérifier la validité du token JWT
+          const response = await axios.post(`${URL}/api/check-auth`, { token });
+          if (response.data.valid) {
+            setIsLoggedIn(false);
+            setIdUserLoggedIn(response.data.message);
+            console.log(response.data.message);
+            var response3 = await axios.get(`${URL}/evenements/organisateur/${response.data.message.idd.userId}`);
+    console.log(response3.data);
+    setUserTickets(response3.data);
+          } else {
+            setIsLoggedIn(true);
+            console.log('no token');
+
+          }
+        } else {
+          setIsLoggedIn(true);
+          console.log('no no token');
+
+        }
+      } catch (error) {
+        setIsLoggedIn(true);
+        console.error('Une erreur s\'est produite lors de la vérification de l\'authentification:', error);
+      }
+    };
 
   useEffect(() => {
     getCategoriesbillet();
@@ -42,7 +84,14 @@ function App() {
     setEvenements(response1.data);
     var response2 = await axios.get(`${URL}/closestevents`);
     setClosestEvent(response2.data);
+    
   };
+
+
+
+ 
+
+
     return (
     <div className="App">
       
@@ -91,6 +140,9 @@ function App() {
           <Route path="/admin" element={<Admin
           choosenEvent={choosenEvent}
           URL={URL}
+          setIsLoggedIn={setIsLoggedIn}
+          isLoggedIn={isLoggedIn}
+          UserTickets={UserTickets}
           />} /> 
 
 

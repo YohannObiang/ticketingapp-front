@@ -43,7 +43,7 @@ const defaultTheme = createTheme({
   },
 });
 
-export default function Loginn({username,password,setUsername,setPassword, handleLogin}) {
+export default function Loginn({setUsername,setPassword, handleLogin}) {
 
 
   const handleSubmit = (event) => {
