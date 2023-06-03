@@ -72,7 +72,7 @@ export default function Checkout({choosenEvent, URL}) {
   const [prenom_acheteur, setprenom_acheteur] = React.useState('');
   const [email_acheteur, setemail_acheteur] = React.useState('');
   const [whatsapp_acheteur, setwhatsapp_acheteur] = React.useState('');
-  const [IdBillet, setIdBillet] = React.useState('');
+  const [IdBillet, setIdBillet] = React.useState(null);
 
   const billet ={
     id_evenement: choosenEvent.id_evenement,
@@ -93,7 +93,7 @@ export default function Checkout({choosenEvent, URL}) {
     try {
       const canvas = await html2canvas(divElement);
       const imageData = canvas.toDataURL('image/png');
-      fetch(`${URL}/send-email`, {
+      fetch(`${URL}/send-email/${email_acheteur}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -113,35 +113,17 @@ export default function Checkout({choosenEvent, URL}) {
     }
   };
 
+  
 
   function post(){
-    const [condition, setcondition] = React.usestate(false)
+
     axios.post(`${URL}/ajout/billetvendu`, billet).then(res => {
       setIdBillet(res.data.id_billetvendu)
       console.log(res.data.id_billetvendu)     
-      handleSendEmail();
-      while (!condition) {
-        // Code à exécuter à chaque itération de la boucle
-      
-        // Vérifier la condition de sortie
-        if (IdBillet.length > 0) {
-          handleDownloadClick();
-          handleSendEmail();
-          setcondition(true);
-        }
-      
-        // Incrémenter le compteur
-      }
+     ();
 
-      // setTimeout(() => {
-        
-      //   handleDownloadClick();
-      //   handleSendEmail();
-      // }, 2000);
-      ;
   })
-  
-}
+  setActiveStep(activeStep + 1);}
 
   function getStepContent(step) {
     switch (step) {
@@ -165,6 +147,7 @@ export default function Checkout({choosenEvent, URL}) {
         setprenom_acheteur = {setprenom_acheteur}
         nom_acheteur = {nom_acheteur}
         setnom_acheteur = {setnom_acheteur}
+
         />;
       case 2:
         return <Review 
@@ -215,22 +198,26 @@ export default function Checkout({choosenEvent, URL}) {
     //   handleCapture();
     // }, []);    
   };
+
+  const [Condition, setCondition] = React.useState(false);
+
   function kkk(){
     axios.post(`${URL}/ajout/billetvendu`, billet).then(res => {
       setIdBillet(res.data.id_billetvendu)
       console.log(res.data.id_billetvendu)
-      handleSendEmail();
-      setTimeout(() => {
-        handleDownloadClick();
-        handleSendEmail();
-      }, 2000);
-      ;
+      setActiveStep(activeStep + 1)
 
 
-  });
-            setActiveStep(activeStep + 1);
+  })
     }
- 
+    useEffect(() => {
+      // Deuxième fonction
+      // Utiliser le nouvel état de la variable
+      if (IdBillet !== null) {
+        handleDownloadClick() 
+        // handleSendEmail()
+      }
+    }, [IdBillet]);
  
   return (
     <ThemeProvider theme={theme}>
@@ -322,7 +309,6 @@ export default function Checkout({choosenEvent, URL}) {
             const details = await actions.order.capture();
             const name = details.payer.name.given_name;
             post();
-            setActiveStep(activeStep + 1);
             
           }}
         />
