@@ -215,7 +215,7 @@ export default function Checkout({choosenEvent, URL}) {
       // Utiliser le nouvel état de la variable
       if (IdBillet !== null) {
         handleDownloadClick() 
-        // handleSendEmail()
+        handleSendEmail()
       }
     }, [IdBillet]);
  
