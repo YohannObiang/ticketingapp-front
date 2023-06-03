@@ -49,6 +49,7 @@ export default function PaymentForm({
             name="lastName"
             autoComplete="family-name"
             value={nom_acheteur}
+            autoFocus
             onChange={handleChangenom_acheteur}
           />
         </Grid>
@@ -59,7 +60,6 @@ export default function PaymentForm({
             fullWidth
             id="firstName"
             label="Prénom"
-            autoFocus
             value={prenom_acheteur}
             onChange={handleChangeprenom_acheteur}
           />

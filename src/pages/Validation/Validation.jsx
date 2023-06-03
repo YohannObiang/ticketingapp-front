@@ -59,7 +59,6 @@ const theme = createTheme({
 });
 
 
-// TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function Checkout({choosenEvent, URL}) {
@@ -191,15 +190,9 @@ export default function Checkout({choosenEvent, URL}) {
         // Télécharge le fichier en utilisant FileSaver.js
         saveAs(blob, 'section.png');
       });
-    });
- 
-    // useEffect(() => {
-      
-    //   handleCapture();
-    // }, []);    
+    });  
   };
 
-  const [Condition, setCondition] = React.useState(false);
 
   function kkk(){
     axios.post(`${URL}/ajout/billetvendu`, billet).then(res => {
@@ -211,8 +204,6 @@ export default function Checkout({choosenEvent, URL}) {
   })
     }
     useEffect(() => {
-      // Deuxième fonction
-      // Utiliser le nouvel état de la variable
       if (IdBillet !== null) {
         handleDownloadClick() 
         handleSendEmail()
