@@ -1,5 +1,5 @@
 .navbarBackground{
-    height: 18vh;
+    height: 120px;
     width: 100%;
     background: #6d1493;
 }
@@ -7,13 +7,16 @@
     overflow-wrap: break-word;
     padding-right: 10px;
 }
-@media (max-width:767px) {
+
+
+@media (max-width:1000px) {
 
     .navbarBackground{
-    height: 15vh;
+    height: 113px;
     width: 100%;
     background: #6d1493;
     margin-bottom: 20px;
 }
+
 
 }

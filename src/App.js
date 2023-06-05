@@ -24,7 +24,7 @@ function App() {
   const [IdCategorie, setIdCategorie] = useState(0)
   const [ChoosenCategorie, setChoosenCategorie] = useState('')
   const [valueSearch, setValueSearch] = useState('');
-  const [resultSearch, setResultSearch] = useState([]);
+  const [resultSearch, setResultSearch] = useState(null);
   const [categoriesbillet, setCategoriesbillet] = useState([]);
   const [ClosestEvent, setClosestEvent] = useState([]);
   const [IdUserLoggedIn, setIdUserLoggedIn] = useState('');

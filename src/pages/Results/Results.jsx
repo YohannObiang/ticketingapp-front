@@ -36,6 +36,18 @@ const Choose=(id_evenement)=>{
     return element.id_evenement === id_evenement});
     setChoosenEvent(choosenOne[0]);
       };
+      const [displaystate, setdisplaystate] = React.useState('none')
+
+      function setstatement() {
+        if(resultSearch.length == 0){
+          setdisplaystate('flex')
+        }
+      }
+    
+      useEffect(() => {
+        setstatement();
+      }, []);
+    
 
   return (
     <div>
@@ -83,10 +95,17 @@ className="photoEventHeight"/>
           </Card>
         </div>
 )})}   
+
         
         
         
       </div>
+      <div style={{display: displaystate, color:'#000', margin: '100px 0', justifyContent: 'center'}}>
+        <h2 style={{color:'#000'}}  id="searchResultnull">Aucun Résultat</h2>
+
+      </div>
+
+
     </div>
   );
 }

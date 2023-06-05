@@ -954,12 +954,12 @@ html {
       height: 26px;
     }
     .s006 .form legend {
-      font-size: 25px;
+      font-size: 6.5vw;
       color: #fff;
       font-weight: 800;
       text-align: center;
       margin-bottom: 59px;
-      padding-top: 90px;
+      padding-top: 21vh;
     }
     
   }

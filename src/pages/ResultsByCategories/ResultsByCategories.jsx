@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -38,6 +38,20 @@ export default function ResultsByCategories({evenements, setChoosenEvent, IdCate
         return element.id_evenement === id_evenement});
         setChoosenEvent(choosenOne[0]);
           };
+
+          const [displaystate, setdisplaystate] = React.useState('none')
+
+          function setstatement() {
+            if(categoriesbillet.length == 0){
+              setdisplaystate('flex')
+            }
+          }
+        
+          useEffect(() => {
+            setstatement();
+          }, []);
+        
+    
   return (
     <div>
       <div className="navbarBackground"></div>
@@ -78,7 +92,11 @@ className="photoEventHeight"/>
         
           </Card>
         </div>
-)})}        
+)})}      
+      <div style={{display: displaystate, color:'#000', margin: '100px 0', justifyContent: 'center'}}>
+        <h2 style={{color:'#000'}}  id="searchResultnull">Aucun Résultat</h2>
+
+      </div>  
         
         
       </div>

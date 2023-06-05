@@ -205,8 +205,8 @@ export default function Checkout({choosenEvent, URL}) {
     }
     useEffect(() => {
       if (IdBillet !== null) {
-        handleDownloadClick() 
         handleSendEmail()
+        handleDownloadClick() 
       }
     }, [IdBillet]);
  
