@@ -59,7 +59,7 @@ export default function Orders({Userlogged}) {
   return (
     <React.Fragment>
       <div>
-        <h2>Solde: {Userlogged.solde}fcfa</h2>
+        <h2>Solde actuel: {Userlogged.solde}fcfa</h2>
       </div>
       <Title>Recent Orders</Title>
       
