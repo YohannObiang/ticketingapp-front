@@ -5,7 +5,7 @@ import Orders from './Orders';
 import Paper from '@mui/material/Paper';
 
 
-const Transactions = () => {
+const Transactions = ({Userlogged}) => {
     return ( 
         <Container maxWidth="lg" sx={{ mt:4, mb: 4 }}>
             <Grid container spacing={3}>
@@ -15,7 +15,9 @@ const Transactions = () => {
               {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <Orders />
+                  <Orders
+                  Userlogged={Userlogged}
+                  />
                 </Paper>
               </Grid>
             </Grid>

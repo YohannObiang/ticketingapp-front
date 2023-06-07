@@ -15,7 +15,6 @@ import axios from 'axios';
 
 
 export default function AddressForm({choosenEvent, URL, value, setValue,setcategoriebillet,setprixcategoriebillet}) {
-  console.log(choosenEvent);
   const handleChange = (event) => {
     setValue(event.target.value);
 
@@ -23,7 +22,6 @@ export default function AddressForm({choosenEvent, URL, value, setValue,setcateg
       var response = await axios.get(`${URL}/categoriesbillet/${event.target.value}`);
       setcategoriebillet(response.data[0].categoriebillet);
       setprixcategoriebillet(response.data[0].prix);
-      console.log(response.data);
     };
     getCategoriesbillet();
   
@@ -38,7 +36,6 @@ export default function AddressForm({choosenEvent, URL, value, setValue,setcateg
   const getCategoriesbillet = async () => {
     var response = await axios.get(`${URL}/categoriesbillet/evenement/${choosenEvent.id_evenement}`);
     setCategories(response.data);
-    console.log(response.data);
   };
   return (
     <React.Fragment>

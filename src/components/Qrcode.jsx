@@ -60,12 +60,15 @@ function isBackCameraAvailable() {
           <Alert severity="success">
           <AlertTitle>Info</AlertTitle>
             Billet valide!</Alert></div>;
+            case 4:
+              return <div>
+              </div>;
         default:
           throw new Error('Unknown step');
       }
     }
   
-    const [ResponseTicket, setResponseTicket] = React.useState(0);
+    const [ResponseTicket, setResponseTicket] = React.useState(4);
    
     function handleScan(result) {
       if (result) {
@@ -135,7 +138,7 @@ function isBackCameraAvailable() {
         type="submit"
         fullWidth
         variant="contained"
-        sx={{ mt: 3, mb: 2 }} onClick={()=>{setScannedData(false)}}>
+        sx={{ mt: 3, mb: 2 }} onClick={()=>{setScannedData(false); setResponseTicket(4)}}>
       Continuer
       </Button>
   </div>

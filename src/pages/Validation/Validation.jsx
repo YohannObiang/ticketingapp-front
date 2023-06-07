@@ -61,8 +61,7 @@ const theme = createTheme({
 
 const defaultTheme = createTheme();
 
-export default function Checkout({choosenEvent, URL}) {
-  
+export default function Checkout({choosenEvent, URL, IdUserLoggedIn}) {
   const date_achat = new Date()
   const [categoriebillet, setcategoriebillet] = useState([]);
   const [prixcategoriebillet, setprixcategoriebillet] = useState([]);
@@ -112,14 +111,25 @@ export default function Checkout({choosenEvent, URL}) {
     }
   };
 
-  
+  const updatesold = async () => {
+    console.log('ok')
+
+    var response = await axios.get(`${URL}/organisateur/${choosenEvent.id_organisateur}`);
+    console.log(response.data[0].solde)   
+    console.log(prixcategoriebillet)   
+    var total = {solde: parseInt(prixcategoriebillet) + parseInt(response.data[0].solde)} 
+    console.log(total)   
+    axios.put(`${URL}/update/solde/${choosenEvent.id_organisateur}`, total).then(res => {
+    console.log('Sold updated')
+
+  })
+  };
 
   function post(){
 
     axios.post(`${URL}/ajout/billetvendu`, billet).then(res => {
       setIdBillet(res.data.id_billetvendu)
-      console.log(res.data.id_billetvendu)     
-     ();
+      updatesold();
 
   })
   setActiveStep(activeStep + 1);}
@@ -193,20 +203,21 @@ export default function Checkout({choosenEvent, URL}) {
     });  
   };
 
+ 
 
   function kkk(){
     axios.post(`${URL}/ajout/billetvendu`, billet).then(res => {
       setIdBillet(res.data.id_billetvendu)
-      console.log(res.data.id_billetvendu)
       setActiveStep(activeStep + 1)
 
 
   })
+  axios.get()
     }
     useEffect(() => {
       if (IdBillet !== null) {
         handleSendEmail()
-        handleDownloadClick() 
+        // handleDownloadClick() 
       }
     }, [IdBillet]);
  
@@ -311,8 +322,8 @@ export default function Checkout({choosenEvent, URL}) {
                 >
                   {activeStep === steps.length - 1 ? 'Payer' : 'Suivant'}
                 </Button>}
-                {/* <button onClick={kkk}>kkk</button> */}
               </Box>
+                <button onClick={updatesold}>kkk</button>
 
             </React.Fragment>
           )}

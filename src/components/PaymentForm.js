@@ -18,7 +18,6 @@ export default function PaymentForm({
   setnom_acheteur
 }) {
 
-  console.log(billet);
 
   const handleChangewhatsapp_acheteur = (event) => {
     const numericValue = event.target.value.replace(/\D/g, ''); // Keep only numeric characters

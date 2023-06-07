@@ -52,10 +52,17 @@ function preventDefault(event) {
   event.preventDefault();
 }
 
-export default function Orders() {
+export default function Orders({Userlogged}) {
+  console.log(Userlogged);
+
+  
   return (
     <React.Fragment>
+      <div>
+        <h2>Solde: {Userlogged.solde}fcfa</h2>
+      </div>
       <Title>Recent Orders</Title>
+      
       <Table size="small">
         <TableHead>
           <TableRow>

@@ -53,10 +53,20 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-export default function Dashboard({logoff, URL, UserTickets, Ctitket}) {
+export default function Dashboard({logoff, URL, UserTickets, Ctitket, IdUserLoggedIn}) {
   const [open, setOpen] = React.useState(false);
+  const [Userlogged, setUserlogged] = React.useState({});
   var idCat= UserTickets[0]
-  
+  useEffect(() => {
+    getUser();
+  }, []);
+
+  const getUser = async () => {
+
+    var response = await axios.get(`${URL}/organisateur/${IdUserLoggedIn}`);
+    setUserlogged(response.data[0])   
+
+  }
 
 
   function getStepContent(step) {
@@ -68,7 +78,9 @@ export default function Dashboard({logoff, URL, UserTickets, Ctitket}) {
         URL = {URL}
         />
       case 1:
-        return  <Transactions/>;
+        return  <Transactions
+        Userlogged={Userlogged}
+        />;
       case 0:
         return <Qrcode
     URL={URL}

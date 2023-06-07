@@ -55,7 +55,8 @@ function App() {
           const response = await axios.post(`${URL}/api/check-auth`, { token });
           if (response.data.valid) {
             setIsLoggedIn(false);
-            setIdUserLoggedIn(response.data.message);
+            setIdUserLoggedIn(response.data.message.idd.userId);
+            console.log(response.data.message.idd.userId);
             console.log(response.data.message);
             var response3 = await axios.get(`${URL}/evenements/organisateur/${response.data.message.idd.userId}`);
     console.log(response3.data);
@@ -145,6 +146,7 @@ function App() {
           <Route path="/validation" element={<Validation
           choosenEvent={choosenEvent}
           URL={URL}
+          IdUserLoggedIn={IdUserLoggedIn}
           />} /> 
           <Route path="/admin" element={<Admin
           choosenEvent={choosenEvent}
@@ -153,6 +155,8 @@ function App() {
           isLoggedIn={isLoggedIn}
           UserTickets={UserTickets}
           Ctitket={Ctitket}
+          IdUserLoggedIn={IdUserLoggedIn}
+
           />} /> 
 
 
