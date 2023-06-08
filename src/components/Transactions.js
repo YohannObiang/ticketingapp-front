@@ -38,6 +38,7 @@ const Transactions = ({Userlogged, Retraits, URL}) => {
 
                   <Popupamount
                   Userlogged={Userlogged}
+                  URL={URL}
                   />
               </Paper>
               </Grid>
@@ -46,6 +47,7 @@ const Transactions = ({Userlogged, Retraits, URL}) => {
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                   <Orders
                   Retraits={Retraits}
+                  URL={URL}
                   />
                 </Paper>
               </Grid>

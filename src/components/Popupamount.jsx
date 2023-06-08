@@ -36,10 +36,10 @@ export default function Popupamount({URL, Userlogged}) {
   }
 console.log(Userlogged);
   const post = () => {
-    axios.post(`http://localhost:3001/ajout/retrait`, retrait).then(res => {
+    axios.post(`${URL}/ajout/retrait`, retrait).then(res => {
         console.log(res.data)
     })
-    axios.put(`http://localhost:3001/update/solde/${Userlogged.id}`, {solde: nouveau_solde}).then(res => {
+    axios.put(`${URL}/update/solde/${Userlogged.id}`, {solde: nouveau_solde}).then(res => {
 
     })
     setOpen(false)

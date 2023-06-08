@@ -323,7 +323,6 @@ export default function Checkout({choosenEvent, URL, IdUserLoggedIn}) {
                   {activeStep === steps.length - 1 ? 'Payer' : 'Suivant'}
                 </Button>}
               </Box>
-                <button onClick={updatesold}>kkk</button>
 
             </React.Fragment>
           )}
