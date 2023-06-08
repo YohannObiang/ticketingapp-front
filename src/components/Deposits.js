@@ -27,21 +27,26 @@ for (let index = 0; index < Ctitketsold.length; index++) {
 
   arr += element.prix
 }
+const filteredstuffs=Ctitketsold.filter((element,index)=>{
+  return element.validity == 1 });
+
+
+
 
   return (
     <div>
     <React.Fragment>
       <Title>Vente totale</Title>
       <Typography component="p" variant="h4">
-        {arr} fcfa
+      <h2 style={{fontWeight: 600, color: "#6d1493"}}>{arr} fcfa</h2>
       </Typography>
       <Typography color="text.secondary" sx={{ flex: 1 }}>
-        {Ctitketsold.length} billets vendus
+      <span style={{color: "#000"}}>{Ctitketsold.length} billets vendus</span>
       </Typography>
       <div>
-        <Link color="primary" href="#" onClick={preventDefault}>
-          View balance
-        </Link>
+        <Typography color="text.secondary">
+          {filteredstuffs.length}/{Ctitketsold.length} scannés
+        </Typography>
       </div>
     </React.Fragment>
 

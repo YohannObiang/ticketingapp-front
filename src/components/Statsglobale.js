@@ -5,9 +5,25 @@ import Deposits from './Deposits';
 import StatsTicketSold from './StatsTicketSold';
 import Paper from '@mui/material/Paper';
 
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+const defaultTheme = createTheme({
+  palette: {
+    primary: {
+
+      main: '#6d1493',
+
+    },
+    secondary: {
+
+      main: '#6d1493',
+      
+    },
+  },
+});
 const Statsglobale = ({events, Ctitket, URL}) => {
     return ( 
+      <ThemeProvider theme={defaultTheme}>
         <Container maxWidth="lg" sx={{ mt:4, mb: 4 }}>
             <Grid container spacing={3}>
               {/* Chart */}
@@ -20,7 +36,7 @@ const Statsglobale = ({events, Ctitket, URL}) => {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 240,
+                    height: 184,
                   }}
                 >
                   <Deposits 
@@ -39,7 +55,7 @@ const Statsglobale = ({events, Ctitket, URL}) => {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 240,
+                    height: 184,
                   }}
                 >
                   <StatsTicketSold 
@@ -60,6 +76,7 @@ const Statsglobale = ({events, Ctitket, URL}) => {
               </Grid> */}
             </Grid>
           </Container>
+    </ThemeProvider>
      );
 }
  

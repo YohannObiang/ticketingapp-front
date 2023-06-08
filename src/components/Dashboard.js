@@ -56,15 +56,32 @@ const defaultTheme = createTheme();
 export default function Dashboard({logoff, URL, UserTickets, Ctitket, IdUserLoggedIn}) {
   const [open, setOpen] = React.useState(false);
   const [Userlogged, setUserlogged] = React.useState({});
+  const [Retraits, setRetraits] = React.useState({});
   var idCat= UserTickets[0]
   useEffect(() => {
     getUser();
+    getWithdrawals();
   }, []);
 
   const getUser = async () => {
 
     var response = await axios.get(`${URL}/organisateur/${IdUserLoggedIn}`);
     setUserlogged(response.data[0])   
+    // var response1 = await axios.get(`${URL}retraits/organisateur/${IdUserLoggedIn}`);
+    // setRetraits(response1.data)   
+    // console.log(response1.data)   
+    // console.log('hiiiii')   
+
+  }
+  const getWithdrawals = async () => {
+
+    var response = await axios.get(`${URL}/retraits/organisateur/${IdUserLoggedIn}`);
+    setRetraits(response.data)   
+    console.log(response.data)   
+    // var response1 = await axios.get(`${URL}retraits/organisateur/${IdUserLoggedIn}`);
+    // setRetraits(response1.data)   
+    // console.log(response1.data)   
+    // console.log('hiiiii')   
 
   }
 
@@ -80,6 +97,7 @@ export default function Dashboard({logoff, URL, UserTickets, Ctitket, IdUserLogg
       case 1:
         return  <Transactions
         Userlogged={Userlogged}
+        Retraits={Retraits}
         />;
       case 0:
         return <Qrcode
