@@ -6,7 +6,6 @@ const ProtectedResource = ({logoff,URL, UserTickets, Ctitket, IdUserLoggedIn}) =
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log('helloooooo');
         const token = localStorage.getItem('token');
         const response = await axios.get(`${URL}/api/protected`, {
           headers: {
@@ -15,7 +14,6 @@ const ProtectedResource = ({logoff,URL, UserTickets, Ctitket, IdUserLoggedIn}) =
         });
 
         const Id  = response.data.message;
-        console.log(response.data.message);
         
       } catch (error) {
         // Gérez les erreurs d'accès à la ressource protégée ici

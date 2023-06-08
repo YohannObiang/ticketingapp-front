@@ -5,6 +5,7 @@ import Orders from './Orders';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Popupamount from './Popupamount';
 
 const defaultTheme = createTheme({
   palette: {
@@ -21,7 +22,7 @@ const defaultTheme = createTheme({
   },
 });
 
-const Transactions = ({Userlogged, Retraits}) => {
+const Transactions = ({Userlogged, Retraits, URL}) => {
 
 
 
@@ -33,10 +34,11 @@ const Transactions = ({Userlogged, Retraits}) => {
               {/* Chart */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <h2 style={{fontWeight: 600, color: "#6d1493"}}>Solde actuel: {Userlogged.solde}fcfa</h2>
-                  <Button variant="contained">
-                    Retrait
-                  </Button>
+                  <h2 style={{fontWeight: 600, color: "#6d1493"}}>Solde actuel: <br /> {Userlogged.solde}fcfa</h2>
+
+                  <Popupamount
+                  Userlogged={Userlogged}
+                  />
               </Paper>
               </Grid>
               {/* Recent Orders */}

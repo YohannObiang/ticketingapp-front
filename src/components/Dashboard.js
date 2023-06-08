@@ -67,10 +67,7 @@ export default function Dashboard({logoff, URL, UserTickets, Ctitket, IdUserLogg
 
     var response = await axios.get(`${URL}/organisateur/${IdUserLoggedIn}`);
     setUserlogged(response.data[0])   
-    // var response1 = await axios.get(`${URL}retraits/organisateur/${IdUserLoggedIn}`);
-    // setRetraits(response1.data)   
-    // console.log(response1.data)   
-    // console.log('hiiiii')   
+ 
 
   }
   const getWithdrawals = async () => {
@@ -98,6 +95,8 @@ export default function Dashboard({logoff, URL, UserTickets, Ctitket, IdUserLogg
         return  <Transactions
         Userlogged={Userlogged}
         Retraits={Retraits}
+        URL={URL}
+
         />;
       case 0:
         return <Qrcode
