@@ -9,8 +9,7 @@ function preventDefault(event) {
   event.preventDefault();
 }
 
-export default function StatsTicketSold({item, events, Ctitket, URL}) {
-  const[Ctitketsold, setCticketsold] = useState([])
+export default function StatsTicketSold({item, events, Ctitket, URL, Ctitketsold, setCticketsold}) {
   useEffect(() => {
     getCategoriesbillet();
   }, []);

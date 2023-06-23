@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Dashboard from './Dashboard'
 
-const ProtectedResource = ({logoff,URL, UserTickets, Ctitket, IdUserLoggedIn}) => {
+const ProtectedResource = ({logoff,URL, UserTickets, Ctitket, IdUserLoggedIn, Ctitketsold, setCticketsold}) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -32,6 +32,8 @@ const ProtectedResource = ({logoff,URL, UserTickets, Ctitket, IdUserLoggedIn}) =
     UserTickets={UserTickets}
     Ctitket={Ctitket}
     IdUserLoggedIn={IdUserLoggedIn}
+    Ctitketsold={Ctitketsold}
+    setCticketsold={setCticketsold}
 
     />
     </div>

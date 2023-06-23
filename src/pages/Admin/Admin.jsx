@@ -7,7 +7,7 @@ import '../Details/Details.css';
 
 
 
-const LoginForm = ({URL, isLoggedIn, UserTickets, Ctitket, IdUserLoggedIn}) => {
+const LoginForm = ({URL, isLoggedIn, UserTickets, Ctitket, IdUserLoggedIn, Ctitketsold, setCticketsold}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isTurned, setIsTurned] = useState(true);
@@ -83,6 +83,8 @@ const LoginForm = ({URL, isLoggedIn, UserTickets, Ctitket, IdUserLoggedIn}) => {
          UserTickets={UserTickets}
          Ctitket={Ctitket}
          IdUserLoggedIn={IdUserLoggedIn}
+         Ctitketsold={Ctitketsold}
+         setCticketsold={setCticketsold}
          />
 
      </div>

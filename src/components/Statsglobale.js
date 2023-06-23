@@ -21,7 +21,8 @@ const defaultTheme = createTheme({
     },
   },
 });
-const Statsglobale = ({events, Ctitket, URL}) => {
+
+const Statsglobale = ({events, Ctitket, URL, Ctitketsold, setCticketsold}) => {
     return ( 
       <ThemeProvider theme={defaultTheme}>
         <Container maxWidth="lg" sx={{ mt:4, mb: 4 }}>
@@ -43,6 +44,8 @@ const Statsglobale = ({events, Ctitket, URL}) => {
                   events={events}
                   Ctitket={Ctitket}
                   URL={URL}
+                  Ctitketsold={Ctitketsold}
+                  setCticketsold={setCticketsold}
                   />
                 </Paper>
               </Grid>
@@ -63,6 +66,8 @@ const Statsglobale = ({events, Ctitket, URL}) => {
                   Ctitket={Ctitket}
                   item={item}
                   URL={URL}
+                  Ctitketsold={Ctitketsold}
+                  setCticketsold={setCticketsold}
                   />
                 </Paper>
               </Grid>

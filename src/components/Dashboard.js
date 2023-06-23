@@ -53,7 +53,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-export default function Dashboard({logoff, URL, UserTickets, Ctitket, IdUserLoggedIn}) {
+export default function Dashboard({logoff, URL, UserTickets, Ctitket, IdUserLoggedIn,Ctitketsold, setCticketsold}) {
+
   const [open, setOpen] = React.useState(false);
   const [Userlogged, setUserlogged] = React.useState({});
   const [Retraits, setRetraits] = React.useState({});
@@ -90,6 +91,8 @@ export default function Dashboard({logoff, URL, UserTickets, Ctitket, IdUserLogg
         events={UserTickets}
         Ctitket={Ctitket}
         URL = {URL}
+        Ctitketsold={Ctitketsold}
+        setCticketsold={setCticketsold}
         />
       case 1:
         return  <Transactions
