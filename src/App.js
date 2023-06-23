@@ -11,7 +11,7 @@ import ResultsByCategories from './pages/ResultsByCategories/ResultsByCategories
 import axios from 'axios';
 
 function App() {
-  const URL = process.env.REACT_APP_API_URL;
+  const URL = "https://ebillet.onrender.com";
   const [evenements, setEvenements] = useState([]);
   const [choosenEvent, setChoosenEvent] = useState([]);
   const [IdCategorie, setIdCategorie] = useState(0);
