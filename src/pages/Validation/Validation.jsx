@@ -220,6 +220,9 @@ export default function Checkout({choosenEvent, URL, IdUserLoggedIn}) {
         // handleDownloadClick() 
       }
     }, [IdBillet]);
+    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const randomIndex = Math.floor(Math.random() * alphabet.length);
+  const lettre = alphabet[randomIndex]
  
   return (
     <ThemeProvider theme={theme}>
@@ -252,20 +255,100 @@ export default function Checkout({choosenEvent, URL, IdUserLoggedIn}) {
           {activeStep === steps.length ? (
             
             <div >               
-              <div ref={divRef} id="section-to-download">
-              <React.Fragment>
-                  <Typography variant="h5" gutterBottom>
-                    Thank you for your order.
-                  </Typography>
-                  <Typography variant="subtitle1">
-                    Your order number is #B{choosenEvent.id_evenement}-{value}-{IdBillet}. We have emailed your order
-                    confirmation, and will send you an update when your order has
-                    shipped.
-                  </Typography>
-                  <QRCode value={String(IdBillet)} style={{margin:"50px", height:"200px", width:"200px"}}/>
-                </React.Fragment> 
+      <div
+        ref={divRef}
+        id="section-to-download"
+        style={{
+          width: '400px',
+          margin: '20px auto',
+          padding: '20px',
+          border: '2px dashed #ccc',
+          borderRadius: '10px',
+          background: '#f9f9f9',
+          boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+          fontFamily: 'Arial, sans-serif',
 
-              </div>
+          textAlign: 'center',
+        }}
+      >
+        <React.Fragment>
+          <Typography
+            variant="h5"
+            gutterBottom
+            style={{
+              fontWeight: 'bold',
+              fontSize: '20px',
+              color: '#1a202c',
+              marginBottom: '15px',
+              textTransform: 'capitalize',
+            }}
+          >
+            {choosenEvent.evenement}
+          </Typography>
+          <Typography
+            variant="subtitle1"
+            style={{
+              fontSize: '14px',
+              color: '#4a5568',
+              marginBottom: '15px',
+            }}
+          >
+            <span style={{ fontWeight: 'bold'}}>{choosenEvent.date}</span> <br />
+            {choosenEvent.lieu}, {choosenEvent.ville}
+            </Typography>
+
+
+          <div
+            style={{
+              margin: '20px auto',
+              border: '1px dashed #ccc',
+              padding: '15px',
+              borderRadius: '10px',
+              backgroundColor: '#ffffff',
+              display: 'inline-block',
+            }}
+          >
+            <QRCode value={String(IdBillet)} style={{ height: '180px', width: '180px' }} />
+          </div>
+
+          <Typography
+            variant="body2"
+            style={{
+              fontSize: '13px',
+              color: '#718096',
+              marginTop: '15px',
+              lineHeight: '1.5',
+            }}
+          >
+            Veuillez présenter ce billet à l'événement pour entrer. <br />
+            Merci d'avoir choisi notre service.
+          </Typography>
+          <Typography
+            variant="subtitle1"
+            style={{
+              fontSize: '14px',
+              color: '#4a5568',
+              marginBottom: '15px',
+            }}
+          >
+                <br />
+
+          <strong>{lettre}{choosenEvent.id_evenement}-{value}-{IdBillet}</strong>
+          </Typography>
+          <div
+            style={{
+              marginTop: '20px',
+              padding: '10px',
+              fontSize: '12px',
+              color: '#a0aec0',
+              borderTop: '1px solid #e2e8f0',
+            }}
+          >
+            © 2025 Obisto. Tous droits reservés.
+          </div>
+        </React.Fragment>
+      </div>
+
               <Button
                   variant="contained"
                   onClick={handleDownloadClick}
@@ -328,6 +411,9 @@ export default function Checkout({choosenEvent, URL, IdUserLoggedIn}) {
           )}
         </Paper>
       </Container>
+
+
+
     </ThemeProvider>
   );
 }
