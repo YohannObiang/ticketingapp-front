@@ -274,9 +274,6 @@ export default function Checkout({choosenEvent, URL, IdUserLoggedIn}) {
         />
       </PayPalScriptProvider>
 
-      <button onClick={post}>
-        click
-      </button>
                   </div> : <Button
                   variant="contained"
                   onClick={handleNext}
