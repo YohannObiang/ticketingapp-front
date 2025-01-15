@@ -18,28 +18,12 @@ import Review from '../../components/Review';
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import QRCode from 'qrcode.react';
-// import QRCode from 'qrcode';
-import { saveAs } from 'file-saver';
+import CircularProgress from '@mui/material/CircularProgress';
 import html2canvas from 'html2canvas';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { saveAs } from 'file-saver';
+import EventTicket from '../../components/EventTicket'
 
-
-
-
-
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const steps = ['Type de billet', 'Détails acheteur', 'Paiement'];
 
@@ -62,7 +46,6 @@ const theme = createTheme({
 const defaultTheme = createTheme();
 
 export default function Checkout({choosenEvent, URL, IdUserLoggedIn}) {
-  const date_achat = new Date()
   const [categoriebillet, setcategoriebillet] = useState([]);
   const [prixcategoriebillet, setprixcategoriebillet] = useState([]);
   const [value, setValue] = React.useState(0);
@@ -71,6 +54,11 @@ export default function Checkout({choosenEvent, URL, IdUserLoggedIn}) {
   const [email_acheteur, setemail_acheteur] = React.useState('');
   const [whatsapp_acheteur, setwhatsapp_acheteur] = React.useState('');
   const [IdBillet, setIdBillet] = React.useState(null);
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [activeStep, setActiveStep] = React.useState(0);
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const randomIndex = Math.floor(Math.random() * alphabet.length);
+  const lettre = alphabet[randomIndex]
 
   const billet ={
     id_evenement: choosenEvent.id_evenement,
@@ -83,56 +71,39 @@ export default function Checkout({choosenEvent, URL, IdUserLoggedIn}) {
     whatsapp_acheteur:parseInt(whatsapp_acheteur),
   }
 
-  const divRef = useRef(null);
 
-  const handleSendEmail = async () => {
-    const divElement = divRef.current;
-
-    try {
-      const canvas = await html2canvas(divElement);
-      const imageData = canvas.toDataURL('image/png');
-      fetch(`${URL}/send-email/${email_acheteur}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ image: imageData }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log('Email sent successfully!');
-          // Faites quelque chose avec la réponse du serveur si nécessaire
-        })
-        .catch((error) => {
-          console.error('Error sending email:', error);
-        });
-    } catch (error) {
-      console.error('Error capturing div as image:', error);
-    }
-  };
 
   const updatesold = async () => {
-    console.log('ok')
-
     var response = await axios.get(`${URL}/organisateur/${choosenEvent.id_organisateur}`);
-    console.log(response.data[0].solde)   
-    console.log(prixcategoriebillet)   
     var total = {solde: parseInt(prixcategoriebillet) + parseInt(response.data[0].solde)} 
-    console.log(total)   
-    axios.put(`${URL}/update/solde/${choosenEvent.id_organisateur}`, total).then(res => {
-    console.log('Sold updated')
-
-  })
+    axios.put(`${URL}/update/solde/${choosenEvent.id_organisateur}`, total)
   };
 
-  function post(){
-
+  const post = async () =>{
+  setIsLoading(true)
+  try{
     axios.post(`${URL}/ajout/billetvendu`, billet).then(res => {
       setIdBillet(res.data.id_billetvendu)
       updatesold();
+    })
+    setActiveStep(activeStep + 1);
+  }
+  catch{
 
-  })
-  setActiveStep(activeStep + 1);}
+  }
+  finally{
+    setTimeout(() => {
+
+        setIsLoading(false)
+
+        // handleDownloadClick() 
+
+    }, 1500); // Affiche "Hello, world!" après 2 secondes
+
+    
+  }
+
+  }
 
   function getStepContent(step) {
     switch (step) {
@@ -175,9 +146,6 @@ export default function Checkout({choosenEvent, URL, IdUserLoggedIn}) {
     }
   }
 
-
-  const [activeStep, setActiveStep] = React.useState(0);
-
   const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
@@ -186,9 +154,6 @@ export default function Checkout({choosenEvent, URL, IdUserLoggedIn}) {
     setActiveStep(activeStep - 1);
   };
   
-
-
-
   const handleDownloadClick = () => {
     // Sélectionne la section spécifique à capturer
     const section = document.getElementById('section-to-download');
@@ -203,26 +168,19 @@ export default function Checkout({choosenEvent, URL, IdUserLoggedIn}) {
     });  
   };
 
- 
-
-  function kkk(){
-    axios.post(`${URL}/ajout/billetvendu`, billet).then(res => {
-      setIdBillet(res.data.id_billetvendu)
-      setActiveStep(activeStep + 1)
+//   function kkk(){
+//   axios.post(`${URL}/ajout/billetvendu`, billet).then(res => {
+//     setIdBillet(res.data.id_billetvendu)
+//     setActiveStep(activeStep + 1)
 
 
-  })
-  axios.get()
-    }
-    useEffect(() => {
-      if (IdBillet !== null) {
-        handleSendEmail()
-        // handleDownloadClick() 
-      }
-    }, [IdBillet]);
-    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  const randomIndex = Math.floor(Math.random() * alphabet.length);
-  const lettre = alphabet[randomIndex]
+// })
+// axios.get()
+//   }
+  
+
+
+  
  
   return (
     <ThemeProvider theme={theme}>
@@ -253,111 +211,28 @@ export default function Checkout({choosenEvent, URL, IdUserLoggedIn}) {
             ))}
           </Stepper>
           {activeStep === steps.length ? (
-            
-            <div >               
-      <div
-        ref={divRef}
-        id="section-to-download"
-        style={{
-          width: '400px',
-          margin: '20px auto',
-          padding: '20px',
-          border: '2px dashed #ccc',
-          borderRadius: '10px',
-          background: '#f9f9f9',
-          boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
-          fontFamily: 'Arial, sans-serif',
+            <div>
+              {isLoading ? (
+                <CircularProgress/>
+              ) : (
+                <div > 
+                
+                  
+                <EventTicket URL={URL} email_acheteur={email_acheteur} choosenEvent={choosenEvent} IdBillet={IdBillet} value={value} />
+                <Button
+                    variant="contained"
+                    onClick={handleDownloadClick}
+                    sx={{ mt: 3, ml: 1 }}
+                  >
+                    Télécharger
+                  </Button>
 
-          textAlign: 'center',
-        }}
-      >
-        <React.Fragment>
-          <Typography
-            variant="h5"
-            gutterBottom
-            style={{
-              fontWeight: 'bold',
-              fontSize: '20px',
-              color: '#1a202c',
-              marginBottom: '15px',
-              textTransform: 'capitalize',
-            }}
-          >
-            {choosenEvent.evenement}
-          </Typography>
-          <Typography
-            variant="subtitle1"
-            style={{
-              fontSize: '14px',
-              color: '#4a5568',
-              marginBottom: '15px',
-            }}
-          >
-            <span style={{ fontWeight: 'bold'}}>{choosenEvent.date}</span> <br />
-            {choosenEvent.lieu}, {choosenEvent.ville}
-            </Typography>
+              </div>
+              )}
+            </div>
 
 
-          <div
-            style={{
-              margin: '20px auto',
-              border: '1px dashed #ccc',
-              padding: '15px',
-              borderRadius: '10px',
-              backgroundColor: '#ffffff',
-              display: 'inline-block',
-            }}
-          >
-            <QRCode value={String(IdBillet)} style={{ height: '180px', width: '180px' }} />
-          </div>
-
-          <Typography
-            variant="body2"
-            style={{
-              fontSize: '13px',
-              color: '#718096',
-              marginTop: '15px',
-              lineHeight: '1.5',
-            }}
-          >
-            Veuillez présenter ce billet à l'événement pour entrer. <br />
-            Merci d'avoir choisi notre service.
-          </Typography>
-          <Typography
-            variant="subtitle1"
-            style={{
-              fontSize: '14px',
-              color: '#4a5568',
-              marginBottom: '15px',
-            }}
-          >
-                <br />
-
-          <strong>{lettre}{choosenEvent.id_evenement}-{value}-{IdBillet}</strong>
-          </Typography>
-          <div
-            style={{
-              marginTop: '20px',
-              padding: '10px',
-              fontSize: '12px',
-              color: '#a0aec0',
-              borderTop: '1px solid #e2e8f0',
-            }}
-          >
-            © 2025 Obisto. Tous droits reservés.
-          </div>
-        </React.Fragment>
-      </div>
-
-              <Button
-                  variant="contained"
-                  onClick={handleDownloadClick}
-                  sx={{ mt: 3, ml: 1 }}
-                >
-                  Télécharger
-                </Button>
-
-          </div>
+          
           ) : (
             <React.Fragment>
               {getStepContent(activeStep, choosenEvent, URL)}
@@ -398,6 +273,10 @@ export default function Checkout({choosenEvent, URL, IdUserLoggedIn}) {
           }}
         />
       </PayPalScriptProvider>
+
+      <button onClick={post}>
+        click
+      </button>
                   </div> : <Button
                   variant="contained"
                   onClick={handleNext}
