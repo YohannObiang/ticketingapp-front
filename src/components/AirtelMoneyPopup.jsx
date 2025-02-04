@@ -62,6 +62,40 @@ export default function AirtelMoneyPopup({ idbillet, prix }) {
     } catch (error) {
       setError("Une erreur est survenue lors de la transaction");
     } finally {
+        setTimeout(() => {
+
+          fetchTransactionStatus()  
+          console.log('done')  
+        }, 5000);
+  
+    }
+  };
+
+  const [status, setStatus] = useState(null);
+  const [error3, setError3] = useState(null);
+
+  const fetchTransactionStatus = async () => {
+   
+
+    setError3(null);
+
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/api/status`,
+        {
+          params: {
+            transactionId: transactionStatus.merchant_reference_id,
+            accountOperationCode: transactionStatus.merchant_operation_account_code,
+            transactionOperation: 'PAYMENT',
+            secretKey: secretData
+          },
+        }
+      );
+      setStatus(response.data);
+      console.log(response.data);
+    } catch (err) {
+      setError3(err.response?.data?.error || "Erreur lors de la requête");
+    } finally {
       setLoading(false);
     }
   };
