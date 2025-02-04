@@ -72,16 +72,16 @@ const Navbar = () => {
         </IconButton>
 
         {/* Mobile Drawer */}
-        <Drawer anchor="right" open={mobileOpen} onClose={toggleDrawer} sx={{ "& .MuiDrawer-paper": { width: 250, backgroundColor: "#121212" } }}>
+        <Drawer anchor="right" open={mobileOpen} onClose={toggleDrawer} sx={{ "& .MuiDrawer-paper": { width: 250, backgroundColor: "#fff" } }}>
           <Box sx={{ display: "flex", justifyContent: "flex-end", p: 2 }}>
             <IconButton onClick={toggleDrawer}>
-              <CloseIcon sx={{ color: "white" }} />
+              <CloseIcon sx={{ color: "#6F3193" }} />
             </IconButton>
           </Box>
           <List>
             {menuItems.map((item) => (
               <ListItem button key={item.label} component={Link} to={item.path} onClick={toggleDrawer}>
-                <ListItemText primary={item.label} sx={{ color: "white", textAlign: "center" }} />
+                <ListItemText primary={item.label} sx={{ color: "#6F3193", textAlign: "center" }} />
               </ListItem>
             ))}
           </List>

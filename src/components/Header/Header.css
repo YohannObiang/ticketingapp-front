@@ -46,7 +46,7 @@ legend {
   border: none;
   border-radius: 25px;
   font-size: 1em;
-  margin-left: 10px;
+  margin-right: 10px;
   outline: none;
   background-color: #ffffff80; /* Fond blanc pour le champ de saisie */
   color: #6d1493; /* Texte violet pour le champ de saisie */

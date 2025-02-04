@@ -22,6 +22,7 @@ import {Link } from "react-router-dom";
 import './Results.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Trending from '../../components/SoonestEvents/Trending';
 
 
 
@@ -63,36 +64,12 @@ const choosenOne=categoriesbillet.filter((element,index)=>{
 var price = choosenOne[0].prix;
 return(
         <div className='soonestEventCard' key={item.id_categorieevenement}>
-          <Card sx={{ maxWidth: 345 }}>
-        <Link to="/Details" onClick={()=>Choose(item.id_evenement)}>
-        <CardMedia
-          component="img"
-          height="100%"
-          image={URL+"/uploads/"+item.illustration}
-          alt="Photo"
-
-className="photoEventHeight"/>
-</Link>
-          <span className='soonestEventName'>
-          {item.evenement}
-              </span><br />
-
-
-                        <span className='soonestEventFont'>
-                          A partir de  {price} fcfa
-                        </span>
-                 
-          <div>
-            <IconButton aria-label="share" sx={{margin: 'auto'}}>
-          <Link to="/validation" onClick={()=>Choose(item.id_evenement)}>
-            <button className='buyingBtn'>
-              Acheter
-            </button>
-            </Link>
-          </IconButton>
-          </div>        
-        
-          </Card>
+                    <Trending 
+                    item ={item}
+                    categoriesbillet={categoriesbillet}
+                    Choose={Choose}
+                    price={price}
+                    />
         </div>
 )})}   
 
