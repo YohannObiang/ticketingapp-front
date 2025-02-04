@@ -67,6 +67,12 @@ legend {
   transition: background-color 0.3s;
 }
 
+.input-field input::placeholder {
+  font-weight: 500;
+  color: #5b0b7b66;
+
+}
+
 .btn-search:hover {
   background-color: #5c0b7b; /* Couleur légèrement plus sombre au survol */
 }
