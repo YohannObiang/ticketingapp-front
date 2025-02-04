@@ -70,6 +70,7 @@ legend {
 .input-field input::placeholder {
   font-weight: 500;
   color: #5b0b7b66;
+  font-size: 15px;
 
 }
 
@@ -85,6 +86,7 @@ legend {
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   padding: 10px;
+  border: 1px solid #ffffff49;
 }
 
 .suggestion-wrap a {

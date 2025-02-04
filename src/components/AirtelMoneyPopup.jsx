@@ -42,7 +42,8 @@ export default function AirtelMoneyPopup({ idbillet, prix }) {
   const initiateTransaction = async () => {
     setLoading(true);
     try {
-      const response = await axios.post("https://ebillet.onrender.com/api/transaction", {
+      // const response = await axios.post("https://ebillet.onrender.com/api/transaction", {
+      const response = await axios.post("http://localhost:5000/api/transaction", {
         agent: "AGENT-1",
         amount: prix,
         reference: `${idbillet}${Date.now()}`,
