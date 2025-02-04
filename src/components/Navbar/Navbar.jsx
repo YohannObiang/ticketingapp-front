@@ -1,100 +1,94 @@
-import React from "react";
-import "./Navbar.css";
-import {Link } from "react-router-dom";
-import logo from "../../assets/logo.png"
+import React, { useState } from "react";
+import { AppBar, Toolbar, IconButton, Typography, Box, Drawer, List, ListItem, ListItemText } from "@mui/material";
+import { Menu as MenuIcon, Close as CloseIcon } from "@mui/icons-material";
+import { Link } from "react-router-dom";
+import logo from "../../assets/logo.png";
 
+const menuItems = [
+  { label: "Accueil", path: "/" },
+  { label: "À propos", path: "/#about" },
+  { label: "Services", path: "/#services" },
+  { label: "Contact", path: "/#contact" },
+  { label: "Admin", path: "/admin" },
+];
 
 const Navbar = () => {
-    return ( 
-     <div>
-        <div class="site-mobile-menu site-navbar-target">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
-          <span class="icon-close2 js-menu-toggle"></span>
-        </div>
-      </div>
-      <div class="site-mobile-menu-body"></div>
-    </div> 
-    
-    
-    <div class="site-navbar-wrap">
-      <div class="site-navbar-top">
-        <div class="container py-3">
-          <div class="row align-items-center">
-            <div class="col-6">
-              <div class="d-flex mr-auto">
-                <a href="#" class="d-flex align-items-center mr-4">
-                  <span class="icon-envelope mr-2"></span>
-                  <span class="d-none d-md-inline-block">contact@obisto.ga</span>
-                </a>
-                <a href="#" class="d-flex align-items-center mr-auto">
-                  <span class="icon-phone mr-2"></span>
-                  <span class="d-none d-md-inline-block">+241 66 77 55 52</span>
-                </a>
-              </div>
-            </div>
-            <div class="col-6 text-right">
-              <div class="mr-auto">
-                <a href="#" class="p-2 pl-0"><span class="icon-twitter"></span></a>
-                <a href="#" class="p-2 pl-0"><span class="icon-facebook"></span></a>
-                <a href="#" class="p-2 pl-0"><span class="icon-linkedin"></span></a>
-                <a href="#" class="p-2 pl-0"><span class="icon-instagram"></span></a>
-              </div>
-              
-            </div>
-          </div>
-        </div>
-      </div>
+  const [mobileOpen, setMobileOpen] = useState(false);
 
-      <div class="site-navbar site-navbar-target js-sticky-header">
-        <div class="container">
-          <div class="row align-items-center">
-            
-              <div class="col-5">
-                <Link to="/" className="row align-items-center">
-                  <img src={logo} alt="Logo" className="logosize"/>
-                </Link>
+  const toggleDrawer = () => setMobileOpen(!mobileOpen);
 
-              </div>
-            <div class="col-7">
-              <nav class="site-navigation text-right" role="navigation">
-                <div class="container">
-                  <div class="d-inline-block d-lg-none ml-md-0 mr-auto py-3"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
+  return (
+    <AppBar 
+      position="sticky"
+      elevation={0}
+      sx={{ 
+        background: "#6d1493", 
+        backdropFilter: "blur(10px)", 
+        borderBottom: "1px solid rgba(255,255,255,0.2)",
+        boxShadow: "none",
+        px: 3,
+      }}
+    >
+      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+        
+        {/* Logo */}
+        <Box>
+          <Link to="/">
+            <img src={logo} alt="Logo" style={{ height: "30px" }} />
+          </Link>
+        </Box>
 
-                  <ul class="site-menu main-menu js-clone-nav d-none d-lg-block">
-                    <li ><Link to="/" class="nav-link"> Accueil</Link></li>
-                    {/* <li><a href="#classes-section" class="nav-link">Classes</a></li> */}
-                    {/* <li class="has-children"> */}
-                      {/* <a href="#" class="nav-link">Pages</a> */}
-                      {/* <ul class="dropdown arrow-top"> */}
-                        {/* <li><a href="#" class="nav-link">Team</a></li> */}
-                        {/* <li><a href="#" class="nav-link">Pricing</a></li> */}
-                        {/* <li><a href="#" class="nav-link">FAQ</a></li> */}
-                        {/* <li class="has-children">
-                          <a href="#">More Links</a>
-                          <ul class="dropdown">
-                            <li><a href="#">Menu One</a></li>
-                            <li><a href="#">Menu Two</a></li>
-                            <li><a href="#">Menu Three</a></li>
-                          </ul>
-                        </li> */}
-                      {/* </ul> */}
-                    {/* </li> */}
-                    <li><a href="#about-section" class="nav-link">A propos</a></li>
-                    {/* <li><a href="#events-section" class="nav-link">Events</a></li> */}
-                    {/* <li><a href="#gallery-section" class="nav-link">Gallery</a></li> */}
-                    <li><a href="#contact-section" class="nav-link">Contact</a></li>
-                    <li><Link to="/admin" class="nav-link">Admin</Link></li>
-                  </ul>
-                </div>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-     </div>
-     );
-}
- 
+        {/* Desktop Menu */}
+        <Box sx={{ display: { xs: "none", md: "flex" }, gap: 4 }}>
+          {menuItems.map((item) => (
+            <Typography 
+              key={item.label}
+              variant="h6" 
+              component={Link} 
+              to={item.path}
+              sx={{
+                color: "white",
+                textDecoration: "none",
+                fontWeight: 500,
+                position: "relative",
+                "&:hover": {
+                  color: "#ffd700",
+                  transition: "color 0.3s ease",
+                },
+              }}
+            >
+              {item.label}
+            </Typography>
+          ))}
+        </Box>
+
+        {/* Mobile Menu Button */}
+        <IconButton 
+          color="inherit" 
+          onClick={toggleDrawer} 
+          sx={{ display: { xs: "flex", md: "none" } }}
+        >
+          <MenuIcon />
+        </IconButton>
+
+        {/* Mobile Drawer */}
+        <Drawer anchor="right" open={mobileOpen} onClose={toggleDrawer} sx={{ "& .MuiDrawer-paper": { width: 250, backgroundColor: "#121212" } }}>
+          <Box sx={{ display: "flex", justifyContent: "flex-end", p: 2 }}>
+            <IconButton onClick={toggleDrawer}>
+              <CloseIcon sx={{ color: "white" }} />
+            </IconButton>
+          </Box>
+          <List>
+            {menuItems.map((item) => (
+              <ListItem button key={item.label} component={Link} to={item.path} onClick={toggleDrawer}>
+                <ListItemText primary={item.label} sx={{ color: "white", textAlign: "center" }} />
+              </ListItem>
+            ))}
+          </List>
+        </Drawer>
+      </Toolbar>
+    </AppBar>
+  );
+};
+
 export default Navbar;

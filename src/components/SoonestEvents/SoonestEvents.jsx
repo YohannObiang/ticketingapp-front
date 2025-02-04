@@ -26,6 +26,7 @@ import Stack from '@mui/material/Stack';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AlarmIcon from '@mui/icons-material/Alarm';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import Trending from './Trending';
 
 
 
@@ -64,7 +65,7 @@ const choosenOne=categoriesbillet.filter((element,index)=>{
 var price = choosenOne[0].prix;
 return(
   <div className='soonestEventCard' key={item.id_evenement}>
-          <Card sx={{ maxWidth: 345 }}>
+          {/* <Card sx={{ maxWidth: 345 }}>
         <Link to="/Details" onClick={()=>Choose(item.id_evenement)}>
         <CardMedia
           component="img"
@@ -92,7 +93,14 @@ className="photoEventHeight"/>
           </div>
           
         
-          </Card>
+          </Card> */}
+          <Trending 
+          item ={item}
+          categoriesbillet={categoriesbillet}
+          Choose={Choose}
+          price={price}
+          />
+
         </div>  
         )})}   
     

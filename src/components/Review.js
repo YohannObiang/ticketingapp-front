@@ -22,7 +22,7 @@ export default function Review({
   
   return (
     <React.Fragment>
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', marginBottom: 2 }}>        
         Vérification de la commande
       </Typography>
       <List disablePadding>
@@ -44,10 +44,10 @@ export default function Review({
         <br/><br/>
         <Grid item container direction="column" xs={12} sm={6}>
           <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-            Canaux de réception
+            Canal de réception
           </Typography>
           <Typography gutterBottom>{email_acheteur}</Typography>
-          <Typography gutterBottom>{whatsapp_acheteur}</Typography>
+          {/* <Typography gutterBottom>{whatsapp_acheteur}</Typography> */}
         </Grid>
       </Grid>
     </React.Fragment>

@@ -1,10 +1,5 @@
 import * as React from 'react';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import FormLabel from '@mui/material/FormLabel';
+import { Typography, Grid, TextField, FormLabel, Paper, Box } from '@mui/material';
 
 export default function PaymentForm({
   billet, 
@@ -18,78 +13,69 @@ export default function PaymentForm({
   setnom_acheteur
 }) {
 
+  const handleChange = (setter) => (event) => {
+    setter(event.target.value);
+  };
 
-  const handleChangewhatsapp_acheteur = (event) => {
-    const numericValue = event.target.value.replace(/\D/g, ''); // Keep only numeric characters
+  const handleChangeWhatsapp = (event) => {
+    const numericValue = event.target.value.replace(/\D/g, ''); // Garde uniquement les chiffres
     setwhatsapp_acheteur(numericValue);
-  }
-  const handleChangeprenom_acheteur = (event) => {
-    setprenom_acheteur(event.target.value);
-  }
-  const handleChangenom_acheteur = (event) => {
-    setnom_acheteur(event.target.value);
-  }
-  const handleChangeemail_acheteur = (event) => {
-    setemail_acheteur(event.target.value);
-  }
-  return (
-    <React.Fragment>
-      <Typography variant="h6" gutterBottom>
-        Détails acheteur
-      </Typography>
-      <FormLabel id="demo-controlled-radio-buttons-group">veuillez remplir chacun des champs ci-dessous.</FormLabel>
+  };
 
-      <Grid container spacing={3}>
+  return (
+    <div >
+      <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', marginBottom: 2 }}> 
+         Détails de l’acheteur
+      </Typography>
+      <FormLabel sx={{ color: 'text.secondary', marginBottom: 2, display: 'block' }}>
+        Veuillez remplir chacun des champs ci-dessous.
+      </FormLabel>
+
+      <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <TextField
             fullWidth
-            id="lastName"
             label="Nom"
-            name="lastName"
             autoComplete="family-name"
             value={nom_acheteur}
-            autoFocus
-            onChange={handleChangenom_acheteur}
+            onChange={handleChange(setnom_acheteur)}
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
-            autoComplete="given-name"
-            name="firstName"
             fullWidth
-            id="firstName"
             label="Prénom"
+            autoComplete="given-name"
             value={prenom_acheteur}
-            onChange={handleChangeprenom_acheteur}
+            onChange={handleChange(setprenom_acheteur)}
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
             required
             fullWidth
-            id="email"
             label="Adresse email"
-            name="email"
             autoComplete="email"
             value={email_acheteur}
-            onChange={handleChangeemail_acheteur}
+            onChange={handleChange(setemail_acheteur)}
+            variant="outlined"
           />
         </Grid>
-        <Grid item xs={12} md={6}>
+        {/* <Grid item xs={12} md={6}>
           <TextField
             required
-            type="tel" // Use type="tel" for phone number input
-            label="Whatsapp"
-            helperText=""
             fullWidth
-            autoComplete="phone"
+            label="Numéro WhatsApp"
+            autoComplete="tel"
             value={whatsapp_acheteur}
-            onChange={handleChangewhatsapp_acheteur}
-            inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} // Use inputMode and pattern to enforce numeric input
+            onChange={handleChangeWhatsapp}
+            variant="outlined"
+            inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
           />
-        </Grid>
-        <Grid item xs={12}></Grid>
+        </Grid> */}
       </Grid>
-    </React.Fragment>
+    </div>
   );
 }

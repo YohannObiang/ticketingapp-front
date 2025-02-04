@@ -23,6 +23,7 @@ import html2canvas from 'html2canvas';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { saveAs } from 'file-saver';
 import EventTicket from '../../components/EventTicket'
+import AirtMoneyPopup from '../../components/AirtelMoneyPopup'
 
 
 const steps = ['Type de billet', 'Détails acheteur', 'Paiement'];
@@ -180,7 +181,7 @@ export default function Checkout({choosenEvent, URL, IdUserLoggedIn}) {
   
 
 
-  
+const now = new Date()
  
   return (
     <ThemeProvider theme={theme}>
@@ -243,36 +244,40 @@ export default function Checkout({choosenEvent, URL, IdUserLoggedIn}) {
                   </Button>
                 )}
 
-{activeStep === steps.length - 1 ? 
+              {activeStep === steps.length - 1 ? 
                   <div
                   variant="contained"
-                  sx={{ mt: 0, ml: 1 }}
+                  style={{ marginTop:'24px' }}
                   color='secondary'
                 >
                   
-                  <PayPalScriptProvider
-        options={{ "client-id": 'test' }}
-      >
-        <PayPalButtons
-          createOrder={(data, actions) => {
-            return actions.order.create({
-              purchase_units: [
-                {
-                  amount: {
-                    value: String(Math.floor(prixcategoriebillet*0.0016)),
-                  },
-                },
-              ],
-            });
-          }}
-          onApprove={async (data, actions) => {
-            const details = await actions.order.capture();
-            const name = details.payer.name.given_name;
-            post();
-            
-          }}
-        />
-      </PayPalScriptProvider>
+                  {/* <PayPalScriptProvider
+                    options={{ "client-id": 'test' }}
+                  >
+                    <PayPalButtons
+                      createOrder={(data, actions) => {
+                        return actions.order.create({
+                          purchase_units: [
+                            {
+                              amount: {
+                                value: String(Math.floor(prixcategoriebillet*0.0016)),
+                              },
+                            },
+                          ],
+                        });
+                      }}
+                      onApprove={async (data, actions) => {
+                        const details = await actions.order.capture();
+                        const name = details.payer.name.given_name;
+                        post();
+                        
+                      }}
+                    />
+                  </PayPalScriptProvider> */}
+                  <AirtMoneyPopup 
+                    idbillet={choosenEvent.id_evenement+String(value)}
+                    prix={parseInt(prixcategoriebillet)}
+                  />
 
                   </div> : <Button
                   variant="contained"
