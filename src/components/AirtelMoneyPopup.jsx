@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button, CircularProgress, Typography } from '@mui/material';
+import ProgressBar from './ProgressBar';
 
 export default function AirtelMoneyPopup({ idbillet, prix, post }) {
   const [open, setOpen] = useState(false);
@@ -12,6 +13,7 @@ export default function AirtelMoneyPopup({ idbillet, prix, post }) {
   const [errorStatus, setErrorStatus] = useState(null);
   const [isDisabled, setIsDisabled] = useState(false); // Désactiver le champ après validation
   const [hideButtons, setHideButtons] = useState(false); // Masquer les boutons après validation
+
 
   // Vérification du format du numéro
   const isValidNumber = (num) => /^(077|074|076)\d{6}$/.test(num);
@@ -71,7 +73,7 @@ export default function AirtelMoneyPopup({ idbillet, prix, post }) {
       // Attendre quelques secondes avant de récupérer le statut
       setTimeout(() => {
         fetchTransactionStatus(response.data.merchant_reference_id, response.data.merchant_operation_account_code, secretKey);
-      }, 5000);
+      }, 2000);
 
     } catch (error) {
       console.error("❌ Erreur lors de la transaction:", error);
@@ -98,10 +100,10 @@ export default function AirtelMoneyPopup({ idbillet, prix, post }) {
         const transactionStatus = response.data.status;
         console.log(`🔄 Vérification du statut... Tentative ${attempts + 1} - Statut : ${transactionStatus}`);
 
-        if (transactionStatus === "PENDING" && attempts < 25) {
+        if (transactionStatus === "PENDING" && attempts < 250) {
             setTimeout(() => {
                 fetchTransactionStatus(transactionId, accountOperationCode, secretKey, attempts + 1);
-            }, 5000);
+            }, 500);
         } else {
             console.log(`✅ Statut final de la transaction : ${transactionStatus}`);
             setLoading(false);
@@ -158,7 +160,7 @@ export default function AirtelMoneyPopup({ idbillet, prix, post }) {
       <Button variant="contained" sx={{ backgroundColor: '#6F3193', color: 'white' }} onClick={handleOpen}>
         Payer
       </Button>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={open}>
         <DialogTitle sx={{ color: '#6F3193' }}>Paiement Airtel Money</DialogTitle>
         <DialogContent>
           <TextField
@@ -173,14 +175,20 @@ export default function AirtelMoneyPopup({ idbillet, prix, post }) {
             helperText={error}
             placeholder="077XXXXXX"
             disabled={isDisabled} // Désactiver après validation
-          />
+            sx={{
+              "& .MuiInputLabel-root": { textAlign: "left" }, // Aligner le label à gauche
+              "& .MuiInputBase-root": { alignItems: "flex-start" }, // Aligner l’input en haut
+            }}          />
 
           {loading && (
             <div>
-              <CircularProgress sx={{ display: 'block', margin: '20px auto' }} />
+              {/* <CircularProgress sx={{ display: 'block', margin: '20px auto' }} />
               <Typography variant="body1" color="primary" textAlign="center">
                 Veuillez patienter...
-              </Typography>
+              </Typography> */}
+              <ProgressBar 
+                status={status}
+              />
             </div>
           )}
 
