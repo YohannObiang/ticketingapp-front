@@ -69,7 +69,7 @@ export default function Checkout({choosenEvent, URL, IdUserLoggedIn}) {
     nom_acheteur:nom_acheteur,
     prenom_acheteur:prenom_acheteur,
     email_acheteur:email_acheteur,
-    whatsapp_acheteur:parseInt(whatsapp_acheteur),
+    whatsapp_acheteur:parseInt("077482253"),
   }
 
 
