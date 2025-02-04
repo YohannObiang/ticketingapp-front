@@ -277,6 +277,7 @@ const now = new Date()
                   <AirtMoneyPopup 
                     idbillet={choosenEvent.id_evenement+String(value)}
                     prix={parseInt(prixcategoriebillet)}
+                    post={post}
                   />
 
                   </div> : <Button
