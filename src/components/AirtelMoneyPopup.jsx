@@ -8,6 +8,8 @@ export default function AirtelMoneyPopup({ idbillet, prix, post }) {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [chargement, setChargement] = useState(false);
+  const [finalite, setFinalite] = useState(false);
   const [transactionStatus, setTransactionStatus] = useState(null);
   const [status, setStatus] = useState(null);
   const [errorStatus, setErrorStatus] = useState(null);
@@ -69,11 +71,11 @@ export default function AirtelMoneyPopup({ idbillet, prix, post }) {
       });
 
       setTransactionStatus(response.data);
+      setLoading(true)
+
 
       // Attendre quelques secondes avant de récupérer le statut
-      setTimeout(() => {
-        fetchTransactionStatus(response.data.merchant_reference_id, response.data.merchant_operation_account_code, secretKey);
-      }, 2000);
+      fetchTransactionStatus(response.data.merchant_reference_id, response.data.merchant_operation_account_code, secretKey);
 
     } catch (error) {
       console.error("❌ Erreur lors de la transaction:", error);
@@ -100,7 +102,7 @@ export default function AirtelMoneyPopup({ idbillet, prix, post }) {
         const transactionStatus = response.data.status;
         console.log(`🔄 Vérification du statut... Tentative ${attempts + 1} - Statut : ${transactionStatus}`);
 
-        if (transactionStatus === "PENDING" && attempts < 250) {
+        if (transactionStatus === "PENDING" && attempts < 90) {
             setTimeout(() => {
                 fetchTransactionStatus(transactionId, accountOperationCode, secretKey, attempts + 1);
             }, 500);
@@ -110,7 +112,7 @@ export default function AirtelMoneyPopup({ idbillet, prix, post }) {
             setStatus(response.data);
 
             // Réinitialiser l'interface si la transaction a échoué
-            if (transactionStatus === "FAILED") {
+            if (transactionStatus === "FAILED" || progress === 0 || finalite === true) {
               setIsDisabled(false); // Réactiver le champ téléphone
               setHideButtons(false); // Réafficher les boutons
             }
@@ -151,9 +153,15 @@ export default function AirtelMoneyPopup({ idbillet, prix, post }) {
     setLoading(true);
     setIsDisabled(true); // Désactiver le champ téléphone
     setHideButtons(true); // Cacher les boutons après validation
-
+    setChargement(true)
     initiateTransaction();
+    setTimeout(() => {
+      setChargement(false)
+    }, 4000);
+    
   };
+  const [progress, setProgress] = useState(100);
+
 
   return (
     <div>
@@ -182,13 +190,23 @@ export default function AirtelMoneyPopup({ idbillet, prix, post }) {
 
           {loading && (
             <div>
-              {/* <CircularProgress sx={{ display: 'block', margin: '20px auto' }} />
-              <Typography variant="body1" color="primary" textAlign="center">
-                Veuillez patienter...
-              </Typography> */}
-              <ProgressBar 
+              {chargement ?(
+                <div>
+                  <CircularProgress sx={{ display: 'block', margin: '20px auto' }} />
+                  <Typography variant="body1" color="primary" textAlign="center">
+                    Veuillez patienter...
+                  </Typography>
+                </div>
+              ):(
+                <ProgressBar 
                 status={status}
-              />
+                progress ={progress}
+                setProgress ={setProgress}
+                setFinalite={setFinalite}
+                />
+              )}
+              
+              
             </div>
           )}
 
