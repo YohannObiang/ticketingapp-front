@@ -53,6 +53,12 @@ body {
   grid-template-columns: 1fr 1fr 1fr 1fr;
 
 }
+.soonestEventBox2{
+  padding: 0px 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+
+}
 .soonestEventCard{
   margin: 10px 10px 3px 10px;
 }
@@ -119,6 +125,12 @@ h1, h2, h3, h4, h5, h6, a, span, input, p, legend{
     padding: 0px 10px;
     display: grid;
     grid-template-columns: 1fr 1fr;
+  
+  }
+  .soonestEventBox2{
+    padding: 0px 10px;
+    display: grid;
+    grid-template-columns: 1fr;
   
   }
   .soonestEventCard{

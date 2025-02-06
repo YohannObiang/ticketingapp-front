@@ -43,7 +43,7 @@ export default function Results({ array, setToTickets, categoriesbillet,choosenE
       <div className="navbarBackground"></div>
       <legend className="Title">Mes billets</legend>
       {toTickets? ( 
-        <div className="soonestEventCard">
+        <div className="soonestEventCard" style={{paddingTop:'800px'}}>
         <TicketBought 
           listOfTickets ={listOfTickets}
           choosenEvent={choosenEvent}

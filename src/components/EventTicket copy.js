@@ -10,7 +10,7 @@ const EventTicket = ({ URL, email_acheteur, choosenEvent }) => {
 
   const getData = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/evenement/${idevent}`);
+      const response = await axios.get(`https://ebillet.onrender.com/evenement/${idevent}`);
       setEvent(response.data[0]);
     } catch (error) {
       console.error("Erreur lors de la récupération de l'événement :", error);

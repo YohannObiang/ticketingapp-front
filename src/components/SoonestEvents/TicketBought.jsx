@@ -14,7 +14,7 @@ export default function TicketBought ({listOfTickets, choosenEvent}) {
   
 
   return(
-    <div className="soonestEventBox">
+    <div className="soonestEventBox2">
       {listOfTickets.map((item) => {
         return(
           <div style={{margin:'10px'}}>
