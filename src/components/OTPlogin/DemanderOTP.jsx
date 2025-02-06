@@ -5,7 +5,7 @@ import VerifierOTP from './VerifierOTP';
 import CircularProgress from '@mui/material/CircularProgress';
 import styles from './DemanderOTP.module.css';
 
-function DemanderOTP({array, categoriesbillet,setChoosenEvent,URL, evenements}) {
+function DemanderOTP({array, categoriesbillet,setChoosenEvent, choosenEvent, URL, evenements}) {
   const [email, setEmail] = useState('');
   const [isSent, setIsSent] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -60,6 +60,7 @@ function DemanderOTP({array, categoriesbillet,setChoosenEvent,URL, evenements}) 
         setChoosenEvent={setChoosenEvent}
         URL={URL}
         evenements={evenements}
+        choosenEvent={choosenEvent}
          />
       ) : (
         <form onSubmit={handleSubmit} className={styles.form}>

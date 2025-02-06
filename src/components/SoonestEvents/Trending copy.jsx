@@ -9,9 +9,6 @@ import {Link } from "react-router-dom";
 
 export default function Trending ({item, Choose,choosenOne, price}) {
 
-
-
-  
   return(
     <div className="card" style={{backgroundImage:`url(https://ebillet.onrender.com/uploads/${choosenOne.illustration})`, width:'100%'}}>
       <div className="card-content">
@@ -20,9 +17,12 @@ export default function Trending ({item, Choose,choosenOne, price}) {
           {choosenOne.date} <br />
           {choosenOne.lieu}
         </p>
-          <a href="#" className="button" style={{color:'white'}}>
-            Voir billet(s)
+        <div onClick={()=>Choose(item.id_evenement)}>
+          <a className="button"  style={{color:'white'}}>
+              Voir billet(s)
           </a>
+        </div>
+          
       </div>
     </div>
   )

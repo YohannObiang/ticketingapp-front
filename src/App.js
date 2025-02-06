@@ -164,6 +164,7 @@ function App() {
           <Route path="/mes-billets" element={<DemanderOTP
           categoriesbillet={categoriesbillet}
           setChoosenEvent={setChoosenEvent}
+          choosenEvent={choosenEvent}
           ChoosenCategorie={ChoosenCategorie}
           URL={URL}
           evenements={evenements}

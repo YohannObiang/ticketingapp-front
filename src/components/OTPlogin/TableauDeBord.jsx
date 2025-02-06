@@ -7,8 +7,9 @@ import { Button } from '@mui/material';
 
 
 
-function TableauDeBord({ setIsLoggedIn, setIsSent, email, categoriesbillet,setChoosenEvent,URL, evenements }) {
+function TableauDeBord({ setIsLoggedIn, setIsSent, choosenEvent, email, categoriesbillet,setChoosenEvent,URL, evenements }) {
   const navigate = useNavigate();
+    const [toTickets, setToTickets] = React.useState(false)
     const [array, setArray] = React.useState([])
     const [adressemail, setadressemail] = React.useState(localStorage.getItem('email'))
   const handleLogout = () => {
@@ -49,6 +50,9 @@ function TableauDeBord({ setIsLoggedIn, setIsSent, email, categoriesbillet,setCh
         evenements={evenements}
         array={array}
         adressemail={adressemail}
+        setToTickets={setToTickets}
+        toTickets={toTickets}
+        choosenEvent={choosenEvent}
         />
         
       </div>

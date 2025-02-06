@@ -6,6 +6,10 @@
     width: fit-content;
 
 }
+.qrsize{
+    width: 180px;
+    height: 180px;
+}
 .contain{
     width: 100vw;
     display: flex;
@@ -88,6 +92,10 @@ h3{
         overflow-x: hidden;
 
     }
+    .qrsize{
+        width: 100px;
+        height: 100px;
+    }
     .LatestOffers{
         width: 100vw;
         margin: auto;
@@ -119,4 +127,8 @@ h3{
     .text{
         font-size: 12px;
        }
+       .qrsize{
+        width: 80px;
+        height: 80px;
+    }
 }

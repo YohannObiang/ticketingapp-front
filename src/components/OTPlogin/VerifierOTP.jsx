@@ -6,7 +6,7 @@ import styles from './VerifierOTP.module.css';
 import { Button } from '@mui/material';
 
 
-function VerifierOTP({ email, setIsSent, evenements, categoriesbillet,setChoosenEvent,URL }) {
+function VerifierOTP({ email, setIsSent, evenements, categoriesbillet,setChoosenEvent, choosenEvent, URL }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [otp, setOtp] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -93,6 +93,7 @@ function VerifierOTP({ email, setIsSent, evenements, categoriesbillet,setChoosen
         evenements={evenements}
         setChoosenEvent={setChoosenEvent}
         URL={URL}
+        choosenEvent={choosenEvent}
         setIsLoggedIn={setIsLoggedIn} setIsSent={setIsSent} email={email} />
       ) : (
         <form onSubmit={handleSubmit} className={styles.form}>
