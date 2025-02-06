@@ -6,10 +6,11 @@ import logo from "../../assets/logo.png";
 
 const menuItems = [
   { label: "Accueil", path: "/" },
-  { label: "À propos", path: "/#about" },
-  { label: "Services", path: "/#services" },
+  { label: "Mes Billets", path: "/mes-billets" },
+  { label: "A propos", path: "/#services" },
+  { label: "Administrateur", path: "/admin" },
   { label: "Contact", path: "/#contact" },
-  { label: "Admin", path: "/admin" },
+
 ];
 
 const Navbar = () => {

@@ -9,6 +9,11 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ResultsByCategories from './pages/ResultsByCategories/ResultsByCategories';
 import axios from 'axios';
+import RouteProtegee from './components/OTPlogin/RouteProtegee';
+import Inscription from './components/OTPlogin/Inscription';
+import DemanderOTP from './components/OTPlogin/DemanderOTP';
+import TableauDeBord from './components/OTPlogin/TableauDeBord';
+import VerifierOTP from './components/OTPlogin/VerifierOTP';
 
 function App() {
   const URL = "https://ebillet.onrender.com";
@@ -122,9 +127,9 @@ function App() {
             element={
               <ResultsByCategories
                 evenements={evenements}
-                setChoosenEvent={setChoosenEvent}
                 IdCategorie={IdCategorie}
                 categoriesbillet={categoriesbillet}
+                setChoosenEvent={setChoosenEvent}
                 ChoosenCategorie={ChoosenCategorie}
                 URL={URL}
               />
@@ -156,6 +161,13 @@ function App() {
               />
             }
           />
+          <Route path="/mes-billets" element={<DemanderOTP
+          categoriesbillet={categoriesbillet}
+          setChoosenEvent={setChoosenEvent}
+          ChoosenCategorie={ChoosenCategorie}
+          URL={URL}
+          evenements={evenements}
+          />} />
         </Routes>
       </BrowserRouter>
     </div>

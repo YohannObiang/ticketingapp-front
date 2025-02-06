@@ -13,7 +13,7 @@ export default function Trending ({item, Choose, price}) {
 
   
   return(
-  // <Link to="/Details" onClick={()=>Choose(item.id_evenement)}>
+  <Link to="/Details" onClick={()=>Choose(item.id_evenement)}>
     <div className="card" style={{backgroundImage:`url(https://ebillet.onrender.com/uploads/${item.illustration})`, width:'100%'}}>
       <div className="card-content">
         <h3 className="card-title">{item.evenement}</h3>
@@ -29,7 +29,7 @@ export default function Trending ({item, Choose, price}) {
         </Link>
       </div>
     </div>
-  // </Link>
+  </Link>
   )
 };
 

@@ -1,0 +1,31 @@
+.dashboard {
+    position: relative;
+    width: 100%;
+    background-color: #fff;
+    min-height: 100vh;
+  }
+  
+  .content {
+    /* Styles pour le contenu principal du tableau de bord */
+  }
+  
+  .logoutButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #6F3193;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+  }
+  
+  .logoutButton:hover {
+    background-color: #5a287a;
+  }
+  
