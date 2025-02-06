@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import styles from './TableauDeBord.module.css';
 import axios from 'axios';
 import Results from './Results/Results';
-import { Button } from '@mui/material';
-
+import Button from '@mui/material/Button';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 
 function TableauDeBord({ setIsLoggedIn, setIsSent, choosenEvent, email, categoriesbillet,setChoosenEvent,URL, evenements }) {
@@ -42,6 +42,7 @@ function TableauDeBord({ setIsLoggedIn, setIsSent, choosenEvent, email, categori
   return (
     <div className={styles.dashboard} style={{position:'relative'}}>
       {/* Contenu principal du tableau de bord */}
+      {/* <button onClick={()=>{setIsLoggedIn(false)}}>Retour</button> */}
       <div className={styles.content}>
         <Results
         categoriesbillet={categoriesbillet}
@@ -57,9 +58,10 @@ function TableauDeBord({ setIsLoggedIn, setIsSent, choosenEvent, email, categori
         
       </div>
       {/* Bouton de déconnexion flottant */}
-      <button onClick={handleLogout} style={{position:'fixed', bottom:'20px', right:'10px'}}>
-        Se déconnecter
-      </button>
+
+      <Button variant="contained" onClick={handleLogout} style={{position:'fixed', backgroundColor:'#6f3193', bottom:'20px', right:'10px'}} endIcon={<ExitToAppIcon />}>
+      Se déconnecter
+      </Button>
     </div>
   );
 }
