@@ -26,7 +26,7 @@ import EventTicket from '../../components/EventTicket'
 import AirtMoneyPopup from '../../components/AirtelMoneyPopup'
 
 
-const steps = ['Type de billet', 'Détails acheteur', 'Paiement'];
+const steps = ['Type de billet', 'Adresse mail', 'Paiement'];
 
 const theme = createTheme({
   palette: {
@@ -66,8 +66,8 @@ export default function Checkout({choosenEvent, URL, IdUserLoggedIn}) {
     id_categoriebillet: parseInt(value),
     categoriebillet: categoriebillet,
     prix: parseInt(prixcategoriebillet),
-    nom_acheteur:nom_acheteur,
-    prenom_acheteur:prenom_acheteur,
+    nom_acheteur:'nom_acheteur',
+    prenom_acheteur:'prenom_acheteur',
     email_acheteur:email_acheteur,
     whatsapp_acheteur:parseInt("077482253"),
   }
@@ -105,6 +105,7 @@ export default function Checkout({choosenEvent, URL, IdUserLoggedIn}) {
   }
 
   }
+  const [emailError, setEmailError] = React.useState(false);
 
   function getStepContent(step) {
     switch (step) {
@@ -128,6 +129,8 @@ export default function Checkout({choosenEvent, URL, IdUserLoggedIn}) {
         setprenom_acheteur = {setprenom_acheteur}
         nom_acheteur = {nom_acheteur}
         setnom_acheteur = {setnom_acheteur}
+        emailError = {emailError} 
+        setEmailError = {setEmailError}
 
         />;
       case 2:
@@ -168,18 +171,6 @@ export default function Checkout({choosenEvent, URL, IdUserLoggedIn}) {
       });
     });  
   };
-
-//   function kkk(){
-//   axios.post(`${URL}/ajout/billetvendu`, billet).then(res => {
-//     setIdBillet(res.data.id_billetvendu)
-//     setActiveStep(activeStep + 1)
-
-
-// })
-// axios.get()
-//   }
-  
-
 
 const now = new Date()
  
@@ -250,30 +241,6 @@ const now = new Date()
                   style={{ marginTop:'24px' }}
                   color='secondary'
                 >
-                  
-                  {/* <PayPalScriptProvider
-                    options={{ "client-id": 'test' }}
-                  >
-                    <PayPalButtons
-                      createOrder={(data, actions) => {
-                        return actions.order.create({
-                          purchase_units: [
-                            {
-                              amount: {
-                                value: String(Math.floor(prixcategoriebillet*0.0016)),
-                              },
-                            },
-                          ],
-                        });
-                      }}
-                      onApprove={async (data, actions) => {
-                        const details = await actions.order.capture();
-                        const name = details.payer.name.given_name;
-                        post();
-                        
-                      }}
-                    />
-                  </PayPalScriptProvider> */}
                   <AirtMoneyPopup 
                     idbillet={choosenEvent.id_evenement+String(value)}
                     prix={parseInt(prixcategoriebillet)}
@@ -284,6 +251,7 @@ const now = new Date()
                   variant="contained"
                   onClick={handleNext}
                   sx={{ mt: 3, ml: 1 }}
+                  
                 >
                   {activeStep === steps.length - 1 ? 'Payer' : 'Suivant'}
                 </Button>}

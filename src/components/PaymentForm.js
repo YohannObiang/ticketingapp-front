@@ -17,42 +17,20 @@ export default function PaymentForm({
     setter(event.target.value);
   };
 
-  const handleChangeWhatsapp = (event) => {
-    const numericValue = event.target.value.replace(/\D/g, ''); // Garde uniquement les chiffres
-    setwhatsapp_acheteur(numericValue);
-  };
+
 
   return (
     <div >
       <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', marginBottom: 2 }}> 
-         Détails de l’acheteur
+      Entrez votre adresse e-mail
       </Typography>
       <FormLabel sx={{ color: 'text.secondary', marginBottom: 2, display: 'block' }}>
-        Veuillez remplir chacun des champs ci-dessous.
+      Indiquez votre adresse e-mail afin de recevoir immédiatement votre billet électronique ainsi qu’un reçu de votre achat. 
+      Assurez-vous de saisir une adresse valide pour éviter toute perte d’informations importantes liées à votre commande.
       </FormLabel>
 
       <Grid container spacing={2}>
-        <Grid item xs={12} md={6}>
-          <TextField
-            fullWidth
-            label="Nom"
-            autoComplete="family-name"
-            value={nom_acheteur}
-            onChange={handleChange(setnom_acheteur)}
-            variant="outlined"
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            fullWidth
-            label="Prénom"
-            autoComplete="given-name"
-            value={prenom_acheteur}
-            onChange={handleChange(setprenom_acheteur)}
-            variant="outlined"
-          />
-        </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={12}>
           <TextField
             required
             fullWidth

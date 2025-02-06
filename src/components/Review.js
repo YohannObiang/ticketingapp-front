@@ -1,55 +1,58 @@
-import * as React from 'react';
-import Typography from '@mui/material/Typography';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import Grid from '@mui/material/Grid';
-
+import * as React from "react";
+import { Card, CardContent, Typography, List, ListItem, ListItemText, Grid, Divider } from "@mui/material";
+import EmailIcon from "@mui/icons-material/Email";
+import EventIcon from "@mui/icons-material/Event";
+import LocalOfferIcon from "@mui/icons-material/LocalOffer";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import PersonIcon from "@mui/icons-material/Person";
 
 export default function Review({
-  billet,
-  whatsapp_acheteur,
-  email_acheteur,
-  prenom_acheteur,
-  nom_acheteur,
-  value,
+  evenement,
   categoriebillet,
   prixcategoriebillet,
-  evenement
+  nom_acheteur,
+  prenom_acheteur,
+  email_acheteur,
+  whatsapp_acheteur,
 }) {
-
-
-  
   return (
-    <React.Fragment>
-      <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', marginBottom: 2 }}>        
-        Vérification de la commande
-      </Typography>
-      <List disablePadding>
-          <ListItem sx={{ py: 1, px: 0 }}>
-            <ListItemText primary={evenement} secondary={categoriebillet} />
-            <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>{prixcategoriebillet} fcfa</Typography>
-          </ListItem>
-
+      <CardContent>
+        {/* Titre */}
+        <Typography variant="h5" gutterBottom sx={{ fontWeight: "bold", textAlign: "center" }}>
+          Vérification de la commande
+        </Typography>
         
-      </List>
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
-          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-            Acheteur
-          </Typography>
-          <Typography gutterBottom>{nom_acheteur}</Typography>
-          <Typography gutterBottom>{prenom_acheteur}</Typography>
+        <Divider sx={{ my: 2 }} />
+
+        {/* Détails de l'événement */}
+        <List disablePadding>
+          <ListItem>
+            <EventIcon color="primary" sx={{ mr: 1 }} />
+            <ListItemText primary="Événement" secondary={evenement} />
+          </ListItem>
+          <ListItem>
+            <LocalOfferIcon color="primary" sx={{ mr: 1 }} />
+            <ListItemText primary="Catégorie" secondary={categoriebillet} />
+            <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
+              {prixcategoriebillet} FCFA
+            </Typography>
+          </ListItem>
+        </List>
+
+        <Divider sx={{ my: 2 }} />
+
+        {/* Informations de l'acheteur */}
+        <Typography variant="h6" gutterBottom sx={{ fontWeight: "bold" }}>
+          Canal de reception
+        </Typography>
+        <Grid container spacing={2}>
+
+          <Grid item xs={12}>
+            <EmailIcon color="primary" sx={{ mr: 1 }} />
+            <Typography display="inline" style={{color:'black'}}>{email_acheteur}</Typography>
+          </Grid>
+
         </Grid>
-        <br/><br/>
-        <Grid item container direction="column" xs={12} sm={6}>
-          <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
-            Canal de réception
-          </Typography>
-          <Typography gutterBottom>{email_acheteur}</Typography>
-          {/* <Typography gutterBottom>{whatsapp_acheteur}</Typography> */}
-        </Grid>
-      </Grid>
-    </React.Fragment>
+      </CardContent>
   );
 }

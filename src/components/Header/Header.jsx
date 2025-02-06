@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 
-const Header = ({ valueSearch, setValueSearch, setChoosenEvent, evenements, setResultSearch, URL }) => {
+const Header = ({ valueSearch, setValueSearch, onspot, setChoosenEvent, evenements, setResultSearch, URL }) => {
 
   const navigate = useNavigate();
   const handleChange = (e) => {
@@ -18,16 +18,7 @@ const Header = ({ valueSearch, setValueSearch, setChoosenEvent, evenements, setR
     setResultSearch(filtered);
   };
 
-  const [onspot, setOnspot] = useState([]);
-
-  useEffect(() => {
-    getOnspot();
-  }, []);
-
-  const getOnspot = async () => {
-    const response = await axios.get(`${URL}/onspot`);
-    setOnspot(response.data);
-  };
+  
 
   const chooseEvent = (id_evenement) => {
     const choosenOne = onspot.find(item => item.id_evenement === id_evenement);

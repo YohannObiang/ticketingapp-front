@@ -31,11 +31,18 @@ function App() {
   const [Ctitket, setCticket] = useState([]);
   const [events, setevents] = useState([]);
   const[Ctitketsold, setCticketsold] = useState([])
+  const [onspot, setOnspot] = useState([]);
 
+
+  const getOnspot = async () => {
+    const response = await axios.get(`${URL}/onspot`);
+    setOnspot(response.data);
+  };
 
   useEffect(() => {
     checkAuthentication();
   }, []);
+  getOnspot();
 
   const checkAuthentication = async () => {
     try {
@@ -97,6 +104,7 @@ function App() {
                 URL={URL}
                 ClosestEvent={ClosestEvent}
                 categoriesbillet={categoriesbillet}
+                onspot={onspot}
               />
             }
           />
