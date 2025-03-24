@@ -71,11 +71,12 @@ export default function AirtelMoneyPopup({ idbillet, prix, post }) {
       });
 
       setTransactionStatus(response.data);
+      console.log(response.data);
       setLoading(true)
 
 
       // Attendre quelques secondes avant de récupérer le statut
-      fetchTransactionStatus(response.data.merchant_reference_id, response.data.merchant_operation_account_code, secretKey);
+      // fetchTransactionStatus(response.data.merchant_reference_id, response.data.merchant_operation_account_code, secretKey);
 
     } catch (error) {
       console.error("❌ Erreur lors de la transaction:", error);
